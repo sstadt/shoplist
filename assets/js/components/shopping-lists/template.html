@@ -1,6 +1,12 @@
 
 <ul data-bind="foreach: lists">
-	<li><a data-bind="text: name, attr: { 'href': viewLink }"></a></li>
+	<li>
+		<a data-bind="text: name, attr: { 'href': viewLink }"></a>
+		<ul class="button-group radius">
+			<li><button class="button tiny" data-bind="click: $parent.editListTitle" data-reveal-id="editListModal"><i class="fa fa-pencil"></i></button></li>
+			<li><button class="button tiny" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button></li>
+		</ul>
+	</li>
 </ul>
 
 <form data-bind="submit: addList">
@@ -20,3 +26,22 @@
 		</div>
 	</div>
 </form>
+
+<div id="editListModal" class="reveal-modal" data-reveal>
+	<a class="close-reveal-modal">&#215;</a>
+
+	<form data-bind="submit: saveList">
+		<div class="row">
+			<div class="columns small-12">
+				<div class="row collapse">
+					<div class="small-10 columns">
+						<input type="text" placeholder="New List Name" data-bind="textInput: editListName">
+					</div>
+					<div class="small-2 columns">
+						<button type="submit" class="button postfix">Save</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

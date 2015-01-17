@@ -16,6 +16,8 @@ define([
 
     // list data
     self.lists = ko.observableArray([]);
+    self.editListName = ko.observable('');
+    self.editListId = ko.observable();
 
     // new list data
     self.newListName = ko.observable('');
@@ -34,71 +36,67 @@ define([
           self.newListName('');
         } else {
           alert('error');
-          console.log(response.error);
+          console.log(response);
         }
       });
     };
 
-    // /**
-    //  * Toggle a link's edit state
-    //  * @param  {Link} link The link to make editable
-    //  * @return {void}
-    //  */
-    // self.toggleEdit = function (link) {
-    //   var linkIndex = _.findIndex(self.links(), function (l) {
-    //     return link.id === l.id;
-    //   });
+    /**
+     * Edit the title of a list
+     * 
+     * @param  {ShoppingList} The shopping list to set a new title for
+     */
+    self.editListTitle = function (list) {
+      self.editListName(list.name);
+      self.editListId(list.id);
 
-    //   link.edit = !link.edit;
-    //   self.links.replace(self.links()[linkIndex], new Link(link));
-    // };
+      $('#editListModal').foundation('reveal', 'open');
+    };
 
-    // /**
-    //  * Update a link
-    //  * @param  {Link} link The link to update
-    //  * @return {void}
-    //  */
-    // self.updateLink = function (link) {
-    //   var updatedLink = {
-    //     id: link.id,
-    //     name: link.tempName,
-    //     caption: link.tempCaption,
-    //     link: link.tempLink
-    //   };
+    self.saveList = function () {
+      var updatedList = {
+        id: self.editListId(),
+        name: self.editListName()
+      };
 
-    //   io.socket.post('/link/update', updatedLink, function (response) {
-    //     if (response.success) {
-    //       var linkIndex = _.findIndex(self.links(), function (l) {
-    //         return link.id === l.id;
-    //       });
+      io.socket.post('/list/update', updatedList, function (response) {
+        if (response.success) {
+          var listIndex = _.findIndex(self.lists(), function (l) {
+            return response.list.id === l.id;
+          });
 
-    //       console.log(response);
+          console.log(response);
 
-    //       self.links.replace(self.links()[linkIndex], new Link(response.link));
-    //     } else {
-    //       alert('error');
-    //       console.log(response);
-    //     }
-    //   });
-    // };
+          self.lists.replace(self.lists()[listIndex], new ShoppingList(response.list));
 
-    // /**
-    //  * Remove a link from the list
-    //  * @param  {Link} link The Link object to remove from the list
-    //  * @return {void}
-    //  */
-    // self.removeLink = function (link) {
-    //   if (confirm("Are you sure you want to remove this link?")) {
-    //     io.socket.post('/link/destroy', { id: link.id }, function (response) {
-    //       if (response.success) {
-    //         self.links.destroy(link);
-    //       } else {
-    //         alert('error');
-    //         console.log(response);
-    //       }
-    //     });
-    //   }
-    // };
+          $('#editListModal').foundation('reveal', 'close', function () {
+            self.editListName('');
+            self.editListId('');
+          });
+        } else {
+          alert('error');
+          console.log(response);
+        }
+      });
+    };
+
+    /**
+     * Delete a list fromt the database
+     * 
+     * @param  {ShoppingList} The shopping list to delete 
+     */
+    self.deleteList = function (list) {
+      if (confirm("Are you sure you want to delete this list? This cannot be undone.")) {
+        io.socket.post('/list/destroy', { id: list.id }, function (response) {
+          if (response.success) {
+            self.lists.destroy(list);
+          } else {
+            alert('error');
+            console.log(response);
+          }
+        });
+      }
+    };
 
     /**
      * Populate the initial list
@@ -112,7 +110,7 @@ define([
         }
       } else {
         alert('error');
-        console.log(response.error);
+        console.log(response);
       }
     });
 
