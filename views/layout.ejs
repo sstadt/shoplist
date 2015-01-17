@@ -10,6 +10,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/style.css">
     <!--STYLES END-->
   </head>
 
@@ -34,7 +35,7 @@
 
     <%- body %>
 
-    <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= script || 'app' %>.js"></script>
+    <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= 'app' %>.js"></script>
 
     <% if (sails.config.environment === 'development') { %>
       <!-- Live Reload -->

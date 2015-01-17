@@ -1,99 +1,127 @@
 /*jslint browser: true*/
-/*globals requirejs, alert, confirm, io*/
+/*globals requirejs*/
 
 requirejs.config({
+
   paths: {
     // plugins
-    'text': 'vendor/requirejs-text/text',
+    'text'                   : 'vendor/requirejs-text/text',
 
-    // vendor
-    'sails': 'vendor/sails.io.js/dist/sails.io',
-    'jquery': 'vendor/jquery/dist/jquery',
-    'fittext': 'vendor/fittext/fittext',
-    'lodash': 'vendor/lodash/dist/lodash',
-    'bootstrap': 'vendor/bootstrap/dist/js/bootstrap',
-    'bsvalidate': 'vendor/bootstrapValidator/dist/js/bootstrapValidator',
-    'knockout': 'vendor/knockout/dist/knockout',
-    'dropzone': 'vendor/dropzone/downloads/dropzone',
-    'hotkeys': 'vendor/bootstrap-wysiwyg/external/jquery.hotkeys',
-    'wysiwyg': 'vendor/bootstrap-wysiwyg/bootstrap-wysiwyg',
+    // misc
+    'sails'                  : 'vendor/sails.io.js/dist/sails.io',
+    'jquery'                 : 'vendor/jquery/dist/jquery',
+    'lodash'                 : 'vendor/lodash/dist/lodash',
+    'knockout'               : 'vendor/knockout/dist/knockout',
 
-    // classes
-    'Post': 'lib/classes/Post',
-    'Skill': 'lib/classes/Skill',
-    'Project': 'lib/classes/Project',
-    'Link': 'lib/classes/Link',
-    'Image': 'lib/classes/Image'
+    // foundation deps
+    'fastclick'              : 'vendor/foundation/js/vendor/fastclick',
+    'jquery.cookie'          : 'vendor/foundation/js/vendor/jquery.cookie',
+    'modernizr'              : 'vendor/foundation/js/vendor/modernizr',
+    'placeholder'            : 'vendor/foundation/js/vendor/placeholder',
+
+    // foundation
+    'foundation'             : 'vendor/foundation/js/foundation',
+    'foundation.abide'       : 'vendor/foundation/js/foundation/foundation.abide',
+    'foundation.accordion'   : 'vendor/foundation/js/foundation/foundation.accordion',
+    'foundation.alert'       : 'vendor/foundation/js/foundation/foundation.alert',
+    'foundation.clearing'    : 'vendor/foundation/js/foundation/foundation.clearing',
+    'foundation.dropdown'    : 'vendor/foundation/js/foundation/foundation.dropdown',
+    'foundation.equalizer'   : 'vendor/foundation/js/foundation/foundation.equalizer',
+    'foundation.interchange' : 'vendor/foundation/js/foundation/foundation.interchange',
+    'foundation.joyride'     : 'vendor/foundation/js/foundation/foundation.joyride',
+    'foundation.magellan'    : 'vendor/foundation/js/foundation/foundation.magellan',
+    'foundation.offcanvas'   : 'vendor/foundation/js/foundation/foundation.offcanvas',
+    'foundation.orbit'       : 'vendor/foundation/js/foundation/foundation.orbit',
+    'foundation.reveal'      : 'vendor/foundation/js/foundation/foundation.reveal',
+    'foundation.slider'      : 'vendor/foundation/js/foundation/foundation.slider',
+    'foundation.tab'         : 'vendor/foundation/js/foundation/foundation.tab',
+    'foundation.tooltip'     : 'vendor/foundation/js/foundation/foundation.tooltip',
+    'foundation.topbar'      : 'vendor/foundation/js/foundation/foundation.topbar',
   },
+
   shim: {
-    'bootstrap': {
+    'placeholder': {
       deps: ['jquery']
     },
-    'bsvalidate': {
-      deps: ['bootstrap']
+    'foundation': {
+      deps: ['jquery', 'jquery.cookie', 'modernizr', 'placeholder', 'fastclick']
     },
-    'hotkeys': {
+    'jquery.cookie': {
       deps: ['jquery']
     },
-    'wysiwyg': {
-      deps: ['jquery', 'hotkeys', 'bootstrap']
+    'foundation.abide': {
+      deps: ['foundation']
     },
-    'fittext': {
-      deps: ['jquery']
+    'foundation.accordion': {
+      deps: ['foundation']
+    },
+    'foundation.alert': {
+      deps: ['foundation']
+    },
+    'foundation.clearing': {
+      deps: ['foundation']
+    },
+    'foundation.dropdown': {
+      deps: ['foundation']
+    },
+    'foundation.equalizer': {
+      deps: ['foundation']
+    },
+    'foundation.interchange': {
+      deps: ['foundation']
+    },
+    'foundation.joyride': {
+      deps: ['foundation']
+    },
+    'foundation.magellan': {
+      deps: ['foundation']
+    },
+    'foundation.offcanvas': {
+      deps: ['foundation']
+    },
+    'foundation.orbit': {
+      deps: ['foundation']
+    },
+    'foundation.reveal': {
+      deps: ['foundation']
+    },
+    'foundation.slider': {
+      deps: ['foundation']
+    },
+    'foundation.tab': {
+      deps: ['foundation']
+    },
+    'foundation.tooltip': {
+      deps: ['foundation']
+    },
+    'foundation.topbar': {
+      deps: ['foundation']
     }
   },
+
   deps: [
-    'knockout', 'jquery', 'sails', 'bootstrap'
+    'jquery',
+    'sails',
+    'knockout',
+    'foundation',
+    'foundation.alert',
+    'foundation.abide',
+    'foundation.reveal',
+    'foundation.topbar',
+    'foundation.tooltip',
+    'foundation.reveal'
   ],
-  callback: function (ko, $) {
 
-    /* Custom Data Bindings
-    ------------------------------*/
+  callback: function () {
 
-    /**
-     * Custom binding for elements which contain the
-     * contenteditable="true" attribute. Gives them
-     * identical behavior to an input element with
-     * the value binding.
-     */
-    ko.bindingHandlers.editableText = {
-      init: function (element, valueAccessor) {
-        $(element).on('blur', function () {
-          var observable = valueAccessor();
-          observable($(this).text());
-        });
-      },
-      update: function (element, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor());
-        $(element).text(value);
-      }
-    };
-
-    ko.bindingHandlers.htmlValue = {
-      init: function(element, valueAccessor, allBindingsAccessor) {
-        var updateHandler = function() {
-          var modelValue = valueAccessor(),
-            elementValue = element.innerHTML;
-
-          //update the value on keyup
-          modelValue(elementValue);
-        };
-
-        ko.utils.registerEventHandler(element, "keyup", updateHandler);
-        ko.utils.registerEventHandler(element, "input", updateHandler);
-      },
-      update: function(element, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor()) || "",
-          current = element.innerHTML;
-
-        if (value !== current) {
-          element.innerHTML = value;    
-        }
-      }
-    };
-
+    $(document).foundation();
   }
+
 });
+
+
+
+
 
 
 
