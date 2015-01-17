@@ -33,7 +33,13 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'home/index'
+    controller: 'list',
+    action: 'index'
+  },
+
+  '/list/get': {
+    controller: 'list',
+    action: 'getLists'
   }
 
   /***************************************************************************

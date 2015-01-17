@@ -37,6 +37,9 @@ requirejs.config({
     'foundation.tab'         : 'vendor/foundation/js/foundation/foundation.tab',
     'foundation.tooltip'     : 'vendor/foundation/js/foundation/foundation.tooltip',
     'foundation.topbar'      : 'vendor/foundation/js/foundation/foundation.topbar',
+
+    // classes
+    'ShoppingList'           : 'lib/classes/ShoppingList',
   },
 
   shim: {
@@ -113,7 +116,6 @@ requirejs.config({
   ],
 
   callback: function () {
-
     $(document).foundation();
   }
 

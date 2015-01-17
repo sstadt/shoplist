@@ -1,0 +1,22 @@
+
+<ul data-bind="foreach: lists">
+	<li><a data-bind="text: name, attr: { 'href': viewLink }"></a></li>
+</ul>
+
+<form data-bind="submit: addList">
+	<div class="row">
+		<div class="columns small-12"></div>
+	</div>
+	<div class="row">
+		<div class="large-12 columns">
+			<div class="row collapse">
+				<div class="small-10 columns">
+					<input type="text" placeholder="New List Name" data-bind="textInput: newListName">
+				</div>
+				<div class="small-2 columns">
+					<button type="submit" class="button postfix">Add</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -8,7 +8,17 @@
 module.exports = {
 
   attributes: {
-
+    name: {
+      type: 'string',
+      required: true
+    },
+    ownder: {
+      type: 'string'
+    },
+    shared: {
+      type: 'array',
+      defaultsTo: []
+    }
   }
 };
 
