@@ -3,7 +3,7 @@
 a [Sails](http://sailsjs.org) application
 
 [x] Add lists
-[ ] Edit Lists
+[x] Edit Lists
 [x] Remove Lists
 [ ] View Lists
 [ ] Add list items
@@ -11,6 +11,6 @@ a [Sails](http://sailsjs.org) application
 [ ] Remove list items
 [ ] Check list items as completed
 [ ] Style the application
-[ ] Switch to MongoDB
+[x] Switch to MongoDB
 [ ] Add the Users and Session models
 [ ] Add the abolity to share/sync lists
