@@ -27,16 +27,6 @@ var jsFilesToInject = [
   // 'js/dependencies/sails.io.js',
 
   // Dependencies like jQuery, or Angular are brought in here
-  // 'js/vendor/fastclick/lib/fastclick.js',
-  // 'js/vendor/modernizr/modernizr.js',
-  // 'js/vendor/jquery/dist/jquery.js',
-  // 'js/vendor/jquery-placeholder/jquery.placeholder.js',
-  // 'js/vendor/jquery.cookie/jquery.cookie.js',
-  // 'js/vendor/foundation/js/foundation/foundation.js',
-  // 'js/vendor/foundation/js/foundation/*.js',
-  // 'js/vendor/lodash/dist/lodash.js',
-  // 'js/vendor/angular/angular.js',
-  // 'js/vendor/angular-ui-router/release/angular-ui-router.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
