@@ -4,11 +4,10 @@
 define(function () {
   'use strict';
 
-  return function Skill(data) {
+  return function ListItem(data) {
     this.id = data.id;
     this.name = data.name;
-    this.tempName = data.name;
-    this.category = data.category;
-    this.edit = data.edit || false;
+    this.quantity = data.quantity;
+    this.checked = data.checked;
   };
 });

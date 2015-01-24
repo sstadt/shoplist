@@ -40,6 +40,7 @@ requirejs.config({
 
     // classes
     'ShoppingList'           : 'lib/classes/ShoppingList',
+    'ListItem'               : 'lib/classes/ListItem',
   },
 
   shim: {

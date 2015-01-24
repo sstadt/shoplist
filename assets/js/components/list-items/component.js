@@ -2,22 +2,25 @@
 /*globals define, confirm, alert, io*/
 
 define([
+  'lodash',
   'knockout',
-  'ShoppingList',
+  'ListItem',
   'text!./template.html'
-], function (ko, ShoppingList, html) {
+], function (_, ko, ListItem, html) {
   'use strict';
 
-  function ShoppingListViewModel() {
+  function ListItemsViewModel(params) {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
     var self = this;
 
-    // list data
-    self.list = ko.observable();
+    // item data
+    self.listId = params.id;
+    self.items = ko.observableArray([]);
 
-    // new list data
+    // new item data
     self.newItemName = ko.observable('');
+    self.newItemQuantity = ko.observable(1);
 
     // errors
     self.pageError = ko.observable(null);
@@ -41,18 +44,6 @@ define([
     //       self.newListName('');
     //     }
     //   });
-    // };
-
-    /**
-     * Edit the title of a list
-     * 
-     * @param  {ShoppingList} The shopping list to set a new title for
-     */
-    // self.editListTitle = function (list) {
-    //   self.editListName(list.name);
-    //   self.editListId(list.id);
-
-    //   $('#editListModal').foundation('reveal', 'open');
     // };
 
     // self.saveList = function () {
@@ -99,31 +90,64 @@ define([
     //   }
     // };
 
+    self.addItem = function () {
+      var newListItem = {
+        list: self.listId,
+        name: self.newItemName(),
+        quantity: self.newItemQuantity()
+      };
+
+      io.socket.post('/item/create', newListItem, function (response) {
+        if (response.err) {
+          self.formError(response.summary);
+        } else {
+          self.formError(null);
+          self.pageError(null);
+          self.items.push(new ListItem(response));
+          self.newItemName('');
+          self.newItemQuantity(1);
+        }
+      });
+    };
+
+    self.incrementNewItemQuantity = function () {
+      self.newItemQuantity(self.newItemQuantity() + 1);
+    };
+
+    self.decrementNewItemQuantity = function () {
+      if (self.newItemQuantity() > 0) {
+        self.newItemQuantity(self.newItemQuantity() - 1);
+      }
+    };
+
     /**
      * Populate the initial list
      */
-    // io.socket.get('/list/getLists', function (response) {
-    //   if (response.success) {
-    //     self.pageError(null);
+    io.socket.get('/item/index', { list: self.listId }, function (response) {
+      if (response.errror) {
+        self.pageError(response.summary);
+      } else {
+        self.pageError(null);
 
-    //     if (response.lists.length > 0) {
-    //       self.lists(response.lists.map(function (list) {
-    //         return new ShoppingList(list);
-    //       }));
-    //     }
-    //   } else {
-    //     self.pageError('Unable to retrieve lists');
-    //   }
-    // });
+        if (!_.isArray(response)) {
+          self.pageError('No records found');
 
-    // ko.components.register('page-alert', { require: 'components/alert-box/component' });
-    // ko.components.register('form-alert', { require: 'components/alert-box/component' });
-    // ko.components.register('modal-alert', { require: 'components/alert-box/component' });
+        } else if (response.length > 0) {
+          self.items(response.map(function (item) {
+            return new ListItem(item);
+          }));
+        }
+      }
+    });
 
   } /* End of View Model */
 
+  ko.components.register('page-alert', { require: 'components/alert-box/component' });
+  ko.components.register('form-alert', { require: 'components/alert-box/component' });
+  // ko.components.register('modal-alert', { require: 'components/alert-box/component' });
+
   return {
-    viewModel: ShoppingListViewModel,
+    viewModel: ListItemsViewModel,
     template: html
   };
 });

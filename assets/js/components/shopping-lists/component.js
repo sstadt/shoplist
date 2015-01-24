@@ -106,16 +106,16 @@ define([
      * Populate the initial list
      */
     io.socket.get('/list/getLists', function (response) {
-      if (response.success) {
+      if (response.err) {
+        self.pageError('Unable to retrieve lists');
+      } else {
         self.pageError(null);
 
-        if (response.lists.length > 0) {
-          self.lists(response.lists.map(function (list) {
+        if (response.length > 0) {
+          self.lists(response.map(function (list) {
             return new ShoppingList(list);
           }));
         }
-      } else {
-        self.pageError('Unable to retrieve lists');
       }
     });
 

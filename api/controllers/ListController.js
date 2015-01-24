@@ -10,25 +10,12 @@
 
 module.exports = {
 
+  /**
+   * Views
+   */
+
   index: function (req, res) {
     res.view({ script: 'index' });
-  },
-
-  getLists: function (req, res) {
-
-    List.find(function (err, lists) {
-      if (err) {
-        res.json({
-          success: false,
-          error: err
-        });
-      }
-
-      res.json({
-        success: true,
-        lists: lists
-      });
-    });
   },
 
   show: function (req, res) {
@@ -45,6 +32,10 @@ module.exports = {
     });
   },
 
+  /**
+   * API
+   */
+
   update: function (req, res) {
     var updatedList = {
       name: req.param('name')
@@ -58,6 +49,27 @@ module.exports = {
       res.json(list[0]);
     });
   },
+
+  getLists: function (req, res) {
+
+    List.find(function (err, lists) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.json(lists);
+    });
+  },
+
+  getListItems: function (req, res) {
+    Item.find(function (err, items) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.json(items);
+    });
+  }
 
 };
 

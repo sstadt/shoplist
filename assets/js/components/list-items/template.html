@@ -1,6 +1,52 @@
-<ul>
-	<li>Something ...</li>
-	<li>Something ...</li>
-	<li>Something ...</li>
-	<li>DARK SIDE !!!</li>
-</ul>
+
+<!-- List Items -->
+<div class="row">
+	<div class="columns small-12">
+		<div data-bind="component: { name: 'page-alert', params: { alertType: 'alert', alertMessage: pageError } }"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="columns small-12">
+		<ul data-bind="foreach: items">
+			<li><!-- ko text: name --><!-- /ko --> x<!-- ko text: quantity --><!-- /ko --></li>
+		</ul>
+	</div>
+</div>
+
+<!-- Add List Item -->
+<div class="row">
+	<div class="columns small-12">
+		<div data-bind="component: { name: 'page-alert', params: { alertType: 'alert', alertMessage: formError } }"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<form data-bind="submit: addItem">
+			<div class="row">
+				<div class="columns small-4 medium-3 large-2">
+					<div class="row collapse prefix-radius postfix-radius">
+						<div class="small-4 medium-3 columns">
+							<button class="button prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > 0"><i class="fa fa-minus"></i></button>
+						</div>
+						<div class="small-4 medium-6 columns">
+							<input type="text" placeholder="qty" data-bind="textInput: newItemQuantity" pattern="^[1-9][0-9]*$" title="Quantity must be greater than zero" required />
+						</div>
+						<div class="small-4 medium-3 columns">
+							<button class="button postfix" data-bind="click: incrementNewItemQuantity"><i class="fa fa-plus"></i></button>
+						</div>
+					</div>
+				</div>
+				<div class="columns small-8 medium-9 large-10">
+					<div class="row collapse postfix-radius">
+						<div class="columns small-9 medium-10 large-11">
+							<input type="text" placeholder="New Item" data-bind="textInput: newItemName" required />
+						</div>
+						<div class="columns small-3 medium-2 large-1">
+							<button type="submit" class="button small postfix success radius"><i class="fa fa-save"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

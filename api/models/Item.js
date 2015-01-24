@@ -1,5 +1,5 @@
 /**
-* List.js
+* Item.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -14,13 +14,20 @@ module.exports = {
       type: 'string',
       required: true
     },
-    owner: {
-      type: 'string'
+    list: {
+      type: 'string',
+      required: true
     },
-    shared: {
-      type: 'array',
-      defaultsTo: []
+    quantity: {
+      type: 'integer',
+      min: 0,
+      defaultsTo: 1
+    },
+    checked: {
+      type: 'boolean',
+      defaultsTo: false
     }
   }
+
 };
 
