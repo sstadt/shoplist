@@ -35,7 +35,7 @@
 
     <%- body %>
 
-    <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= 'app' %>.js"></script>
+    <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= script %>.js"></script>
 
     <% if (sails.config.environment === 'development') { %>
       <!-- Live Reload -->

@@ -11,7 +11,7 @@
 module.exports = {
 
   index: function (req, res) {
-    res.view({ script: 'app' });
+    res.view({ script: 'index' });
   },
 
   getLists: function (req, res) {
@@ -39,7 +39,7 @@ module.exports = {
       }
 
       res.view({
-        script: 'app',
+        script: 'list',
         list: list
       });
     });
