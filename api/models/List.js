@@ -7,15 +7,21 @@
 
 module.exports = {
 
+  schema: true,
+
   attributes: {
     name: {
       type: 'string',
       required: true
     },
-    ownder: {
+    owner: {
       type: 'string'
     },
     shared: {
+      type: 'array',
+      defaultsTo: []
+    },
+    items: {
       type: 'array',
       defaultsTo: []
     }

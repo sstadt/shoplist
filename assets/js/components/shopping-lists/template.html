@@ -1,47 +1,71 @@
 
-<ul data-bind="foreach: lists">
-	<li>
-		<a data-bind="text: name, attr: { 'href': viewLink }"></a>
-		<ul class="button-group radius">
-			<li><button class="button tiny" data-bind="click: $parent.editListTitle" data-reveal-id="editListModal"><i class="fa fa-pencil"></i></button></li>
-			<li><button class="button tiny" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button></li>
-		</ul>
-	</li>
-</ul>
 
-<form data-bind="submit: addList">
-	<div class="row">
-		<div class="columns small-12"></div>
+<!-- Lists -->
+<div class="row">
+	<div class="columns small-12">
+		<div data-bind="component: { name: 'page-alert', params: { alertType: 'alert', alertMessage: pageError } }"></div>
 	</div>
-	<div class="row">
-		<div class="large-12 columns">
+</div>
+<div class="row">
+	<div class="small-12 columns">
+		<ul data-bind="foreach: lists">
+			<li>
+				<a data-bind="text: name, attr: { 'href': viewLink }"></a>
+				<ul class="button-group radius">
+					<li><button class="button tiny" data-bind="click: $parent.editListTitle" data-reveal-id="editListModal"><i class="fa fa-pencil"></i></button></li>
+					<li><button class="button tiny" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- Add List Form -->
+<div class="row">
+	<div class="columns small-12">
+		<div data-bind="component: { name: 'form-alert', params: { alertType: 'alert', alertMessage: formError } }"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 columns">
+		<form data-bind="submit: addList">
 			<div class="row collapse">
 				<div class="small-10 columns">
-					<input type="text" placeholder="New List Name" data-bind="textInput: newListName">
+					<input type="text" placeholder="New List Name" data-bind="textInput: newListName" required>
 				</div>
 				<div class="small-2 columns">
 					<button type="submit" class="button postfix">Add</a>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
-</form>
+</div>
 
+<!-- Edit List Modal -->
 <div id="editListModal" class="reveal-modal" data-reveal>
 	<a class="close-reveal-modal">&#215;</a>
 
-	<form data-bind="submit: saveList">
-		<div class="row">
-			<div class="columns small-12">
-				<div class="row collapse">
-					<div class="small-10 columns">
-						<input type="text" placeholder="New List Name" data-bind="textInput: editListName">
-					</div>
-					<div class="small-2 columns">
-						<button type="submit" class="button postfix">Save</a>
+	<div class="row">
+		<div class="columns small-12">
+			<div data-bind="component: { name: 'modal-alert', params: { alertType: 'alert', alertMessage: modalError } }"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns">
+			<form data-bind="submit: saveList">
+				<div class="row">
+					<div class="columns small-12">
+						<div class="row collapse">
+							<div class="small-10 columns">
+								<input type="text" placeholder="New List Name" data-bind="textInput: editListName" required>
+							</div>
+							<div class="small-2 columns">
+								<button type="submit" class="button postfix">Save</a>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-	</form>
+	</div>
 </div>

@@ -22,6 +22,11 @@ define([
     // new list data
     self.newListName = ko.observable('');
 
+    // errors
+    self.pageError = ko.observable(null);
+    self.formError = ko.observable(null);
+    self.modalError = ko.observable(null);
+
     /**
      * Add a new list
      */
@@ -31,12 +36,12 @@ define([
       };
 
       io.socket.post('/list/create', newList, function (response) {
-        if (response.success) {
-          self.lists.push(new ShoppingList(response.list));
-          self.newListName('');
+        if (response.error) {
+          self.formError(response.summary);
         } else {
-          alert('error');
-          console.log(response);
+          self.formError(null);
+          self.lists.push(new ShoppingList(response));
+          self.newListName('');
         }
       });
     };
@@ -60,22 +65,21 @@ define([
       };
 
       io.socket.post('/list/update', updatedList, function (response) {
-        if (response.success) {
+        if (response.error) {
+          self.modalError(response.summary);
+        } else {
           var listIndex = _.findIndex(self.lists(), function (l) {
-            return response.list.id === l.id;
+            return response.id === l.id;
           });
 
-          console.log(response);
+          self.modalError(null);
 
-          self.lists.replace(self.lists()[listIndex], new ShoppingList(response.list));
+          self.lists.replace(self.lists()[listIndex], new ShoppingList(response));
 
           $('#editListModal').foundation('reveal', 'close', function () {
             self.editListName('');
             self.editListId('');
           });
-        } else {
-          alert('error');
-          console.log(response);
         }
       });
     };
@@ -88,11 +92,11 @@ define([
     self.deleteList = function (list) {
       if (confirm("Are you sure you want to delete this list? This cannot be undone.")) {
         io.socket.post('/list/destroy', { id: list.id }, function (response) {
-          if (response.success) {
-            self.lists.destroy(list);
+          if (response.error) {
+            self.pageError(response.summary);
           } else {
-            alert('error');
-            console.log(response);
+            self.pageError(null);
+            self.lists.destroy(list);
           }
         });
       }
@@ -103,16 +107,21 @@ define([
      */
     io.socket.get('/list/getLists', function (response) {
       if (response.success) {
+        self.pageError(null);
+
         if (response.lists.length > 0) {
           self.lists(response.lists.map(function (list) {
             return new ShoppingList(list);
           }));
         }
       } else {
-        alert('error');
-        console.log(response);
+        self.pageError('Unable to retrieve lists');
       }
     });
+
+    ko.components.register('page-alert', { require: 'components/alert-box/component' });
+    ko.components.register('form-alert', { require: 'components/alert-box/component' });
+    ko.components.register('modal-alert', { require: 'components/alert-box/component' });
 
   } /* End of View Model */
 

@@ -45,26 +45,6 @@ module.exports = {
     });
   },
 
-  create: function (req, res) {
-    var newList = {
-      name: req.param('name')
-    };
-
-    List.create(newList, function (err, list) {
-      if (err) {
-        res.json({
-          success: false,
-          error: err
-        });
-      }
-
-      res.json({
-        success: true,
-        list: list
-      });
-    });
-  },
-
   update: function (req, res) {
     var updatedList = {
       name: req.param('name')
@@ -72,33 +52,12 @@ module.exports = {
 
     List.update(req.param('id'), updatedList, function (err, list) {
       if (err) {
-        res.json({
-          success: false,
-          error: err
-        });
+        res.serverError(err);
       }
 
-      res.json({
-        success: true,
-        list: list[0]
-      });
+      res.json(list[0]);
     });
   },
-
-  destroy: function (req, res) {
-    List.destroy(req.param('id'), function (err) {
-      if (err) {
-        res.json({
-          success: true,
-          error: err
-        });
-      }
-
-      res.json({
-        success: true
-      });
-    });
-  }
 
 };
 
