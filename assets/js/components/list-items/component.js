@@ -111,12 +111,12 @@ define([
     };
 
     self.incrementNewItemQuantity = function () {
-      self.newItemQuantity(self.newItemQuantity() + 1);
+      self.newItemQuantity(parseInt(self.newItemQuantity(), 10) + 1);
     };
 
     self.decrementNewItemQuantity = function () {
-      if (self.newItemQuantity() > 0) {
-        self.newItemQuantity(self.newItemQuantity() - 1);
+      if (self.newItemQuantity() > 1) {
+        self.newItemQuantity(parseInt(self.newItemQuantity(), 10) - 1);
       }
     };
 

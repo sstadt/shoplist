@@ -26,13 +26,13 @@
 				<div class="columns small-4 medium-3 large-2">
 					<div class="row collapse prefix-radius postfix-radius">
 						<div class="small-4 medium-3 columns">
-							<button class="button prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > 0"><i class="fa fa-minus"></i></button>
+							<button class="button secondary prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > 1"><i class="fa fa-minus"></i></button>
 						</div>
 						<div class="small-4 medium-6 columns">
 							<input type="text" placeholder="qty" data-bind="textInput: newItemQuantity" pattern="^[1-9][0-9]*$" title="Quantity must be greater than zero" required />
 						</div>
 						<div class="small-4 medium-3 columns">
-							<button class="button postfix" data-bind="click: incrementNewItemQuantity"><i class="fa fa-plus"></i></button>
+							<button class="button secondary postfix" data-bind="click: incrementNewItemQuantity"><i class="fa fa-plus"></i></button>
 						</div>
 					</div>
 				</div>
