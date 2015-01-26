@@ -9,6 +9,14 @@ define([
 ], function (_, ko, ListItem, html) {
   'use strict';
 
+  function convertToObservable(obj) {
+    var newObj = {};
+    Object.keys(obj).forEach(function (key) {
+      newObj[key] = ko.observable(obj[key]);
+    });
+    return newObj;
+  }
+
   function ListItemsViewModel(params) {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
@@ -103,11 +111,29 @@ define([
         } else {
           self.formError(null);
           self.pageError(null);
-          self.items.push(new ListItem(response));
+          self.items.push(convertToObservable(new ListItem(response)));
           self.newItemName('');
           self.newItemQuantity(1);
         }
       });
+    };
+
+    self.incrementItemQuantity = function (listItem) {
+      var itemIndex = _.findIndex(self.items(), function (l) {
+        return listItem.id === l.id;
+      });
+
+      self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() + 1);
+    };
+
+    self.decrementItemQuantity = function (listItem) {
+      var itemIndex = _.findIndex(self.items(), function (l) {
+        return listItem.id === l.id;
+      });
+
+      if (self.items()[itemIndex].quantity() > 1) {
+        self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() - 1);
+      }
     };
 
     self.incrementNewItemQuantity = function () {
@@ -134,7 +160,7 @@ define([
 
         } else if (response.length > 0) {
           self.items(response.map(function (item) {
-            return new ListItem(item);
+            return convertToObservable(new ListItem(item));
           }));
         }
       }

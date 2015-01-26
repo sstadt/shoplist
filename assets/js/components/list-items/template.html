@@ -8,7 +8,13 @@
 <div class="row">
 	<div class="columns small-12">
 		<ul data-bind="foreach: items">
-			<li><!-- ko text: name --><!-- /ko --> x<!-- ko text: quantity --><!-- /ko --></li>
+			<li>
+				<!-- ko text: name --><!-- /ko --> x<!-- ko text: quantity --><!-- /ko -->
+				<ul class="button-group radius">
+					<li><button class="button tiny secondary" data-bind="click: $parent.decrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-minus"></i></button></li>
+					<li><button class="button tiny secondary" data-bind="click: $parent.incrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-plus"></i></button></li>
+				</ul>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -26,7 +32,7 @@
 				<div class="columns small-4 medium-3 large-2">
 					<div class="row collapse prefix-radius postfix-radius">
 						<div class="small-4 medium-3 columns">
-							<button class="button secondary prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > "><i class="fa fa-minus"></i></button>
+							<button class="button secondary prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > 1"><i class="fa fa-minus"></i></button>
 						</div>
 						<div class="small-4 medium-6 columns">
 							<input type="text" placeholder="qty" data-bind="textInput: newItemQuantity" pattern="^[1-9][0-9]*$" title="Quantity must be greater than zero" required />
