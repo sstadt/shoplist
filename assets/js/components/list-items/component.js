@@ -9,12 +9,31 @@ define([
 ], function (_, ko, ListItem, html) {
   'use strict';
 
+  function getItemIndex(listItem, list) {
+    return _.findIndex(list, function (l) {
+      return listItem.id === l.id;
+    });
+  }
+
   function convertToObservable(obj) {
     var newObj = {};
     Object.keys(obj).forEach(function (key) {
       newObj[key] = ko.observable(obj[key]);
     });
     return newObj;
+  }
+
+  function sortChecked(p, c) {
+    if (p.checked() === false && c.checked() === true) {
+      return -1;
+    }
+
+    if (p.checked() === true && c.checked() === false) {
+      return 1;
+    }
+
+    // both checked ur unchecked, filter alphabetically
+    return (p.name() > c.name()) ? 1 : -1;
   }
 
   function ListItemsViewModel(params) {
@@ -109,9 +128,11 @@ define([
         if (response.err) {
           self.formError(response.summary);
         } else {
+          self.items.push(convertToObservable(new ListItem(response)));
+          self.items.sort(sortChecked);
+
           self.formError(null);
           self.pageError(null);
-          self.items.push(convertToObservable(new ListItem(response)));
           self.newItemName('');
           self.newItemQuantity(1);
         }
@@ -119,17 +140,13 @@ define([
     };
 
     self.incrementItemQuantity = function (listItem) {
-      var itemIndex = _.findIndex(self.items(), function (l) {
-        return listItem.id === l.id;
-      });
+      var itemIndex = getItemIndex(listItem, self.items());
 
       self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() + 1);
     };
 
     self.decrementItemQuantity = function (listItem) {
-      var itemIndex = _.findIndex(self.items(), function (l) {
-        return listItem.id === l.id;
-      });
+      var itemIndex = getItemIndex(listItem, self.items());
 
       if (self.items()[itemIndex].quantity() > 1) {
         self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() - 1);
@@ -141,9 +158,41 @@ define([
     };
 
     self.decrementNewItemQuantity = function () {
-      if (self.newItemQuantity() > 1) {
-        self.newItemQuantity(parseInt(self.newItemQuantity(), 10) - 1);
+      var quantity = parseInt(self.newItemQuantity(), 10);
+
+      if (quantity > 1) {
+        self.newItemQuantity(quantity - 1);
       }
+    };
+
+    self.toggleChecked = function (listItem) {
+      var itemIndex = getItemIndex(listItem, self.items());
+
+      io.socket.post('/item/toggle', {
+        id: listItem.id(),
+        checked: listItem.checked()
+      }, function (response) {
+        if (response.err) {
+          self.pageError(response.summary);
+        } else {
+          self.pageError(null);
+          self.items()[itemIndex].checked(!listItem.checked());
+          self.items.sort(sortChecked);
+        }
+      });
+    };
+
+    self.removeItem = function (listItem) {
+      console.log('bazinga');
+      io.socket.post('/item/destroy', { id: listItem.id() }, function (response) {
+        console.log(response);
+        if (response.errror) {
+          self.pageerror(response.summary);
+        } else {
+          self.pageError(null);
+          self.items.destroy(listItem);
+        }
+      });
     };
 
     /**
@@ -162,6 +211,7 @@ define([
           self.items(response.map(function (item) {
             return convertToObservable(new ListItem(item));
           }));
+          self.items.sort(sortChecked);
         }
       }
     });

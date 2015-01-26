@@ -1,24 +1,4 @@
 
-<!-- List Items -->
-<div class="row">
-	<div class="columns small-12">
-		<div data-bind="component: { name: 'page-alert', params: { alertType: 'alert', alertMessage: pageError } }"></div>
-	</div>
-</div>
-<div class="row">
-	<div class="columns small-12">
-		<ul data-bind="foreach: items">
-			<li>
-				<!-- ko text: name --><!-- /ko --> x<!-- ko text: quantity --><!-- /ko -->
-				<ul class="button-group radius">
-					<li><button class="button tiny secondary" data-bind="click: $parent.decrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-minus"></i></button></li>
-					<li><button class="button tiny secondary" data-bind="click: $parent.incrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-plus"></i></button></li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
-
 <!-- Add List Item -->
 <div class="row">
 	<div class="columns small-12">
@@ -48,11 +28,34 @@
 							<input type="text" placeholder="New Item" data-bind="textInput: newItemName" required />
 						</div>
 						<div class="columns small-3 medium-2 large-1">
-							<button type="submit" class="button small postfix success radius"><i class="fa fa-save"></i></button>
+							<button type="submit" class="button small postfix success radius"><i class="fa fa-plus"></i></button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+
+<!-- List Items -->
+<div class="row">
+	<div class="columns small-12">
+		<div data-bind="component: { name: 'page-alert', params: { alertType: 'alert', alertMessage: pageError } }"></div>
+	</div>
+</div>
+<div class="row">
+	<div class="columns small-12">
+		<ul data-bind="foreach: items">
+			<li class="list-item">
+				<button class="button tiny warning" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-shopping-cart"></i></button>
+				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check"></i></button>
+				<!-- ko text: name --><!-- /ko --> x<!-- ko text: quantity --><!-- /ko -->
+				<ul class="button-group" data-bind="visible: !checked()">
+					<li><button class="button tiny secondary" data-bind="click: $parent.decrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-minus"></i></button></li>
+					<li><button class="button tiny secondary" data-bind="click: $parent.incrementItemQuantity" data-reveal-id="editListModal"><i class="fa fa-plus"></i></button></li>
+				</ul>
+				<button class="button tiny warning" data-bind="click: $parent.removeItem, visible: checked()"><i class="fa fa-times"></i></button>
+			</li>
+		</ul>
 	</div>
 </div>

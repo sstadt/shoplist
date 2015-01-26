@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*globals define*/
 
-define(function () {
+define(['knockout'], function (ko) {
   'use strict';
 
   return function ListItem(data) {
