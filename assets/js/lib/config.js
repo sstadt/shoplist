@@ -41,6 +41,9 @@ requirejs.config({
     // classes
     'ShoppingList'           : 'lib/classes/ShoppingList',
     'ListItem'               : 'lib/classes/ListItem',
+
+    // utils
+    'koutil'                 : 'lib/util/ko-util',
   },
 
   shim: {

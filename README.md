@@ -18,7 +18,7 @@ a [Sails](http://sailsjs.org) application
 [ ] Add CSS Ajax loader overlay
 [ ] Style the application
 [x] Add front and back end validation
-[ ] Move object to observable conversion function to a util
+[x] Move object to observable conversion function to a util
 [ ] Convert lists into observables on the index page
 [ ] Upgrade alert component to change alert style by parameter
 [x] Switch to MongoDB

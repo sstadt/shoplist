@@ -4,24 +4,11 @@
 define([
   'lodash',
   'knockout',
+  'koutil',
   'ListItem',
   'text!./template.html'
-], function (_, ko, ListItem, html) {
+], function (_, ko, koutil, ListItem, html) {
   'use strict';
-
-  function getItemIndex(listItem, list) {
-    return _.findIndex(list, function (l) {
-      return listItem.id === l.id;
-    });
-  }
-
-  function convertToObservable(obj) {
-    var newObj = {};
-    Object.keys(obj).forEach(function (key) {
-      newObj[key] = ko.observable(obj[key]);
-    });
-    return newObj;
-  }
 
   function sortChecked(p, c) {
     if (p.checked() === false && c.checked() === true) {
@@ -128,7 +115,7 @@ define([
         if (response.err) {
           self.formError(response.summary);
         } else {
-          self.items.push(convertToObservable(new ListItem(response)));
+          self.items.push(koutil.convertToObservable(new ListItem(response)));
           self.items.sort(sortChecked);
 
           self.formError(null);
@@ -140,13 +127,13 @@ define([
     };
 
     self.incrementItemQuantity = function (listItem) {
-      var itemIndex = getItemIndex(listItem, self.items());
+      var itemIndex = koutil.getItemIndex(listItem, self.items());
 
       self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() + 1);
     };
 
     self.decrementItemQuantity = function (listItem) {
-      var itemIndex = getItemIndex(listItem, self.items());
+      var itemIndex = koutil.getItemIndex(listItem, self.items());
 
       if (self.items()[itemIndex].quantity() > 1) {
         self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() - 1);
@@ -166,7 +153,7 @@ define([
     };
 
     self.toggleChecked = function (listItem) {
-      var itemIndex = getItemIndex(listItem, self.items());
+      var itemIndex = koutil.getItemIndex(listItem, self.items());
 
       io.socket.post('/item/toggle', {
         id: listItem.id(),
@@ -209,7 +196,7 @@ define([
 
         } else if (response.length > 0) {
           self.items(response.map(function (item) {
-            return convertToObservable(new ListItem(item));
+            return koutil.convertToObservable(new ListItem(item));
           }));
           self.items.sort(sortChecked);
         }
