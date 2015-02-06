@@ -42,6 +42,9 @@ define([
     self.formError = ko.observable(null);
     self.modalError = ko.observable(null);
 
+    // interface
+    self.loading = ko.observable(true);
+
     self.addItem = function () {
       var newListItem = {
         list: self.listId,
@@ -141,6 +144,8 @@ define([
      * Populate the initial list
      */
     io.socket.get('/item/index', { list: self.listId }, function (response) {
+      self.loading(false);
+
       if (response.errror) {
         self.pageError(response.summary);
       } else {
@@ -163,6 +168,7 @@ define([
   ko.components.register('page-alert', { require: 'components/alert-box/component' });
   ko.components.register('form-alert', { require: 'components/alert-box/component' });
   ko.components.register('modal-alert', { require: 'components/alert-box/component' });
+  ko.components.register('overlay-loader', { require: 'components/overlay-loader/component' });
 
   return {
     viewModel: ListItemsViewModel,

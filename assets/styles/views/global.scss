@@ -1,44 +1,4 @@
 
-/* Transitions
--------------------------------- */
-
-@-webkit-keyframes target-fade {
-    0% { background-color: $siestaOrangeRgbaFaded; }
-    100% { background-color: $siestaOrangeRgba; }
-}
-
-@-moz-keyframes target-fade {
-    0% { background-color: $siestaOrangeRgbaFaded; }
-    100% { background-color: $siestaOrangeRgba; }
-}
-
-/* Mixins
--------------------------------- */
-
-@mixin border-radius($radius) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	border-radius: $radius;
-}
-
-@mixin prefix-border-radius($radius) {
-	-webkit-border-top-left-radius: $radius;
-	-webkit-border-bottom-left-radius: $radius;
-	-moz-border-radius-topleft: $radius;
-	-moz-border-radius-bottomleft: $radius;
-	border-top-left-radius: $radius;
-	border-bottom-left-radius: $radius;
-}
-
-@mixin postfix-border-radius($radius) {
-	-webkit-border-top-right-radius: $radius;
-	-webkit-border-bottom-right-radius: $radius;
-	-moz-border-radius-topright: $radius;
-	-moz-border-radius-bottomright: $radius;
-	border-top-right-radius: $radius;
-	border-bottom-right-radius: $radius;
-}
-
 /* Utility Classes
 -------------------------------- */
 
@@ -49,8 +9,28 @@
 	text-overflow: ellipsis;
 }
 
+.tier-lower {
+	z-index: -1;
+}
+
+.tier-bottom {
+	z-index: 1;
+}
+
+.tier-middle {
+	z-index: 200;
+}
+
+.tier-top {
+	z-index: 400;
+}
+
 /* Foundation Overrides
 -------------------------------- */
+
+.icon-bar {
+	position: relative;
+}
 
 .prefix.postfix {
 	border-width: 0;

@@ -15,7 +15,7 @@ a [Sails](http://sailsjs.org) application
 [ ] Save item edits on delay if one has failed
 [x] Remove list items
 [x] Check list items as completed
-[ ] Add CSS Ajax loader overlay
+[x] Add CSS Ajax loader overlay
 [x] Style the application
 [x] Add front and back end validation
 [x] Move object to observable conversion function to a util

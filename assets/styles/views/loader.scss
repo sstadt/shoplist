@@ -1,0 +1,129 @@
+
+/* Keyframes
+-------------------------------- */
+
+@-moz-keyframes bubblingG {
+	0% {
+		width: 10px;
+		height: 10px;
+		background-color: transparent;
+		-moz-transform: translateY(0);
+	}
+
+	100% {
+		width: 24px;
+		height: 24px;
+		background-color: $loaderColor;
+		-moz-transform: translateY(-21px);
+	}
+}
+
+@-webkit-keyframes bubblingG {
+	0% {
+		width: 10px;
+		height: 10px;
+		background-color: transparent;
+		-webkit-transform: translateY(0);
+	}
+
+	100% {
+		width: 24px;
+		height: 24px;
+		background-color: $loaderColor;
+		-webkit-transform: translateY(-21px);
+	}
+}
+
+@-ms-keyframes bubblingG {
+	0% {
+		width: 10px;
+		height: 10px;
+		background-color: transparent;
+		-ms-transform: translateY(0);
+	}
+
+	100% {
+		width: 24px;
+		height: 24px;
+		background-color: $loaderColor;
+		-ms-transform: translateY(-21px);
+	}
+}
+
+@-o-keyframes bubblingG {
+	0% {
+		width: 10px;
+		height: 10px;
+		background-color: transparent;
+		-o-transform: translateY(0);
+	}
+
+	100% {
+		width: 24px;
+		height: 24px;
+		background-color: $loaderColor;
+		-o-transform: translateY(-21px);
+	}
+}
+
+@keyframes bubblingG {
+	0% {
+		width: 10px;
+		height: 10px;
+		background-color: transparent;
+		transform: translateY(0);
+	}
+
+	100% {
+		width: 24px;
+		height: 24px;
+		background-color: $loaderColor;
+		transform: translateY(-21px);
+	}
+}
+
+/* Styling
+-------------------------------- */
+
+.overlay-loader {
+	background-color: $white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
+	.bubblingG {
+		text-align: center;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin-left: -40px;
+		margin-top: -25px;
+		width: 80px;
+		height: 50px;
+
+		span {
+			display: inline-block;
+			vertical-align: middle;
+			width: 10px;
+			height: 10px;
+			margin: 25px auto;
+			background: transparent;
+			@include animation(bubblingG $loaderDuration infinite alternate);
+			@include border-radius(50px);
+		}
+	}
+
+	#bubblingG_1 {
+		@include animation-delay(0s);
+	}
+
+	#bubblingG_2 {
+		@include animation-delay($loaderBubble2Delay);
+	}
+
+	#bubblingG_3 {
+		@include animation-delay($loaderBubble3Delay);
+	}
+}

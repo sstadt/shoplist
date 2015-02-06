@@ -27,6 +27,9 @@ define([
     self.formError = ko.observable(null);
     self.modalError = ko.observable(null);
 
+    // interface
+    self.loading = ko.observable(true);
+
     /**
      * Add a new list
      */
@@ -104,6 +107,8 @@ define([
      * Populate the initial list
      */
     io.socket.get('/list/getLists', function (response) {
+      self.loading(false);
+
       if (response.err) {
         self.pageError('Unable to retrieve lists');
       } else {
@@ -120,6 +125,7 @@ define([
     ko.components.register('page-alert', { require: 'components/alert-box/component' });
     ko.components.register('form-alert', { require: 'components/alert-box/component' });
     ko.components.register('modal-alert', { require: 'components/alert-box/component' });
+    ko.components.register('overlay-loader', { require: 'components/overlay-loader/component' });
 
   } /* End of View Model */
 
