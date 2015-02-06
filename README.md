@@ -10,20 +10,20 @@ a [Sails](http://sailsjs.org) application
 [ ] Clear associated items when removing a list
 [x] View Lists
 [x] Add list items
-[ ] Edit list item names
+[x] Edit list item names
 [x] Edit list quantities
-[ ] Save quantities to db w/5 sec throttle
+[ ] Save item edits on delay if one has failed
 [x] Remove list items
 [x] Check list items as completed
 [ ] Add CSS Ajax loader overlay
-[ ] Style the application
+[x] Style the application
 [x] Add front and back end validation
 [x] Move object to observable conversion function to a util
-[ ] Convert lists into observables on the index page
-[ ] Upgrade alert component to change alert style by parameter
+[x] Convert lists into observables on the index page
 [x] Switch to MongoDB
 [ ] Add the Users and Session models
 [ ] Add the ability to share/sync lists
+[ ] Implement a more mobile-friendly menu
 [ ] Add a mobile icon
 
 0.1.1
@@ -41,3 +41,4 @@ a [Sails](http://sailsjs.org) application
 [ ] Sort by category
 [ ] Barcode scanning
 [ ] Barcode site cache
+[ ] Upgrade alert component to change alert style by parameter

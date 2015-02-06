@@ -1,7 +1,7 @@
 /*jslint browser: true*/
 /*globals define*/
 
-define(['knockout'], function (ko) {
+define(['lodash', 'knockout'], function (_, ko) {
   'use strict';
 
   return {

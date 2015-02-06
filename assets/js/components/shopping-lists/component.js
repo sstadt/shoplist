@@ -2,11 +2,11 @@
 /*globals define, confirm, alert, io*/
 
 define([
-  'lodash',
   'knockout',
+  'koutil',
   'ShoppingList',
   'text!./template.html'
-], function (_, ko, ShoppingList, html) {
+], function (ko, koutil, ShoppingList, html) {
   'use strict';
 
   function LinkListViewModel() {
@@ -52,7 +52,7 @@ define([
      * @param  {ShoppingList} The shopping list to set a new title for
      */
     self.editListTitle = function (list) {
-      self.editListName(list.name);
+      self.editListName(list.name());
       self.editListId(list.id);
 
       $('#editListModal').foundation('reveal', 'open');
@@ -68,13 +68,11 @@ define([
         if (response.error) {
           self.modalError(response.summary);
         } else {
-          var listIndex = _.findIndex(self.lists(), function (l) {
-            return response.id === l.id;
-          });
+          var listIndex = koutil.getItemIndex(response, self.lists());
 
           self.modalError(null);
 
-          self.lists.replace(self.lists()[listIndex], new ShoppingList(response));
+          self.lists()[listIndex].name(response.name);
 
           $('#editListModal').foundation('reveal', 'close', function () {
             self.editListName('');

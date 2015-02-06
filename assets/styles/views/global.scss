@@ -12,13 +12,40 @@
     100% { background-color: rgba(0,0,0,0); }
 }
 
+/* Mixins
+-------------------------------- */
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin prefix-border-radius($radius) {
+	-webkit-border-top-left-radius: $radius;
+	-webkit-border-bottom-left-radius: $radius;
+	-moz-border-radius-topleft: $radius;
+	-moz-border-radius-bottomleft: $radius;
+	border-top-left-radius: $radius;
+	border-bottom-left-radius: $radius;
+}
+
+@mixin postfix-border-radius($radius) {
+	-webkit-border-top-right-radius: $radius;
+	-webkit-border-bottom-right-radius: $radius;
+	-moz-border-radius-topright: $radius;
+	-moz-border-radius-bottomright: $radius;
+	border-top-right-radius: $radius;
+	border-bottom-right-radius: $radius;
+}
+
 /* Utility Classes
 -------------------------------- */
 
 .ellipsis {
 	width: 100%;
-	whitespace: nowrap;
-	overflow: none;
+	white-space: nowrap;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
@@ -27,6 +54,10 @@
 
 .prefix.postfix {
 	border-width: 0;
+
+	input {
+		text-align: center;
+	}
 }
 
 form {
@@ -37,22 +68,16 @@ form {
 	}
 }
 
-.prefix.postfix .columns:first-child button {
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
+.prefix.postfix .columns:first-child {
+	button, .button {
+		@include prefix-border-radius(4px);
+	}
 }
 
-.prefix.postfix .columns:last-child button {
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomright: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
+.prefix.postfix .columns:last-child {
+	button, .button {
+		@include postfix-border-radius(4px);
+	}
 }
 
 .reveal-modal {
@@ -63,20 +88,5 @@ form {
 	}
 }
 
-/* move me to a the items view file and refactor colors into settings */
-
-.list-item {
-	.item-name {
-		.ellipsis {
-			line-height: 33px;
-			font-size: 1.3rem;
-		}
-
-		&:active {
-			-webkit-animation: target-fade 3s 1;
-			-moz-animation: target-fade 3s 1;
-		}
-	}
-}
 
 

@@ -53,7 +53,7 @@ define([
         if (response.err) {
           self.formError(response.summary);
         } else {
-          self.items.push(koutil.convertToObservable(new ListItem(response)));
+          self.items.push(new ListItem(response));
           self.items.sort(sortChecked);
 
           self.formError(null);
@@ -90,7 +90,7 @@ define([
       var itemIndex = koutil.getItemIndex(listItem, self.items());
 
       io.socket.post('/item/toggle', {
-        id: listItem.id(),
+        id: listItem.id,
         checked: listItem.checked()
       }, function (response) {
         if (response.err) {
@@ -104,8 +104,7 @@ define([
     };
 
     self.removeItem = function (listItem) {
-      io.socket.post('/item/destroy', { id: listItem.id() }, function (response) {
-        console.log(response);
+      io.socket.post('/item/destroy', { id: listItem.id }, function (response) {
         if (response.errror) {
           self.pageerror(response.summary);
         } else {
@@ -120,9 +119,9 @@ define([
       $('#editItemModal').foundation('reveal', 'open');
     };
 
-    self.saveItem = function (listItem) {
+    self.saveItem = function () {
       var updatedListItem = {
-        id: self.selectedItem().id(),
+        id: self.selectedItem().id,
         name: self.selectedItem().name(),
         quantity: self.selectedItem().quantity()
       };
@@ -152,7 +151,7 @@ define([
 
         } else if (response.length > 0) {
           self.items(response.map(function (item) {
-            return koutil.convertToObservable(new ListItem(item));
+            return new ListItem(item);
           }));
           self.items.sort(sortChecked);
         }

@@ -28,7 +28,7 @@
 							<input type="text" placeholder="New Item" data-bind="textInput: newItemName" required />
 						</div>
 						<div class="columns small-3 medium-2 large-1">
-							<button type="submit" class="button small postfix success radius"><i class="fa fa-plus"></i></button>
+							<button type="submit" class="button postfix success"><i class="fa fa-plus"></i></button>
 						</div>
 					</div>
 				</div>
@@ -47,14 +47,14 @@
 	<div class="columns small-12" data-bind="foreach: items">
 		<div class="row list-item">
 			<div class="small-2 medium-1 columns">
-				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-check"></i></button>
-				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check"></i></button>
+				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-circle-o"></i></button>
+				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check-circle-o"></i></button>
 			</div>
-			<div class="small-8 medium-10 columns item-name" data-bind="click: $parent.editItem">
-				<span class="ellipsis"><!-- ko text: quantity --><!-- /ko -->x <!-- ko text: name --><!-- /ko --></span>
+			<div data-bind="attr: { class: nameColumnClass() }">
+				<div class="ellipsis" data-bind="click: $parent.editItem"><!-- ko text: quantity --><!-- /ko -->x <!-- ko text: name --><!-- /ko --></div>
 			</div>
-			<div class="small-2 medium-1 columns">
-				<button class="button tiny warning" data-bind="click: $parent.removeItem, visible: checked()"><i class="fa fa-times"></i></button>
+			<div class="small-2 medium-1 columns" data-bind="visible: checked()">
+				<button class="button tiny warning" data-bind="click: $parent.removeItem"><i class="fa fa-times"></i></button>
 			</div>
 		</div>
 	</div>

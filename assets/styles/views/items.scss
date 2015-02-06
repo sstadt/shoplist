@@ -1,0 +1,58 @@
+
+
+.list-item {
+	margin-bottom: 5px !important;
+
+	.item-name {
+		padding-left: 0;
+		padding-right: 0;
+
+		.ellipsis {
+			padding-left: 0.9375rem;
+			padding-right: 0.9375rem;
+			line-height: 2.3rem;
+			font-size: 1.3rem;
+			border-top: 1px solid $listItemBorder;
+			border-bottom: 1px solid $listItemBorder;
+			cursor: pointer;
+
+			&:active {
+				-webkit-animation: target-fade 3s 1;
+				-moz-animation: target-fade 3s 1;
+			}
+		}
+
+		&.terminate {
+			padding-right: 0.9375rem;
+
+			.ellipsis {
+				border-right: 1px solid $listItemBorder;
+				@include postfix-border-radius(4px);
+			}
+		}
+	}
+
+	.button.tiny, button.tiny {
+		margin-bottom: 0;
+		font-size: 1.3rem;
+		padding: 0.4rem 1.1rem;
+		width: 100%;
+	}
+
+	.columns:first-child {
+		padding-right: 0;
+
+		button, .button {
+			@include prefix-border-radius(4px);
+		}
+	}
+
+	.columns:last-child {
+		padding-left: 0;
+		@include postfix-border-radius(4px);
+
+		button, .button {
+			@include postfix-border-radius(4px);
+		}
+	}
+}
