@@ -21,9 +21,9 @@ a [Sails](http://sailsjs.org) application
 [x] Move object to observable conversion function to a util
 [x] Convert lists into observables on the index page
 [x] Switch to MongoDB
-[ ] Add the Users and Session models
+[ ] Add the Users and Session models - make sure users have a config parameter in the model
 [ ] Add the ability to share/sync lists
-[ ] Implement a more mobile-friendly menu
+[x] Implement a more mobile-friendly menu
 [ ] Add a mobile icon
 
 0.1.1
@@ -33,6 +33,7 @@ a [Sails](http://sailsjs.org) application
 
 0.2:
 
+[ ] Add a sync icon to display the status of the most recent save
 [ ] User Profile page
 [ ] Password recovery/reset
 [ ] Facebook login
@@ -47,5 +48,6 @@ a [Sails](http://sailsjs.org) application
 
 [ ] Barcode scanning
 [ ] Barcode item database caching
+[ ] Auto-fill list item names from barcode cache
 
 
