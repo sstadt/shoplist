@@ -1,5 +1,5 @@
 /*jslint node: true*/
-/*globals List*/
+/*globals List, Item*/
 
 /**
  * ListController
@@ -58,6 +58,24 @@ module.exports = {
       }
 
       res.json(lists);
+    });
+  },
+
+  destroy: function (req, res) {
+    var id = req.param('id');
+
+    List.destroy(id, function (err) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      Item.destroy({ list: id }, function (err) {
+        if (err) {
+          res.serverError(err);
+        }
+
+        res.send(200);
+      });
     });
   }
 

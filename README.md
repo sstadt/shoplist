@@ -7,7 +7,7 @@ a [Sails](http://sailsjs.org) application
 [x] Add lists
 [x] Edit Lists
 [x] Remove Lists
-[ ] Clear associated items when removing a list
+[x] Clear associated items when removing a list
 [x] View Lists
 [x] Add list items
 [x] Edit list item names
@@ -22,6 +22,7 @@ a [Sails](http://sailsjs.org) application
 [x] Convert lists into observables on the index page
 [x] Switch to MongoDB
 [ ] Add the Users and Session models - make sure users have a config parameter in the model
+[ ] Implement policies
 [ ] Add the ability to share/sync lists
 [x] Implement a more mobile-friendly menu
 [ ] Add a mobile icon
@@ -49,5 +50,6 @@ a [Sails](http://sailsjs.org) application
 [ ] Barcode scanning
 [ ] Barcode item database caching
 [ ] Auto-fill list item names from barcode cache
+[ ] Custom 403, 404, and 500 pages
 
 
