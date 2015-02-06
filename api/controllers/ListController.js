@@ -59,16 +59,6 @@ module.exports = {
 
       res.json(lists);
     });
-  },
-
-  getListItems: function (req, res) {
-    Item.find(function (err, items) {
-      if (err) {
-        res.serverError(err);
-      }
-
-      res.json(items);
-    });
   }
 
 };

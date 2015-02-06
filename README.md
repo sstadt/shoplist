@@ -23,7 +23,8 @@ a [Sails](http://sailsjs.org) application
 [ ] Upgrade alert component to change alert style by parameter
 [x] Switch to MongoDB
 [ ] Add the Users and Session models
-[ ] Add the abolity to share/sync lists
+[ ] Add the ability to share/sync lists
+[ ] Add a mobile icon
 
 0.1.1
 

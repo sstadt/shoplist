@@ -31,6 +31,7 @@ define([
     // item data
     self.listId = params.id;
     self.items = ko.observableArray([]);
+    self.selectedItem = ko.observable();
 
     // new item data
     self.newItemName = ko.observable('');
@@ -40,69 +41,6 @@ define([
     self.pageError = ko.observable(null);
     self.formError = ko.observable(null);
     self.modalError = ko.observable(null);
-
-    /**
-     * Add a new list
-     */
-    // self.addList = function () {
-    //   var newList = {
-    //     name: self.newListName()
-    //   };
-
-    //   io.socket.post('/list/create', newList, function (response) {
-    //     if (response.error) {
-    //       self.formError(response.summary);
-    //     } else {
-    //       self.formError(null);
-    //       self.lists.push(new ShoppingList(response));
-    //       self.newListName('');
-    //     }
-    //   });
-    // };
-
-    // self.saveList = function () {
-    //   var updatedList = {
-    //     id: self.editListId(),
-    //     name: self.editListName()
-    //   };
-
-    //   io.socket.post('/list/update', updatedList, function (response) {
-    //     if (response.error) {
-    //       self.modalError(response.summary);
-    //     } else {
-    //       var listIndex = _.findIndex(self.lists(), function (l) {
-    //         return response.id === l.id;
-    //       });
-
-    //       self.modalError(null);
-
-    //       self.lists.replace(self.lists()[listIndex], new ShoppingList(response));
-
-    //       $('#editListModal').foundation('reveal', 'close', function () {
-    //         self.editListName('');
-    //         self.editListId('');
-    //       });
-    //     }
-    //   });
-    // };
-
-    /**
-     * Delete a list fromt the database
-     * 
-     * @param  {ShoppingList} The shopping list to delete 
-     */
-    // self.deleteList = function (list) {
-    //   if (confirm("Are you sure you want to delete this list? This cannot be undone.")) {
-    //     io.socket.post('/list/destroy', { id: list.id }, function (response) {
-    //       if (response.error) {
-    //         self.pageError(response.summary);
-    //       } else {
-    //         self.pageError(null);
-    //         self.lists.destroy(list);
-    //       }
-    //     });
-    //   }
-    // };
 
     self.addItem = function () {
       var newListItem = {
@@ -126,17 +64,13 @@ define([
       });
     };
 
-    self.incrementItemQuantity = function (listItem) {
-      var itemIndex = koutil.getItemIndex(listItem, self.items());
-
-      self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() + 1);
+    self.incrementSelectedItemQuantity = function () {
+      self.selectedItem().quantity(self.selectedItem().quantity() + 1);
     };
 
-    self.decrementItemQuantity = function (listItem) {
-      var itemIndex = koutil.getItemIndex(listItem, self.items());
-
-      if (self.items()[itemIndex].quantity() > 1) {
-        self.items()[itemIndex].quantity(self.items()[itemIndex].quantity() - 1);
+    self.decrementSelectedItemQuantity = function () {
+      if (self.selectedItem().quantity() > 1) {
+        self.selectedItem().quantity(self.selectedItem().quantity() - 1);
       }
     };
 
@@ -170,7 +104,6 @@ define([
     };
 
     self.removeItem = function (listItem) {
-      console.log('bazinga');
       io.socket.post('/item/destroy', { id: listItem.id() }, function (response) {
         console.log(response);
         if (response.errror) {
@@ -178,6 +111,29 @@ define([
         } else {
           self.pageError(null);
           self.items.destroy(listItem);
+        }
+      });
+    };
+
+    self.editItem = function (listItem) {
+      self.selectedItem(listItem);
+      $('#editItemModal').foundation('reveal', 'open');
+    };
+
+    self.saveItem = function (listItem) {
+      var updatedListItem = {
+        id: self.selectedItem().id(),
+        name: self.selectedItem().name(),
+        quantity: self.selectedItem().quantity()
+      };
+
+      io.socket.post('/item/update', updatedListItem, function (response) {
+        $('#editItemModal').foundation('reveal', 'close');
+
+        if (response.error) {
+          self.modalError(response.summary);
+        } else {
+          self.modalError(null);
         }
       });
     };
@@ -207,7 +163,7 @@ define([
 
   ko.components.register('page-alert', { require: 'components/alert-box/component' });
   ko.components.register('form-alert', { require: 'components/alert-box/component' });
-  // ko.components.register('modal-alert', { require: 'components/alert-box/component' });
+  ko.components.register('modal-alert', { require: 'components/alert-box/component' });
 
   return {
     viewModel: ListItemsViewModel,

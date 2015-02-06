@@ -1,3 +1,6 @@
+/*jslint node: true*/
+/*globals Item*/
+
 /**
  * ItemController
  *
@@ -6,6 +9,10 @@
  */
 
 module.exports = {
+
+  /**
+   * API
+   */
 
   index: function (req, res) {
     Item.find({ list: req.param('list') }, function (err, items) {
@@ -26,6 +33,19 @@ module.exports = {
       }
 
       res.json(item);
+    });
+  },
+
+  update: function (req, res) {
+    Item.update({ id: req.param('id') }, {
+      name: req.param('name'),
+      quantity: req.param('quantity')
+    }, function (err) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.send(200);
     });
   }
 
