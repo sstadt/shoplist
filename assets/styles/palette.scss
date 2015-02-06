@@ -1,5 +1,10 @@
+/*
+	Colors
+	Use these in Usage below, not in stylesheets
+*/
+
 // Neutral
-$white       : #FFFFFF;
+$white       : #fffefa;
 $ghost       : #FAFAFA;
 $snow        : #F9F9F9;
 $vapor       : #F6F6F6;
@@ -33,6 +38,36 @@ $grass       : #43AC6A; // foundation default - success
 // Orange
 $amber       : #f08a24; // foundation default - warning
 
-/* Usage */
+/* 
+	Siesta Color Scheme
+	Use this in Usage below, not in stylesheets
+	http://www.colorschemer.com/schemes/viewscheme.php?id=9539
+*/
 
-$listItemBorder : $limestone;
+$siestaRed       : #d01914;
+$siestaGreen     : #398331;
+$siestaYellow    : #d6a324;
+$siestaOrange    : #e3671d;
+$siestaCream     : #e2d398;
+$siestaBrown     : #715f41;
+$siestaBlack     : #1b1710;
+
+$siestaCreamRgba       : rgba(226, 211, 152, 0);
+$siestaCreamRgbaFaded  : rgba(226, 211, 152, .1);
+$siestaYellowRgba       : rgba(214, 163, 36, 0);
+$siestaYellowRgbaFaded  : rgba(214, 163, 36, .1);
+$siestaOrangeRgba       : rgba(227, 103, 29, 0);
+$siestaOrangeRgbaFaded  : rgba(227, 103, 29, .1);
+
+/* 
+	Usage
+	Use these in stylesheets
+*/
+
+$listItemBorder : $siestaCream;
+
+
+
+
+
+

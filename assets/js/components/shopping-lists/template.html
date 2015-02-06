@@ -35,13 +35,13 @@
 	<div class="small-12 columns" data-bind="foreach: lists">
 		<div class="row list-item">
 			<div class="small-2 medium-1 columns">
-				<a class="button tiny" data-bind="attr: { href: viewLink }"><i class="fa fa-list-ul"></i></a>
+				<a class="button tiny" data-bind="attr: { href: viewLink }"><i class="fa fa-list"></i></a>
 			</div>
 			<div class="small-8 medium-10 columns item-name">
 				<div class="ellipsis" data-bind="text: name, click: $parent.editListTitle"></div>
 			</div>
 			<div class="small-2 medium-1 columns">
-				<button class="button tiny warning" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button>
+				<button class="button tiny alert" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button>
 			</div>
 		</div>
 	</div>

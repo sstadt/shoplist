@@ -3,13 +3,13 @@
 -------------------------------- */
 
 @-webkit-keyframes target-fade {
-    0% { background-color: rgba(0,0,0,.1); }
-    100% { background-color: rgba(0,0,0,0); }
+    0% { background-color: $siestaOrangeRgbaFaded; }
+    100% { background-color: $siestaOrangeRgba; }
 }
 
 @-moz-keyframes target-fade {
-    0% { background-color: rgba(0,0,0,.1); }
-    100% { background-color: rgba(0,0,0,0); }
+    0% { background-color: $siestaOrangeRgbaFaded; }
+    100% { background-color: $siestaOrangeRgba; }
 }
 
 /* Mixins

@@ -42,3 +42,10 @@ a [Sails](http://sailsjs.org) application
 [ ] Barcode scanning
 [ ] Barcode site cache
 [ ] Upgrade alert component to change alert style by parameter
+
+0.3:
+
+[ ] Barcode scanning
+[ ] Barcode item database caching
+
+

@@ -116,16 +116,24 @@ $include-html-global-classes: $include-html-classes;
 // $black       : #000000;
 
 // We use these as default colors throughout
-$primary-color: $periwinkle;
-$secondary-color: $limestone;
-$alert-color: $vermillion;
-$success-color: $grass;
-$warning-color: $amber;
-$info-color: $clearsky;
+$primary-color: $siestaBrown;
+$secondary-color: $siestaCream;
+$alert-color: $siestaRed;
+$success-color: $siestaGreen;
+$warning-color: $siestaOrange;
+$info-color: $siestaCream;
+
+// Default base colors
+// $primary-color: $periwinkle;
+// $secondary-color: $limestone;
+// $alert-color: $vermillion;
+// $success-color: $grass;
+// $warning-color: $amber;
+// $info-color: $clearsky;
 
 // We use these to control various global styles
-// $body-bg: $white;
-// $body-font-color: $jet;
+$body-bg: $white;
+$body-font-color: $siestaBlack;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -198,7 +206,7 @@ $info-color: $clearsky;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $siestaBlack;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -255,7 +263,7 @@ $info-color: $clearsky;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
+$anchor-font-color: $siestaOrange;
 // $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 
 // We use these to style the <hr> element
@@ -342,8 +350,8 @@ $info-color: $clearsky;
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
 // $alert-font-size: rem-calc(13);
-// $alert-font-color: $white;
-// $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
+$alert-font-color: $white;
+$alert-font-color-alt: $white;
 
 // We use this for close hover effect.
 // $alert-function-factor: -14%;
@@ -432,8 +440,8 @@ $info-color: $clearsky;
 
 // We use these to control button text styles.
 // $button-font-family: $body-font-family;
-// $button-font-color: $white;
-// $button-font-color-alt: $oil;
+$button-font-color: $white;
+$button-font-color-alt: $white;
 // $button-font-tny: rem-calc(11);
 // $button-font-sml: rem-calc(13);
 // $button-font-med: rem-calc(16);
@@ -619,22 +627,22 @@ $info-color: $clearsky;
 // $form-label-font-size: rem-calc(14);
 // $form-label-font-weight: $font-weight-normal;
 // $form-label-line-height: 1.5;
-// $form-label-font-color: scale-color($black, $lightness: 30%);
+$form-label-font-color: lighten($siestaBlack, 5%);
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 // $input-font-family: inherit;
-// $input-font-color: rgba(0,0,0,0.75);
+$input-font-color: $siestaBlack;
 // $input-font-size: rem-calc(14);
 // $input-bg-color: $white;
-// $input-focus-bg-color: scale-color($white, $lightness: -2%);
-$input-border-color: $limestone;
-$input-focus-border-color: darken($limestone, 5%);
+$input-focus-bg-color: $siestaCreamRgbaFaded;
+$input-border-color: $siestaCream;
+$input-focus-border-color: darken($siestaCream, 5%);
 // $input-border-style: solid;
 // $input-border-width: 1px;
 // $input-border-radius: $global-radius;
 // $input-disabled-bg: $gainsboro;
 // $input-disabled-cursor: $cursor-default-value;
-// $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+$input-box-shadow: inset 0 1px 2px $siestaCreamRgbaFaded;
 
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
@@ -654,8 +662,8 @@ $input-focus-border-color: darken($limestone, 5%);
 // $input-prefix-border-size: 1px;
 // $input-prefix-border-type: solid;
 // $input-prefix-overflow: hidden;
-// $input-prefix-font-color: $oil;
-// $input-prefix-font-color-alt: $white;
+$input-prefix-font-color: $white;
+$input-prefix-font-color-alt: $white;
 
 // We use this setting to turn on/off HTML5 number spinners (the up/down arrows)
 // $input-number-spinners: true;
@@ -666,8 +674,8 @@ $input-focus-border-color: darken($limestone, 5%);
 // $input-error-message-font-size: rem-calc(12);
 // $input-error-message-font-weight: $font-weight-normal;
 // $input-error-message-font-style: italic;
-// $input-error-message-font-color: $white;
-// $input-error-message-font-color-alt: $oil;
+$input-error-message-font-color: $white;
+$input-error-message-font-color-alt: $white;
 
 // We use this to style the glowing effect of inputs when focused
 // $input-include-glowing-effect: true;
@@ -683,15 +691,15 @@ $input-focus-border-color: darken($limestone, 5%);
 
 // We use these to style the icon-bar and items
 // $include-html-icon-bar-classes: $include-html-classes;
-// $icon-bar-bg: $oil;
-// $icon-bar-font-color: $white;
+$icon-bar-bg: $siestaBlack;
+$icon-bar-font-color: $white;
 // $icon-bar-font-size: 1rem;
-// $icon-bar-hover-color: $primary-color;
-// $icon-bar-icon-color: $white;
+$icon-bar-hover-color: lighten($siestaBlack, 10%);
+$icon-bar-icon-color: $white;
 // $icon-bar-icon-size: 1.875rem;
 // $icon-bar-image-width: 1.875rem;
 // $icon-bar-image-height: 1.875rem;
-// $icon-bar-active-color: $primary-color;
+$icon-bar-active-color: lighten($siestaBlack, 10%);
 // $icon-bar-item-padding: 1.25rem;
 
 // 13. Inline Lists
