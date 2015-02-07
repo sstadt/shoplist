@@ -24,6 +24,7 @@ a [Sails](http://sailsjs.org) application
 [x] Add the Users and Session models - make sure users have a config parameter in the model
 [x] Set up error message display for login and user creation
 [x] Implement policies
+[ ] Require email validation before login
 [ ] Attach lists to a user id when created and only return lists to current user based on owner/shared
 [ ] Add the ability to share/sync lists
 [x] Implement a more mobile-friendly menu
