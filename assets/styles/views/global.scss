@@ -25,6 +25,19 @@
 	z-index: 400;
 }
 
+.under-construction {
+	width: 100%;
+
+	img {
+		display: block;
+		margin: 40px auto;
+	}
+
+	p {
+		text-transform: uppercase;
+	}
+}
+
 /* Foundation Overrides
 -------------------------------- */
 
@@ -68,5 +81,17 @@ form {
 	}
 }
 
+/* Global Elements
+-------------------------------- */
+
+ul {
+	list-style: none;
+}
+
+.alert-box {
+	ul {
+		margin: 0;
+	}
+}
 
 

@@ -15,20 +15,22 @@
   </head>
 
   <body>
-    <div class="icon-bar three-up tier-top">
-      <a href="/" class="item">
-        <i class="fa fa-book"></i>
-        <label>Lists</label>
-      </a>
-      <a href="#" class="item">
-        <i class="fa fa-user"></i>
-        <label>Profile</label>
-      </a>
-      <a href="#" class="item">
-        <i class="fa fa-sign-out"></i>
-        <label>Sign Out</label>
-      </a>
-    </div>
+    <% if (session.authenticated === true) { %>
+      <div class="icon-bar three-up tier-top">
+        <a href="/mylists" class="item">
+          <i class="fa fa-book"></i>
+          <label>Lists</label>
+        </a>
+        <a href="/profile" class="item">
+          <i class="fa fa-user"></i>
+          <label>Profile</label>
+        </a>
+        <a href="/logout" class="item">
+          <i class="fa fa-sign-out"></i>
+          <label>Sign Out</label>
+        </a>
+      </div>
+    <% } %>
 
     <%- body %>
 

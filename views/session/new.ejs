@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="small-12 columns">
+		<h1>Log In</h1>
+	</div>
+</div>
+
+<% if (flash && flash.msg) { %>
+	<%- partial('../components/flashmsg') %>
+<% } %>
+
+<div class="row">
+	<div class="small-12 columns">
+		<form action="/session/create">
+			<div class="row">
+				<div class="small-12 medium-6 columns">
+					<input type="text" class="radius" name="email" placeholder="Email Address" required />
+				</div>
+				<div class="small-12 medium-6 columns">
+					<input type="password" class="radius" name="password" placeholder="Password" required />
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 columns">
+					<button type="submit" class="expand radius"><i class="fa fa-sign-in"></i> Log In</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="small-12 columns">
+					<a href="/register" type="submit" class="button secondary expand radius"><i class="fa fa-user"></i> New Account</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

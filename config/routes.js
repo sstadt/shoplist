@@ -33,8 +33,35 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
+    controller: 'session',
+    action: 'new'
+  },
+
+  '/mylists': {
     controller: 'list',
     action: 'index'
+  },
+
+  '/login': {
+    controller: 'session',
+    action: 'new'
+  },
+  '/logout': {
+    controller: 'session',
+    action: 'destroy'
+  },
+
+  '/register': {
+    controller: 'user',
+    action: 'new'
+  },
+  '/activate': {
+    controller: 'user',
+    action: 'confirmEmail'
+  },
+  '/profile': {
+    controller: 'user',
+    action: 'show'
   },
 
   '/list/get': {

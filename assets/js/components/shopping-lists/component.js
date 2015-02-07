@@ -107,8 +107,6 @@ define([
      * Populate the initial list
      */
     io.socket.get('/list/getLists', function (response) {
-      self.loading(false);
-
       if (response.err) {
         self.pageError('Unable to retrieve lists');
       } else {
@@ -120,6 +118,8 @@ define([
           }));
         }
       }
+
+      self.loading(false);
     });
 
     ko.components.register('page-alert', { require: 'components/alert-box/component' });

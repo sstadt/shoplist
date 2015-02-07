@@ -21,16 +21,20 @@ a [Sails](http://sailsjs.org) application
 [x] Move object to observable conversion function to a util
 [x] Convert lists into observables on the index page
 [x] Switch to MongoDB
-[ ] Add the Users and Session models - make sure users have a config parameter in the model
-[ ] Implement policies
+[x] Add the Users and Session models - make sure users have a config parameter in the model
+[x] Set up error message display for login and user creation
+[x] Implement policies
+[ ] Attach lists to a user id when created and only return lists to current user based on owner/shared
 [ ] Add the ability to share/sync lists
 [x] Implement a more mobile-friendly menu
 [ ] Add a mobile icon
 
 0.1.1
 
+[ ] Fix front end validation for user and session
 [ ] Fix bug in enter key submission on list view
 [ ] Validate item quantity as > 0 on the back end
+[ ] Fully docblock back end and front end
 
 0.2:
 

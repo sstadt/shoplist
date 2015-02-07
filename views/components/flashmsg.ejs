@@ -1,0 +1,45 @@
+
+<% if (flash.msg.error && flash.msg.error.length > 0) { %>
+	<!-- alert -->
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="alert-box alert radius">
+				<ul>
+				<% _.each(flash.msg.error, function (msg) { %>
+					<li><i class="fa fa-warning"></i> <%= msg %></li>
+				<% }) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+<% } %>
+
+<% if (flash.msg.warning && flash.msg.warning.length > 0) { %>
+	<!-- warning -->
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="alert-box alert radius">
+				<ul>
+				<% _.each(flash.msg.warning, function (msg) { %>
+					<li><i class="fa fa-warning"></i> <%= msg %></li>
+				<% }) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+<% } %>
+
+<% if (flash.msg.success && flash.msg.success.length > 0) { %>
+	<!-- success -->
+	<div class="row">
+		<div class="small-12 columns">
+			<div class="alert-box alert radius">
+				<ul>
+				<% _.each(flash.msg.success, function (msg) { %>
+					<li><%= msg %></li>
+				<% }) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+<% } %>
