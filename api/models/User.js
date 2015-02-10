@@ -5,6 +5,8 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
 
   schema: true,
@@ -45,7 +47,7 @@ module.exports = {
       });
     }
 
-    require("bcrypt").hash(values.password, 10, function passwordEncryption(err, encryptedPassword) {
+    bcrypt.hash(values.password, 10, function passwordEncryption(err, encryptedPassword) {
       if (err) {
         return next(err);
       }

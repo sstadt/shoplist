@@ -28,16 +28,24 @@ module.exports = {
       confirmation: req.param('confirmation')
     };
 
-    User.create(userObj, function userCreated(err) {
+    User.create(userObj, function userCreated(err, user) {
       if (err) {
-        var errorMsg = (err.code === 11000) ? 'There is already an account associated with that email address.' : err.err;
+        var errorMsg = (err._e.code === 11000) ? 'There is already an account associated with that email address.' : err._e.err;
 
         FlashService.warning(req, errorMsg);
         res.redirect('/register');
       } else {
-        FlashService.success(req, 'Account successfully created, you may now log in.');
-        FlashService.success(req, 'In the future, you will be required to verify your email before logging in.');
-        res.redirect('/login');
+        console.log(user);
+        RegistrationService.generateValidationEmail(user, function (err) {
+          if (err) {
+            console.log(err);
+            FlashService.error(req, 'Unable to create a registration key at this time');
+            res.redirect('/register');
+          } else {
+            FlashService.success(req, 'Check the email address you registered with to verify your account.');
+            res.redirect('/login');
+          }
+        });
       }
     });
   },
