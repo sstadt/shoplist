@@ -34,12 +34,19 @@ module.exports = {
         } else if (!user) {
           FlashService.error(req, 'The email address ' + req.param('email') + ' was not found.');
           res.redirect('/login');
+
+        // user is not confirmed
+        } else if (user.confirmed !== true) {
+          FlashService.warning(req, 'You must verify your account before logging in.');
+          res.redirect('/login');
+
         } else {
 
           // Compare password from the form params to the encrypted password of the user found.
           bcrypt.compare(req.param('password'), user.encryptedPassword, function (err, valid) {
             if (err) {
-              res.serverError(req, 'There was an error logging you in');
+              FlashService.error(req, 'There was an error logging you in');
+              res.redirect('/login');
 
             // log user in
             } else if (valid) {

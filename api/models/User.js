@@ -19,6 +19,7 @@ module.exports = {
       unique: true
     },
     confirmed: {
+      type: 'boolean',
       defaultsTo: false
     },
     encryptedPassword: {

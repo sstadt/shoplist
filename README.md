@@ -31,6 +31,7 @@ a [Sails](http://sailsjs.org) application
 
 0.1.1
 
+ - [ ] Add a resend link to the login 'not verified' error message
  - [ ] Save item edits on delay if one has failed
  - [ ] Fix front end validation for user and session
  - [ ] Fix bug in enter key submission on list view
