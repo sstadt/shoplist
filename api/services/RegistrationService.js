@@ -1,27 +1,36 @@
 /*jslint node: true*/
-/*globals sails, MailService, HttpService*/
+/*globals sails, MailService, HttpService, Token*/
 
 // TODO: Use a deferred to wait for this to finish
 
-var sha1 = require('sha1');
+var sha1 = require('sha1'),
+  Q = require('q');
 
 module.exports = {
 
   generateValidationEmail: function (user) {
+    var deferred = Q.defer(),
+      timestamp = new Date().getTime(),
+      tokenStr = sha1(timestamp);
 
-    var timestamp = new Date().getTime(),
-      token = sha1(timestamp),
-      data = {
+    Token.create({
+      token: tokenStr,
+      user: user.id
+    }, function (err, token) {
+      if (err) {
+        deferred.reject(err);
+      }
+
+      var pageData = {
         user: user,
-        link: HttpService.getBaseUrl() + '/validate?token=' + token
+        link: HttpService.getBaseUrl() + '/validate?token=' + token.token
       };
 
-    sails.hooks.views.render('email/registration', data, function (err, html) {
-      if (err) {
-        console.log('error rendering view:');
-        console.log(err);
-        console.log('---------------------');
-      } else {
+      sails.hooks.views.render('email/registration', pageData, function (err, html) {
+        if (err) {
+          deferred.reject(err);
+        }
+
         var to = user.email,
           from = sails.config.email.noreply.address,
           password = sails.config.email.noreply.password,
@@ -30,18 +39,17 @@ module.exports = {
 
         MailService.send(to, from, password, subject, message, function (err) {
           if (err) {
-            console.log('error sending mail:');
-            console.log(err);
-            console.log('-------------------');
-          } else {
-            console.log('success!');
+            deferred.reject(err);
           }
+
+          deferred.resolve();
         });
-      }
+
+      });
 
     });
 
-    return false;
+    return deferred.promise;
   }
 
 };

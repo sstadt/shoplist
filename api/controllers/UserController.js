@@ -1,5 +1,5 @@
 /*jslint node: true*/
-/*globals User, FlashService*/
+/*globals User, FlashService, RegistrationService*/
 
 /**
  * UserController
@@ -17,9 +17,9 @@ module.exports = {
     });
   },
 
-  confirmemail: function (req, res) {
-    // future home of registration token validation
-  },
+  // confirmemail: function (req, res) {
+  //   // future home of registration token validation
+  // },
 
   create: function (req, res) {
     var userObj = {
@@ -35,17 +35,15 @@ module.exports = {
         FlashService.warning(req, errorMsg);
         res.redirect('/register');
       } else {
-        console.log(user);
-        RegistrationService.generateValidationEmail(user, function (err) {
-          if (err) {
-            console.log(err);
+        RegistrationService.generateValidationEmail(user)
+          .fail(function (err) {
             FlashService.error(req, 'Unable to create a registration key at this time');
             res.redirect('/register');
-          } else {
+          })
+          .done(function () {
             FlashService.success(req, 'Check the email address you registered with to verify your account.');
             res.redirect('/login');
-          }
-        });
+          });
       }
     });
   },
