@@ -42,6 +42,9 @@ module.exports.routes = {
     action: 'index'
   },
 
+  /*
+    Session
+   */
   '/login': {
     controller: 'session',
     action: 'new'
@@ -51,19 +54,25 @@ module.exports.routes = {
     action: 'destroy'
   },
 
+  /*
+    User
+   */
   '/register': {
     controller: 'user',
     action: 'new'
   },
-  '/activate': {
+  '/verify': {
     controller: 'user',
-    action: 'confirmEmail'
+    action: 'verify'
   },
   '/profile': {
     controller: 'user',
     action: 'show'
   },
 
+  /*
+    List
+   */
   '/list/get': {
     controller: 'list',
     action: 'getLists'

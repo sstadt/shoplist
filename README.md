@@ -39,6 +39,7 @@ a [Sails](http://sailsjs.org) application
 
 0.2:
 
+ - [ ] Improve email templates
  - [ ] Add a sync icon to display the status of the most recent save
  - [ ] User Profile page
  - [ ] Password recovery/reset
@@ -52,9 +53,9 @@ a [Sails](http://sailsjs.org) application
 
 0.3:
 
-[ ] Barcode scanning
-[ ] Barcode item database caching
-[ ] Auto-fill list item names from barcode cache
-[ ] Custom 403, 404, and 500 pages
+ - [ ] Barcode scanning
+ - [ ] Barcode item database caching
+ - [ ] Auto-fill list item names from barcode cache
+ - [ ] Custom 403, 404, and 500 pages
 
 

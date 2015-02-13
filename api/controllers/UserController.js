@@ -1,5 +1,5 @@
 /*jslint node: true*/
-/*globals User, FlashService, RegistrationService*/
+/*globals User, FlashService, RegistrationService, Token*/
 
 /**
  * UserController
@@ -17,9 +17,26 @@ module.exports = {
     });
   },
 
-  // confirmemail: function (req, res) {
-  //   // future home of registration token validation
-  // },
+  verify: function (req, res) {
+    Token.findOne({ token: req.param('token') }, function (err, token) {
+      if (err) {
+        FlashService.error(req, 'Error retrieving registration token');
+        res.redirect('/login');
+      }
+
+      User.update(token.user, { confirmed: true }, function (err) {
+        if (err) {
+          FlashService.error(req, 'Could not activate your account at this time');
+          res.redirect('/login');
+        }
+
+        Token.destroy(token.id, function () {
+          FlashService.success(req, 'Account verified, you may now log in!');
+          res.redirect('/login');
+        });
+      });
+    });
+  },
 
   create: function (req, res) {
     var userObj = {
@@ -36,7 +53,7 @@ module.exports = {
         res.redirect('/register');
       } else {
         RegistrationService.generateValidationEmail(user)
-          .fail(function (err) {
+          .fail(function () {
             FlashService.error(req, 'Unable to create a registration key at this time');
             res.redirect('/register');
           })
