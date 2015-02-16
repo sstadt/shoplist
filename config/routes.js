@@ -69,6 +69,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'show'
   },
+  '/userSearch': {
+    controller: 'user',
+    action: 'search'
+  },
 
   /*
     List

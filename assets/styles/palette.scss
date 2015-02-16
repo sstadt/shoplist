@@ -28,12 +28,12 @@ $whiteRgba      : rgba(255, 254, 250, 1);
 $whiteRgbaFaded : rgba(255, 254, 250, .1);
 
 /* Foundation Defaults */
-$periwinkle  : #008CBA; // primary
-$limestone   : #e7e7e7; // secondary
-$clearsky    : #a0d3e8; // info
-$vermillion  : #f04124; // alert
-$grass       : #43AC6A; // success
-$amber       : #f08a24; // warning
+$periwinkle : #008CBA; // primary
+$limestone  : #e7e7e7; // secondary
+$clearsky   : #a0d3e8; // info
+$vermillion : #f04124; // alert
+$grass      : #43AC6A; // success
+$amber      : #f08a24; // warning
 /* Foundation Defaults End */
 
 /*
@@ -57,42 +57,48 @@ $rebirthYellow     : #fec659;
 */
 
 /* Foundation Start */
-$primaryColor: $rebirthNavy;
-$secondaryColor: $vapor;
-$alertColor: $rebirthRed;
-$successColor: $rebirthGreen;
-$warningColor: $rebirthYellow;
-$infoColor: $rebirthTeal;
+$primaryColor                  : $rebirthNavy;
+$secondaryColor                : $vapor;
+$alertColor                    : $rebirthRed;
+$successColor                  : $rebirthGreen;
+$warningColor                  : $rebirthYellow;
+$infoColor                     : $rebirthTeal;
 
-$bodyBg: $white;
-$bodyFontColor: $oil;
+$bodyBg                        : $white;
+$bodyFontColor                 : $oil;
 
-$headerFontColor: $oil;
-$anchorFontColor: $rebirthNavy;
+$headerFontColor               : $oil;
+$anchorFontColor               : $rebirthNavy;
 
-$alertFontColor: $white;
-$alertFontColorAlt: $white;
+$alertFontColor                : $white;
+$alertFontColorAlt             : $white;
 
-$buttonFontColor: $white;
-$buttonFontColorAlt: $steel;
+$buttonFontColor               : $white;
+$buttonFontColorAlt            : $steel;
 
-$formLabelFontColor: lighten($oil, 5%);
-$inputFontColor: $oil;
-$inputFocusBgColor: $snow;
-$inputBorderColor: $secondaryColor;
-$inputFocusBorderColor: darken($inputBorderColor, 5%);
-$inputBoxShadow: inset 0 1px 2px $snow;
-$inputPrefixFontColor: $white;
-$inputPrefixFontColorAlt: $white;
-$inputErrorMessageFontColor: $white;
-$inputErrorMessageFontColorAlt: $white;
+$formLabelFontColor            : lighten($oil, 5%);
+$inputFontColor                : $oil;
+$inputFocusBgColor             : $snow;
+$inputBorderColor              : $secondaryColor;
+$inputFocusBorderColor         : darken($inputBorderColor, 5%);
+$inputBoxShadow                : inset 0 1px 2px $snow;
+$inputPrefixFontColor          : $white;
+$inputPrefixFontColorAlt       : $white;
+$inputErrorMessageFontColor    : $white;
+$inputErrorMessageFontColorAlt : $white;
 
-$iconBarBg: $oil;
-$iconBarFontColor: $white;
-$iconBarHoverColor: lighten($oil, 10%);
-$iconBarIconColor: $white;
-$iconBarActiveColor: lighten($oil, 10%);
+$iconBarBg                     : $oil;
+$iconBarFontColor              : $white;
+$iconBarHoverColor             : lighten($oil, 10%);
+$iconBarIconColor              : $white;
+$iconBarActiveColor            : lighten($oil, 10%);
 /* Foundation End */
+
+$lblPrimaryHover       : darken($primaryColor, 10%);
+$lblSecondaryHover     : darken($secondaryColor, 10%);
+$lblAlertHover         : darken($alertColor, 10%);
+$lblSuccessHover       : darken($successColor, 10%);
+$lblInfoHover          : darken($infoColor, 10%);
 
 $targetFade            : $whiteRgba;
 $targetFadeFaded       : $whiteRgbaFaded;

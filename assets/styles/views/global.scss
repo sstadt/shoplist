@@ -94,4 +94,33 @@ ul {
 	}
 }
 
+.search-box {
+	.label {
+		cursor: pointer;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		@include transition(background-color, 0.3s, linear);
+
+		&:hover {
+			background-color: $lblPrimaryHover;
+		}
+
+		&.secondary:hover {
+			background-color: $lblSecondaryHover;
+		}
+
+		&.alert:hover {
+			background-color: $lblAlertHover;
+		}
+
+		&.success:hover {
+			background-color: $lblSuccessHover;
+		}
+
+		&.info:hover {
+			background-color: $lblInfoHover;
+		}
+	}
+}
+
 

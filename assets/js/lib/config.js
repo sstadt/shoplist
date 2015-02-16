@@ -41,6 +41,7 @@ requirejs.config({
     // classes
     'ShoppingList'           : 'lib/classes/ShoppingList',
     'ListItem'               : 'lib/classes/ListItem',
+    'SharedUser'             : 'lib/classes/SharedUser',
 
     // utils
     'koutil'                 : 'lib/util/ko-util',

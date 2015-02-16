@@ -70,6 +70,20 @@ module.exports = {
       title: 'profile',
       script: 'public'
     });
+  },
+
+  search: function (req, res) {
+    User.find({
+      email: { startsWith: req.param('email') }
+    }, function userFound(err, users) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.json(users.map(function (user) {
+        return user.toJSON();
+      }));
+    });
   }
 };
 

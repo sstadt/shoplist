@@ -51,7 +51,7 @@ module.exports = {
             // log user in
             } else if (valid) {
               req.session.authenticated = true;
-              req.session.User = user;
+              req.session.User = user.toJSON();
               res.redirect('/mylists');
 
             // If the password from the form doesn't match the password from the database...
