@@ -1,0 +1,22 @@
+
+.construction-zone {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url(images/starfield.jpg);
+
+	img {
+		display: block;
+		margin: 20px auto;
+	}
+
+	h4 {
+		margin-top: 140px;
+		color: #ffff00;
+		text-transform: uppercase;
+		font-weight: bold;
+		text-align: center;
+	}
+}

@@ -11,7 +11,6 @@ $vapor       : #F6F6F6;
 $white-smoke : #F5F5F5;
 $silver      : #EFEFEF;
 $smoke       : #EEEEEE;
-$limestone   : #e7e7e7; // foundation default - secondary
 $gainsboro   : #DDDDDD;
 $iron        : #CCCCCC;
 $base        : #AAAAAA;
@@ -25,48 +24,83 @@ $oil         : #333333;
 $jet         : #222222;
 $black       : #000000;
 
-// Blue
-$periwinkle  : #008CBA; // foundation default - primary
-$clearsky    : #a0d3e8; // foundation default - info
+$whiteRgba      : rgba(255, 254, 250, 1);
+$whiteRgbaFaded : rgba(255, 254, 250, .1);
 
-// Red
-$vermillion  : #f04124; // foundation default - alert
+/* Foundation Defaults */
+$periwinkle  : #008CBA; // primary
+$limestone   : #e7e7e7; // secondary
+$clearsky    : #a0d3e8; // info
+$vermillion  : #f04124; // alert
+$grass       : #43AC6A; // success
+$amber       : #f08a24; // warning
+/* Foundation Defaults End */
 
-// Green
-$grass       : #43AC6A; // foundation default - success
-
-// Orange
-$amber       : #f08a24; // foundation default - warning
-
-/* 
-	Siesta Color Scheme
+/*
+	Rebirth Color Scheme
 	Use this in Usage below, not in stylesheets
-	http://www.colorschemer.com/schemes/viewscheme.php?id=9539
-*/
+	http://www.colorschemer.com/schemes/viewscheme.php?id=9311
+ */
 
-$siestaRed       : #d01914;
-$siestaGreen     : #398331;
-$siestaYellow    : #d6a324;
-$siestaOrange    : #e3671d;
-$siestaCream     : #e2d398;
-$siestaBrown     : #715f41;
-$siestaBlack     : #1b1710;
-
-$siestaCreamRgba       : rgba(226, 211, 152, 0);
-$siestaCreamRgbaFaded  : rgba(226, 211, 152, .1);
-$siestaYellowRgba       : rgba(214, 163, 36, 0);
-$siestaYellowRgbaFaded  : rgba(214, 163, 36, .1);
-$siestaOrangeRgba       : rgba(227, 103, 29, 0);
-$siestaOrangeRgbaFaded  : rgba(227, 103, 29, .1);
+$rebirthGreen      : #35a94e;
+$rebirthLightGreen : #abc07b;
+$rebirthTeal       : #18a4a9;
+$rebirthSkyBlue    : #1cb2d0;
+$rebirthNavy       : #0d6797;
+$rebirthPurple     : #623691;
+$rebirthRed        : #a71f27;
+$rebirthYellow     : #fec659;
 
 /* 
 	Usage
 	Use these in stylesheets
 */
 
-$listItemBorder : $siestaCream;
+/* Foundation Start */
+$primaryColor: $rebirthNavy;
+$secondaryColor: $vapor;
+$alertColor: $rebirthRed;
+$successColor: $rebirthGreen;
+$warningColor: $rebirthYellow;
+$infoColor: $rebirthTeal;
 
-$loaderColor    : $siestaOrange;
+$bodyBg: $white;
+$bodyFontColor: $oil;
+
+$headerFontColor: $oil;
+$anchorFontColor: $rebirthNavy;
+
+$alertFontColor: $white;
+$alertFontColorAlt: $white;
+
+$buttonFontColor: $white;
+$buttonFontColorAlt: $steel;
+
+$formLabelFontColor: lighten($oil, 5%);
+$inputFontColor: $oil;
+$inputFocusBgColor: $snow;
+$inputBorderColor: $secondaryColor;
+$inputFocusBorderColor: darken($inputBorderColor, 5%);
+$inputBoxShadow: inset 0 1px 2px $snow;
+$inputPrefixFontColor: $white;
+$inputPrefixFontColorAlt: $white;
+$inputErrorMessageFontColor: $white;
+$inputErrorMessageFontColorAlt: $white;
+
+$iconBarBg: $oil;
+$iconBarFontColor: $white;
+$iconBarHoverColor: lighten($oil, 10%);
+$iconBarIconColor: $white;
+$iconBarActiveColor: lighten($oil, 10%);
+/* Foundation End */
+
+$targetFade            : $whiteRgba;
+$targetFadeFaded       : $whiteRgbaFaded;
+
+$listItemBorder        : $inputBorderColor;
+
+$loaderColor           : $rebirthTeal;
+$loaderBackgroundColor : $white;
 
 
 
