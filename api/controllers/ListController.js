@@ -36,6 +36,19 @@ module.exports = {
    * API
    */
 
+  create: function (req, res) {
+    List.create({
+      owner: req.session.User.id,
+      name: req.param('name')
+    }, function (err, list) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      res.json(list);
+    });
+  },
+
   update: function (req, res) {
     var updatedList = {
       name: req.param('name')
@@ -52,7 +65,9 @@ module.exports = {
 
   getLists: function (req, res) {
 
-    List.find(function (err, lists) {
+    List.find({
+      owner: req.session.User.id
+    }, function (err, lists) {
       if (err) {
         res.serverError(err);
       }

@@ -24,13 +24,14 @@ a [Sails](http://sailsjs.org) application
  - [x] Set up error message display for login and user creation
  - [x] Implement policies
  - [x] Require email validation before login
- - [ ] Attach lists to a user id when created and only return lists to current user based on owner/shared
+ - [x] Attach lists to a user id when created and only return lists to current user based on owner/shared
  - [ ] Add the ability to share/sync lists
  - [x] Implement a more mobile-friendly menu
  - [ ] Add a mobile icon
 
 0.1.1
 
+ - [ ] Restrict Deletion to list owners
  - [ ] Add a resend link to the login 'not verified' error message
  - [ ] Save item edits on delay if one has failed
  - [ ] Fix front end validation for user and session
@@ -40,6 +41,7 @@ a [Sails](http://sailsjs.org) application
 
 0.2:
 
+ - [ ] Create a splash page
  - [ ] Improve email templates
  - [ ] Add a sync icon to display the status of the most recent save
  - [ ] User Profile page
