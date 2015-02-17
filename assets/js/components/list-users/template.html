@@ -3,7 +3,7 @@
 		<h2>Share This List</h2>
 		<input type="text" class="radius" data-bind="textInput: searchParam" />
 		<ul class="inline-list" data-bind="foreach: searchResults">
-			<li><span class="label secondary radius"><!-- ko text: email --><!-- /ko --> <i class="fa fa-plus"></i></span></li>
+			<li><span class="label secondary radius" data-bind="click: $parent.shareList"><!-- ko text: email --><!-- /ko --> <i class="fa fa-plus"></i></span></li>
 		</ul>
 		<ul class="inline-lists" data-bind="foreach: listUsers">
 			<li><span class="label radius"><!-- ko text: email --><!-- /ko --> <i class="fa fa-times"></i></span></li>

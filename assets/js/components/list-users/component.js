@@ -28,14 +28,35 @@ define([
           email: search
         }, function (users) {
           self.searching(false);
-          console.log(users);
-          self.searchResults(users.map(function (user) {
-            return new SharedUser(user);
-          }));
-          console.log(self.searchResults());
+
+          if (users.err) {
+            self.error(users.summary);
+          } else {
+            self.error(null);
+            self.searchResults(users.map(function (user) {
+              return new SharedUser(user);
+            }));
+          }
         });
       }
     });
+
+    self.shareList = function (user) {
+      io.socket.post('/shareList', {
+        list: self.listId,
+        user: user.id
+      }, function (response) {
+        console.log('response received');
+        console.log(response);
+        if (response.err) {
+          self.error(response.summary);
+        } else {
+          self.error(null);
+          self.searchResults.destroy(user);
+          self.listUsers.push(user);
+        }
+      });
+    };
   }
 
   return {

@@ -80,6 +80,10 @@ module.exports.routes = {
   '/list/get': {
     controller: 'list',
     action: 'getLists'
+  },
+  '/shareList': {
+    controller: 'list',
+    action: 'share'
   }
 
   /***************************************************************************

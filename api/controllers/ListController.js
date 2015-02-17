@@ -64,7 +64,6 @@ module.exports = {
   },
 
   getLists: function (req, res) {
-
     List.find({
       owner: req.session.User.id
     }, function (err, lists) {
@@ -91,6 +90,30 @@ module.exports = {
 
         res.send(200);
       });
+    });
+  },
+
+  share: function (req, res) {
+    var user = req.param('user'),
+      listId = req.param('list');
+
+    List.findOne(listId, function (err, list) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      if (list.shared.indexOf(user) > -1) {
+        res.serverError('List is already shared with this user.');
+      } else {
+        list.shared.push(user);
+        List.update(list.id, list, function (err) {
+          if (err) {
+            res.serverError();
+          }
+
+          res.send(200);
+        });
+      }
     });
   }
 
