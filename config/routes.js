@@ -84,7 +84,15 @@ module.exports.routes = {
   '/shareList': {
     controller: 'list',
     action: 'share'
-  }
+  },
+  '/unshareList': {
+    controller: 'list',
+    action: 'unshare'
+  },
+  '/getListUsers': {
+    controller: 'list',
+    action: 'getShared'
+  },
 
   /***************************************************************************
   *                                                                          *

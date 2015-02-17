@@ -42,22 +42,56 @@ define([
     });
 
     self.shareList = function (user) {
+      user.loading(true);
+
       io.socket.post('/shareList', {
         list: self.listId,
         user: user.id
       }, function (response) {
-        console.log('response received');
-        console.log(response);
+        user.loading(false);
+
         if (response.err) {
           self.error(response.summary);
         } else {
           self.error(null);
-          self.searchResults.destroy(user);
           self.listUsers.push(user);
+          self.searchResults.destroy(user);
         }
       });
     };
+
+    self.unshareList = function (user) {
+      user.loading(true);
+
+      io.socket.post('/unshareList', {
+        list: self.listId,
+        user: user.id
+      }, function (response) {
+        user.loading(false);
+
+        if (response.err) {
+          self.error(response.summary);
+        } else {
+          self.listUsers.destroy(user);
+        }
+      });
+    };
+
+    io.socket.get('/getListUsers', {
+      list: self.listId
+    }, function (users) {
+      if (users.err) {
+        self.error(users.summary);
+      } else {
+        self.error(null);
+        self.listUsers(users.map(function (user) {
+          return new SharedUser(user);
+        }));
+      }
+    });
   }
+
+  ko.components.register('share-alert', { require: 'components/alert-box/component' });
 
   return {
     viewModel: ListUsersViewModel,

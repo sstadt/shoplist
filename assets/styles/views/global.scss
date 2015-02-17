@@ -97,8 +97,7 @@ ul {
 .search-box {
 	.label {
 		cursor: pointer;
-		margin-right: 5px;
-		margin-bottom: 5px;
+		margin-bottom: 1rem;
 		@include transition(background-color, 0.3s, linear);
 
 		&:hover {

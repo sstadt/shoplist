@@ -1,5 +1,5 @@
 /*jslint node: true*/
-/*globals List, Item*/
+/*globals List, Item, User*/
 
 /**
  * ListController
@@ -103,7 +103,10 @@ module.exports = {
       }
 
       if (list.shared.indexOf(user) > -1) {
-        res.serverError('List is already shared with this user.');
+        res.json({
+          err: true,
+          summary: list.name + ' is already shared with this user.'
+        });
       } else {
         list.shared.push(user);
         List.update(list.id, list, function (err) {
@@ -114,6 +117,57 @@ module.exports = {
           res.send(200);
         });
       }
+    });
+  },
+
+  unshare: function (req, res) {
+    var user = req.param('user'),
+      listId = req.param('list');
+
+    List.findOne(listId, function (err, list) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      var index = list.shared.indexOf(user);
+
+      if (index < 0) {
+        res.json({
+          err: true,
+          summary: list.name + ' has not been shared with this user'
+        });
+      } else {
+        list.shared.splice(index, 1);
+        List.update(list.id, list, function (err) {
+          if (err) {
+            res.serverError(err);
+          }
+
+          res.send(200);
+        });
+      }
+    });
+  },
+
+  getShared: function (req, res) {
+    var listId = req.param('list');
+
+    List.findOne(listId, function (err, list) {
+      if (err) {
+        res.serverError(err);
+      }
+
+      User.find({
+        id: list.shared
+      }, function (err, users) {
+        if (err) {
+          res.serverError(err);
+        }
+
+        res.json(users.map(function (user) {
+          return user.toJSON();
+        }));
+      });
     });
   }
 

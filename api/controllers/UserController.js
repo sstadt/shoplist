@@ -74,6 +74,7 @@ module.exports = {
 
   search: function (req, res) {
     User.find({
+      id: { '!': req.session.User.id },
       email: { startsWith: req.param('email') }
     }, function userFound(err, users) {
       if (err) {
