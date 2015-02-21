@@ -65,13 +65,25 @@ module.exports = {
 
   getLists: function (req, res) {
     List.find({
-      owner: req.session.User.id
+      or: [
+        { owner: req.session.User.id },
+        { shared: req.session.User.id }
+      ]
     }, function (err, lists) {
       if (err) {
         res.serverError(err);
       }
 
-      res.json(lists);
+      var shoppingLists = {
+        owned: _.filter(lists, function (list) {
+          return list.owner === req.session.User.id;
+        }),
+        shared: _.filter(lists, function (list) {
+          return list.shared.indexOf(req.session.User.id) > -1; 
+        })
+      };
+
+      res.json(shoppingLists);
     });
   },
 

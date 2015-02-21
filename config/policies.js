@@ -26,18 +26,24 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
+  '*': 'sessionAuth',
+
   '/': true,
 
   SessionController: {
-    '*': ['flash', true]
+    '*': ['flash', true],
+    'destroy': 'sessionAuth'
   },
 
   UserController: {
     '*': ['flash', true],
-    'create': true
+    'create': true,
+    'show': 'sessionAuth'
   },
 
-  '*': 'sessionAuth',
+  ListController: {
+    'destroy': ['sessionAuth', 'listOwner']
+  },
 
   /***************************************************************************
   *                                                                          *

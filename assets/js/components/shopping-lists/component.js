@@ -9,6 +9,10 @@ define([
 ], function (ko, koutil, ShoppingList, html) {
   'use strict';
 
+  function newShoppingList(list) {
+    return new ShoppingList(list);
+  }
+
   function LinkListViewModel() {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
@@ -16,6 +20,7 @@ define([
 
     // list data
     self.lists = ko.observableArray([]);
+    self.sharedLists = ko.observableArray([]);
     self.editListName = ko.observable('');
     self.editListId = ko.observable();
 
@@ -43,7 +48,7 @@ define([
           self.formError(response.summary);
         } else {
           self.formError(null);
-          self.lists.push(new ShoppingList(response));
+          self.lists.push(newShoppingList(response));
           self.newListName('');
         }
       });
@@ -112,10 +117,12 @@ define([
       } else {
         self.pageError(null);
 
-        if (response.length > 0) {
-          self.lists(response.map(function (list) {
-            return new ShoppingList(list);
-          }));
+        if (response.owned) {
+          self.lists(response.owned.map(newShoppingList));
+        }
+
+        if (response.shared) {
+          self.sharedLists(response.shared.map(newShoppingList));
         }
       }
 
