@@ -66,6 +66,9 @@ define([
       $('#editListModal').foundation('reveal', 'open');
     };
 
+    /**
+     * Update an existing shopping list
+     */
     self.saveList = function () {
       var updatedList = {
         id: self.editListId(),
@@ -107,6 +110,29 @@ define([
         });
       }
     };
+
+    /**
+     * List updates from other users
+     */
+    self.socketActions = {
+      updated: function (listIndex, data) {
+        self.sharedLists()[listIndex].name(data.name);
+      },
+      destroyed: function (listIndex) {
+        self.sharedLists.destroy(self.sharedLists()[listIndex]);
+      }
+    };
+
+    /**
+     * Listen for list updates
+     */
+    io.socket.on('list', function (response) {
+      var listIndex = koutil.getItemIndexById(response.id, self.sharedLists());
+
+      if (self.socketActions.hasOwnProperty(response.verb)) {
+        self.socketActions[response.verb](listIndex, response.data);
+      }
+    });
 
     /**
      * Populate the initial list

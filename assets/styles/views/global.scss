@@ -92,6 +92,10 @@ ul {
 	ul {
 		margin: 0;
 	}
+
+	&.secondary {
+		color: $alertSecondaryFontColor;
+	}
 }
 
 .search-box {

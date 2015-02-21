@@ -36,7 +36,7 @@
 		<h3>My Lists</h3>
 	</div>
 </div>
-<div class="row">
+<div class="row" data-bind="visible: lists().length > 0">
 	<div class="small-12 columns" data-bind="foreach: lists">
 		<div class="row list-item">
 			<div class="small-2 medium-1 columns">
@@ -51,7 +51,12 @@
 		</div>
 	</div>
 </div>
-<div class="row">
+<div class="row" data-bind="visible: lists().length < 1">
+	<div class="small-12 columns">
+		<div class="alert-box secondary radius">You have no lists! Create one using the form above</div>
+	</div>
+</div>
+<div class="row" data-bind="visible: sharedLists().length > 0">
 	<div class="small-12 columns">
 		<h3>Shared Lists</h3>
 	</div>
@@ -62,7 +67,7 @@
 			<div class="small-2 medium-1 columns">
 				<a class="button tiny" data-bind="attr: { href: viewLink }"><i class="fa fa-list"></i></a>
 			</div>
-			<div class="small-8 medium-11 columns item-name terminate">
+			<div class="small-10 medium-11 columns item-name terminate">
 				<div class="ellipsis" data-bind="text: name"></div>
 			</div>
 		</div>

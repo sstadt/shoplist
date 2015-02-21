@@ -1,5 +1,5 @@
 /*jslint browser: true*/
-/*globals requirejs*/
+/*globals requirejs, io*/
 
 requirejs.config({
 

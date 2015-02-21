@@ -45,6 +45,8 @@ module.exports = {
         res.serverError(err);
       }
 
+      List.subscribe(req.socket, list);
+
       res.json(list);
     });
   },
@@ -58,6 +60,8 @@ module.exports = {
       if (err) {
         res.serverError(err);
       }
+
+      List.publishUpdate(list[0].id, { name: list[0].name });
 
       res.json(list[0]);
     });
@@ -79,9 +83,11 @@ module.exports = {
           return list.owner === req.session.User.id;
         }),
         shared: _.filter(lists, function (list) {
-          return list.shared.indexOf(req.session.User.id) > -1; 
+          return list.shared.indexOf(req.session.User.id) > -1;
         })
       };
+
+      List.subscribe(req.socket, lists, ['update', 'destroy']);
 
       res.json(shoppingLists);
     });
@@ -99,6 +105,8 @@ module.exports = {
         if (err) {
           res.serverError(err);
         }
+
+        List.publishDestroy(id);
 
         res.send(200);
       });

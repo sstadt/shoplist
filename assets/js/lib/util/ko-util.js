@@ -12,6 +12,12 @@ define(['lodash', 'knockout'], function (_, ko) {
       });
     },
 
+    getItemIndexById: function (listItemId, list) {
+      return _.findIndex(list, function (l) {
+        return listItemId === l.id;
+      });
+    },
+
     convertToObservable: function (obj) {
       var newObj = {};
       Object.keys(obj).forEach(function (key) {
