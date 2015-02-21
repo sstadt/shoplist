@@ -1,5 +1,5 @@
 /*jslint node: true*/
-/*globals Item*/
+/*globals List, Item*/
 
 /**
  * ItemController
@@ -15,12 +15,43 @@ module.exports = {
    */
 
   index: function (req, res) {
-    Item.find({ list: req.param('list') }, function (err, items) {
+    var listId = req.param('list');
+
+    List.find(listId, function (err, list) {
       if (err) {
         res.serverError(err);
       }
 
-      res.json(items);
+      List.subscribe(req.socket, list);
+
+      Item.find({ list: listId }, function (err, items) {
+        if (err) {
+          res.serverError(err);
+        }
+
+        res.json(items);
+      });
+    });
+  },
+
+  create: function (req, res) {
+    var newItem = {
+      list: req.param('list'),
+      name: req.param('name'),
+      quantity: req.param('quantity')
+    };
+
+    Item.create(newItem, function (err, item) {
+      if (err) {
+        res.json(err);
+      }
+
+      List.message(item.list, {
+        verb: 'addItem',
+        item: item
+      });
+
+      res.json(item);
     });
   },
 
@@ -32,6 +63,11 @@ module.exports = {
         res.serverError(err);
       }
 
+      List.message(item[0].list, {
+        verb: 'updateItem',
+        item: item[0]
+      });
+
       res.json(item);
     });
   },
@@ -40,10 +76,30 @@ module.exports = {
     Item.update({ id: req.param('id') }, {
       name: req.param('name'),
       quantity: req.param('quantity')
-    }, function (err) {
+    }, function (err, item) {
       if (err) {
         res.serverError(err);
       }
+
+      List.message(item[0].list, {
+        verb: 'updateItem',
+        item: item[0]
+      });
+
+      res.send(200);
+    });
+  },
+
+  destroy: function (req, res) {
+    Item.destroy(req.param('id'), function (err, item) {
+      if (err) {
+        res.json(err);
+      }
+
+      List.message(item[0].list, {
+        verb: 'destroyItem',
+        item: item[0]
+      });
 
       res.send(200);
     });

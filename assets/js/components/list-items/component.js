@@ -100,8 +100,8 @@ define([
           self.pageError(response.summary);
         } else {
           self.pageError(null);
-          self.items()[itemIndex].checked(!listItem.checked());
-          self.items.sort(sortChecked);
+          // self.items()[itemIndex].checked(!listItem.checked());
+          // self.items.sort(sortChecked);
         }
       });
     };
@@ -139,6 +139,38 @@ define([
         }
       });
     };
+
+    /**
+     * List updates from other users
+     */
+    self.socketActions = {
+      addItem: function (item) {
+        self.items.push(new ListItem(item));
+      },
+      updateItem: function (itemIndex, item) {
+        self.items()[itemIndex].name(item.name);
+        self.items()[itemIndex].quantity(item.quantity);
+        self.items()[itemIndex].checked(item.checked);
+        self.items.sort(sortChecked);
+      },
+      destroyItem: function (itemIndex) {
+        self.items.destroy(self.items()[itemIndex]);
+      }
+    };
+
+    /**
+     * Listen for list updates to items
+     */
+    io.socket.on('list', function (response) {
+      var itemIndex = koutil.getItemIndexById(response.data.item.id, self.items()),
+        verb = (response.verb === 'messaged') ? response.data.verb : response.verb;
+
+      if (verb === 'addItem' && self.socketActions.hasOwnProperty(verb)) {
+        self.socketActions.addItem(response.data.item);
+      } else if (self.socketActions.hasOwnProperty(verb)) {
+        self.socketActions[verb](itemIndex, response.data.item);
+      }
+    });
 
     /**
      * Populate the initial list
