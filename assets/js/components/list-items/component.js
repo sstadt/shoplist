@@ -56,9 +56,6 @@ define([
         if (response.err) {
           self.formError(response.summary);
         } else {
-          self.items.push(new ListItem(response));
-          self.items.sort(sortChecked);
-
           self.formError(null);
           self.pageError(null);
           self.newItemName('');
