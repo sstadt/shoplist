@@ -12,6 +12,7 @@ define([
 
     // user data
     self.listId = params.id;
+    self.listName = params.name;
     self.searchParam = ko.observable('');
     self.listUsers = ko.observableArray([]);
 

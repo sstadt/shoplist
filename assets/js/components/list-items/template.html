@@ -47,8 +47,8 @@
 	<div class="columns small-12" data-bind="foreach: items">
 		<div class="row list-item">
 			<div class="small-2 medium-1 columns">
-				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-circle-o"></i></button>
-				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check-circle-o"></i></button>
+				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-check"></i></button>
+				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check"></i></button>
 			</div>
 			<div data-bind="attr: { class: nameColumnClass() }">
 				<div class="ellipsis" data-bind="click: $parent.editItem"><!-- ko text: quantity --><!-- /ko -->x <!-- ko text: name --><!-- /ko --></div>

@@ -32,11 +32,19 @@
 		}
 	}
 
-	.button.tiny, button.tiny {
-		margin-bottom: 0;
-		font-size: 1.3rem;
-		padding: 0.4rem 1.1rem;
-		width: 100%;
+	.button, button {
+		&.tiny {
+			margin-bottom: 0;
+			font-size: 1.3rem;
+			padding: 0.4rem 1.1rem;
+			width: 100%;
+		}
+
+		&.secondary {
+			.fa-check {
+				color: $listItemUncheckedColor;
+			}
+		}
 	}
 
 	.columns:first-child {

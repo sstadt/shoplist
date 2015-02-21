@@ -87,26 +87,27 @@ $inputPrefixFontColorAlt       : $white;
 $inputErrorMessageFontColor    : $white;
 $inputErrorMessageFontColorAlt : $white;
 
-$iconBarBg                     : $oil;
+$iconBarBg                     : darken($rebirthNavy, 20%);
 $iconBarFontColor              : $white;
-$iconBarHoverColor             : lighten($oil, 10%);
+$iconBarHoverColor             : darken($rebirthNavy, 10%);
 $iconBarIconColor              : $white;
-$iconBarActiveColor            : lighten($oil, 10%);
+$iconBarActiveColor            : darken($rebirthNavy, 10%);
 /* Foundation End */
 
-$lblPrimaryHover       : darken($primaryColor, 10%);
-$lblSecondaryHover     : darken($secondaryColor, 10%);
-$lblAlertHover         : darken($alertColor, 10%);
-$lblSuccessHover       : darken($successColor, 10%);
-$lblInfoHover          : darken($infoColor, 10%);
+$lblPrimaryHover        : darken($primaryColor, 10%);
+$lblSecondaryHover      : darken($secondaryColor, 10%);
+$lblAlertHover          : darken($alertColor, 10%);
+$lblSuccessHover        : darken($successColor, 10%);
+$lblInfoHover           : darken($infoColor, 10%);
 
-$targetFade            : $whiteRgba;
-$targetFadeFaded       : $whiteRgbaFaded;
+$targetFade             : $whiteRgba;
+$targetFadeFaded        : $whiteRgbaFaded;
 
-$listItemBorder        : $inputBorderColor;
+$listItemBorder         : $inputBorderColor;
+$listItemUncheckedColor : $white;
 
-$loaderColor           : $rebirthTeal;
-$loaderBackgroundColor : $white;
+$loaderColor            : $rebirthTeal;
+$loaderBackgroundColor  : $white;
 
 
 

@@ -2,7 +2,7 @@
 	<div class="columns small-12">
 		<h1>
 			<%= list.name %>
-			<a href="#" class="button secondary small radius right" data-reveal-id="listUsersModal"><i class="fa fa-users"></i></a>
+			<a href="#" class="button secondary small radius right" data-reveal-id="listUsersModal"><i class="fa fa-user-plus"></i></a>
 		</h1>
 		<div data-bind="component: { name: 'list-items', params: { id: '<%= list.id %>' } }"></div>
 	</div>
@@ -10,5 +10,5 @@
 
 <div id="listUsersModal" class="reveal-modal" data-reveal>
 	<a class="close-reveal-modal">&#215;</a>
-	<div data-bind="component: { name: 'list-users', params: { id: '<%= list.id %>' } }"></div>
+	<div data-bind="component: { name: 'list-users', params: { id: '<%= list.id %>', name: '<%= list.name %>' } }"></div>
 </div>
