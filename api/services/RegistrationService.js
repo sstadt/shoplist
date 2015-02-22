@@ -23,7 +23,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: HttpService.getBaseUrl() + '/verify?token=' + token.token
+        link: 'http://shoplist.scottstadt.com/verify?token=' + token.token
       };
 
       sails.hooks.views.render('email/registration', pageData, function (err, html) {

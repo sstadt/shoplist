@@ -22,7 +22,7 @@ module.exports = {
       to: to, // list of receivers
       subject: subj, // Subject line
       text: msg, // plaintext body
-      html: "<p>" + msg + "</p>" // html body
+      html: msg // html body
     };
 
     // send mail with defined transport object
