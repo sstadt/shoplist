@@ -35,7 +35,6 @@ define([
 
     // new item data
     self.newItemName = ko.observable('');
-    self.newItemQuantity = ko.observable(1);
 
     // errors
     self.pageError = ko.observable(null);
@@ -49,7 +48,7 @@ define([
       var newListItem = {
         list: self.listId,
         name: self.newItemName(),
-        quantity: self.newItemQuantity()
+        quantity: 1
       };
 
       io.socket.post('/item/create', newListItem, function (response) {

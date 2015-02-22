@@ -9,20 +9,7 @@
 	<div class="small-12 columns">
 		<form data-bind="submit: addItem">
 			<div class="row">
-				<div class="columns small-4 medium-3 large-2">
-					<div class="row collapse prefix postfix">
-						<div class="small-4 medium-3 columns">
-							<button class="button secondary prefix" data-bind="click: decrementNewItemQuantity, enabled: newItemQuantity > 1"><i class="fa fa-minus"></i></button>
-						</div>
-						<div class="small-4 medium-6 columns">
-							<input type="text" placeholder="qty" data-bind="textInput: newItemQuantity" pattern="^[1-9][0-9]*$" title="Quantity must be greater than zero" required />
-						</div>
-						<div class="small-4 medium-3 columns">
-							<button class="button secondary postfix" data-bind="click: incrementNewItemQuantity"><i class="fa fa-plus"></i></button>
-						</div>
-					</div>
-				</div>
-				<div class="columns small-8 medium-9 large-10">
+				<div class="columns small-12">
 					<div class="row collapse postfix-radius">
 						<div class="columns small-9 medium-10 large-11">
 							<input type="text" placeholder="New Item" data-bind="textInput: newItemName" required />

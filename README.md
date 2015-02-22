@@ -25,7 +25,7 @@ a [Sails](http://sailsjs.org) application
  - [x] Implement policies
  - [x] Require email validation before login
  - [x] Attach lists to a user id when created and only return lists to current user based on owner/shared
- - [ ] Add the ability to share/sync lists
+ - [x] Add the ability to share/sync lists
  - [x] Implement a more mobile-friendly menu
  - [ ] Add a mobile icon
 

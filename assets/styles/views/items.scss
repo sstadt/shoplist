@@ -11,7 +11,7 @@
 			padding-left: 0.9375rem;
 			padding-right: 0.9375rem;
 			line-height: 2.3rem;
-			font-size: 1.3rem;
+			font-size: 1rem;
 			border-top: 1px solid $listItemBorder;
 			border-bottom: 1px solid $listItemBorder;
 			cursor: pointer;
@@ -36,7 +36,8 @@
 		&.tiny {
 			margin-bottom: 0;
 			font-size: 1.3rem;
-			padding: 0.4rem 1.1rem;
+			padding: 0.4rem 0;
+			text-align: center;
 			width: 100%;
 		}
 
