@@ -169,10 +169,8 @@ define([
     /**
      * Populate the initial list
      */
-    console.log('getting data');
     io.socket.get('/item/index', { list: self.listId }, function (response) {
       self.loading(false);
-      console.log(response);
 
       if (response.errror) {
         self.pageError(response.summary);

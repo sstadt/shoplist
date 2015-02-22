@@ -31,6 +31,7 @@ a [Sails](http://sailsjs.org) application
 
 0.1.1
 
+ - [ ] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
  - [ ] Add a resend link to the login 'not verified' error message
  - [ ] Save item edits on delay if one has failed
