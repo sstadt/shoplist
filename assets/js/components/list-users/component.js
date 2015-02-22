@@ -4,8 +4,9 @@
 define([
   'knockout',
   'SharedUser',
-  'text!./template.html'
-], function (ko, SharedUser, html) {
+  'text!./template.html',
+  'components/overlay-loader/component'
+], function (ko, SharedUser, html, AlertBox) {
 
   function ListUsersViewModel(params) {
     var self = this;
@@ -92,7 +93,7 @@ define([
     });
   }
 
-  ko.components.register('share-alert', { require: 'components/alert-box/component' });
+  ko.components.register('share-alert', AlertBox);
 
   return {
     viewModel: ListUsersViewModel,

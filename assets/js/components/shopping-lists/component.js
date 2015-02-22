@@ -5,8 +5,10 @@ define([
   'knockout',
   'koutil',
   'ShoppingList',
-  'text!./template.html'
-], function (ko, koutil, ShoppingList, html) {
+  'text!./template.html',
+  'components/alert-box/component',
+  'components/overlay-loader/component'
+], function (ko, koutil, ShoppingList, html, AlertBox, OverlayLoader) {
   'use strict';
 
   function newShoppingList(list) {
@@ -155,10 +157,10 @@ define([
       self.loading(false);
     });
 
-    ko.components.register('page-alert', { require: 'components/alert-box/component' });
-    ko.components.register('form-alert', { require: 'components/alert-box/component' });
-    ko.components.register('modal-alert', { require: 'components/alert-box/component' });
-    ko.components.register('overlay-loader', { require: 'components/overlay-loader/component' });
+    ko.components.register('page-alert', AlertBox);
+    ko.components.register('form-alert', AlertBox);
+    ko.components.register('modal-alert', AlertBox);
+    ko.components.register('overlay-loader', OverlayLoader);
 
   } /* End of View Model */
 

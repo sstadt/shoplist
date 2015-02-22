@@ -6,8 +6,10 @@ define([
   'knockout',
   'koutil',
   'ListItem',
-  'text!./template.html'
-], function (_, ko, koutil, ListItem, html) {
+  'text!./template.html',
+  'components/alert-box/component',
+  'components/overlay-loader/component'
+], function (_, ko, koutil, ListItem, html, AlertBox, OverlayLoader) {
   'use strict';
 
   function sortChecked(p, c) {
@@ -86,8 +88,6 @@ define([
     };
 
     self.toggleChecked = function (listItem) {
-      var itemIndex = koutil.getItemIndex(listItem, self.items());
-
       io.socket.post('/item/toggle', {
         id: listItem.id,
         checked: listItem.checked()
@@ -96,8 +96,6 @@ define([
           self.pageError(response.summary);
         } else {
           self.pageError(null);
-          // self.items()[itemIndex].checked(!listItem.checked());
-          // self.items.sort(sortChecked);
         }
       });
     };
@@ -171,8 +169,10 @@ define([
     /**
      * Populate the initial list
      */
+    console.log('getting data');
     io.socket.get('/item/index', { list: self.listId }, function (response) {
       self.loading(false);
+      console.log(response);
 
       if (response.errror) {
         self.pageError(response.summary);
@@ -193,10 +193,10 @@ define([
 
   } /* End of View Model */
 
-  ko.components.register('page-alert', { require: 'components/alert-box/component' });
-  ko.components.register('form-alert', { require: 'components/alert-box/component' });
-  ko.components.register('modal-alert', { require: 'components/alert-box/component' });
-  ko.components.register('overlay-loader', { require: 'components/overlay-loader/component' });
+  ko.components.register('page-alert', AlertBox);
+  ko.components.register('form-alert', AlertBox);
+  ko.components.register('modal-alert', AlertBox);
+  ko.components.register('overlay-loader', OverlayLoader);
 
   return {
     viewModel: ListItemsViewModel,

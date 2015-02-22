@@ -27,7 +27,7 @@ a [Sails](http://sailsjs.org) application
  - [x] Attach lists to a user id when created and only return lists to current user based on owner/shared
  - [x] Add the ability to share/sync lists
  - [x] Implement a more mobile-friendly menu
- - [ ] Add a mobile icon
+ - [x] Add a mobile icon
 
 0.1.1
 

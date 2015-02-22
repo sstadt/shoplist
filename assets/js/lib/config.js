@@ -115,9 +115,7 @@ requirejs.config({
     'foundation.alert',
     'foundation.abide',
     'foundation.reveal',
-    'foundation.topbar',
-    'foundation.tooltip',
-    'foundation.reveal'
+    'foundation.tooltip'
   ],
 
   callback: function (ko) {
