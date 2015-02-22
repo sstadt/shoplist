@@ -5,20 +5,18 @@ A RequireJS/Knockout application that uses sails.js's built in socket functional
 
 Demo site: http://shoplist.scottstadt.com
 
-Released
---------
+# Released
 
-# 0.1
+## 0.1
 
  - List and list item management
  - List Share and sync
  - Account registration and login
  - Mobile First!
 
-In Development
---------------
+# In Development
 
-# 0.1.1
+## 0.1.1
 
  - [ ] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
@@ -29,7 +27,7 @@ In Development
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Fully docblock back end and front end
 
-# 0.2
+## 0.2
 
  - [ ] Create a splash page
  - [ ] Improve email templates
@@ -44,7 +42,7 @@ In Development
  - [ ] Barcode site cache
  - [ ] Upgrade alert component to change alert style by parameter
 
-# 0.3
+## 0.3
 
  - [ ] Barcode scanning
  - [ ] Barcode item database caching
