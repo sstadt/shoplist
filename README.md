@@ -1,35 +1,24 @@
-# shoplist
+Simple Shopping List Application
+================================
 
-a [Sails](http://sailsjs.org) application
+A RequireJS/Knockout application that uses sails.js's built in socket functionality to keep lists synced between multiple users.
 
-0.1:
+Demo site: http://shoplist.scottstadt.com
 
- - [x] Add lists
- - [x] Edit Lists
- - [x] Remove Lists
- - [x] Clear associated items when removing a list
- - [x] View Lists
- - [x] Add list items
- - [x] Edit list item names
- - [x] Edit list quantities
- - [x] Remove list items
- - [x] Check list items as completed
- - [x] Add CSS Ajax loader overlay
- - [x] Style the application
- - [x] Add front and back end validation
- - [x] Move object to observable conversion function to a util
- - [x] Convert lists into observables on the index page
- - [x] Switch to MongoDB
- - [x] Add the Users and Session models - make sure users have a config parameter in the model
- - [x] Set up error message display for login and user creation
- - [x] Implement policies
- - [x] Require email validation before login
- - [x] Attach lists to a user id when created and only return lists to current user based on owner/shared
- - [x] Add the ability to share/sync lists
- - [x] Implement a more mobile-friendly menu
- - [x] Add a mobile icon
+Released
+--------
 
-0.1.1
+# 0.1
+
+ - List and list item management
+ - List Share and sync
+ - Account registration and login
+ - Mobile First!
+
+In Development
+--------------
+
+# 0.1.1
 
  - [ ] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
@@ -40,7 +29,7 @@ a [Sails](http://sailsjs.org) application
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Fully docblock back end and front end
 
-0.2:
+# 0.2
 
  - [ ] Create a splash page
  - [ ] Improve email templates
@@ -55,7 +44,7 @@ a [Sails](http://sailsjs.org) application
  - [ ] Barcode site cache
  - [ ] Upgrade alert component to change alert style by parameter
 
-0.3:
+# 0.3
 
  - [ ] Barcode scanning
  - [ ] Barcode item database caching
