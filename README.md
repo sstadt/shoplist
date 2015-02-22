@@ -7,7 +7,7 @@ Demo site: http://shoplist.scottstadt.com
 
 # Released
 
-## 0.1
+### 0.1
 
  - List and list item management
  - List Share and sync
@@ -16,7 +16,7 @@ Demo site: http://shoplist.scottstadt.com
 
 # In Development
 
-## 0.1.1
+### 0.1.1
 
  - [ ] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
@@ -27,7 +27,7 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Fully docblock back end and front end
 
-## 0.2
+### 0.2
 
  - [ ] Create a splash page
  - [ ] Improve email templates
@@ -42,7 +42,7 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Barcode site cache
  - [ ] Upgrade alert component to change alert style by parameter
 
-## 0.3
+### 0.3
 
  - [ ] Barcode scanning
  - [ ] Barcode item database caching
