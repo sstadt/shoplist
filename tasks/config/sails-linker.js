@@ -11,6 +11,9 @@
  * 		https://github.com/Zolmeister/grunt-sails-linker
  *
  */
+
+var cacheBust = new Date().getTime();
+
 module.exports = function(grunt) {
 
 	grunt.config.set('sails-linker', {
@@ -107,7 +110,7 @@ module.exports = function(grunt) {
 			options: {
 				startTag: '<!--STYLES-->',
 				endTag: '<!--STYLES END-->',
-				fileTmpl: '<link rel="stylesheet" href="%s">',
+				fileTmpl: '<link rel="stylesheet" href="%s?v=' + cacheBust + '">',
 				appRoot: '.tmp/public'
 			},
 			files: {
