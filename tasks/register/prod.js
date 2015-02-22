@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 	grunt.registerTask('prod', [
-		'requirejs',
+		//'requirejs',
 		'compileAssets',
 		'concat',
 		'uglify',
