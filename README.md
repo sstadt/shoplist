@@ -21,7 +21,7 @@ Demo site: http://shoplist.scottstadt.com
  - [x] Return focus to the text field after adding an item
  - [x] Sort the list after adding an item
  - [x] Fix spacing on item names
- - [ ] Minify and gzip requirejs
+ - [x] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
  - [ ] Fix front end validation for user and session
  - [x] Fix bug in enter key submission on list view
