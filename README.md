@@ -18,14 +18,21 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.1
 
+ - [x] Return focus to the text field after adding an item
+ - [x] Sort the list after adding an item
+ - [x] Fix spacing on item names
  - [ ] Minify and gzip requirejs
  - [ ] Restrict Deletion to list owners
- - [ ] Add a resend link to the login 'not verified' error message
- - [ ] Save item edits on delay if one has failed
  - [ ] Fix front end validation for user and session
- - [ ] Fix bug in enter key submission on list view
- - [ ] Validate item quantity as > 0 on the back end
+ - [x] Fix bug in enter key submission on list view
+
+### 0.1.2
+
+ - [ ] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
+ - [ ] Restrict list sharing to list owners
  - [ ] Fully docblock back end and front end
+ - [ ] Validate item quantity as > 0 on the back end
+ - [ ] Add a resend link to the login 'not verified' error message
 
 ### 0.2
 

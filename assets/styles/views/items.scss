@@ -10,7 +10,7 @@
 		.ellipsis {
 			padding-left: 0.9375rem;
 			padding-right: 0.9375rem;
-			line-height: 2.3rem;
+			line-height: rem-calc(38);
 			font-size: 1rem;
 			border-top: 1px solid $listItemBorder;
 			border-bottom: 1px solid $listItemBorder;
@@ -36,7 +36,8 @@
 		&.tiny {
 			margin-bottom: 0;
 			font-size: 1.3rem;
-			padding: 0.4rem 0;
+			line-height: rem-calc(40);
+			padding: 0;
 			text-align: center;
 			width: 100%;
 		}

@@ -2,6 +2,7 @@
 /*globals define, confirm, alert, io*/
 
 define([
+  'jquery',
   'lodash',
   'knockout',
   'koutil',
@@ -9,7 +10,7 @@ define([
   'text!./template.html',
   'components/alert-box/component',
   'components/overlay-loader/component'
-], function (_, ko, koutil, ListItem, html, AlertBox, OverlayLoader) {
+], function ($, _, ko, koutil, ListItem, html, AlertBox, OverlayLoader) {
   'use strict';
 
   function sortChecked(p, c) {
@@ -60,7 +61,7 @@ define([
           self.formError(null);
           self.pageError(null);
           self.newItemName('');
-          self.newItemQuantity(1);
+          $('#new-item').focus();
         }
       });
     };
@@ -135,11 +136,12 @@ define([
     };
 
     /**
-     * List updates from other users
+     * List updates
      */
     self.socketActions = {
       addItem: function (item) {
         self.items.push(new ListItem(item));
+        self.items.sort(sortChecked);
       },
       updateItem: function (itemIndex, item) {
         self.items()[itemIndex].name(item.name);
@@ -189,12 +191,12 @@ define([
       }
     });
 
-  } /* End of View Model */
+    ko.components.register('page-alert', AlertBox);
+    ko.components.register('form-alert', AlertBox);
+    ko.components.register('modal-alert', AlertBox);
+    ko.components.register('overlay-loader', OverlayLoader);
 
-  ko.components.register('page-alert', AlertBox);
-  ko.components.register('form-alert', AlertBox);
-  ko.components.register('modal-alert', AlertBox);
-  ko.components.register('overlay-loader', OverlayLoader);
+  } /* End of View Model */
 
   return {
     viewModel: ListItemsViewModel,

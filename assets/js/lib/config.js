@@ -3,6 +3,8 @@
 
 requirejs.config({
 
+  urlArgs: "v=" + (new Date()).getTime(),
+
   paths: {
     // plugins
     'text'                   : 'vendor/requirejs-text/text',
@@ -20,7 +22,7 @@ requirejs.config({
     'placeholder'            : 'vendor/foundation/js/vendor/placeholder',
 
     // foundation
-    'foundation'             : 'vendor/foundation/js/foundation',
+    'foundation'             : 'vendor/foundation/js/foundation/foundation',
     'foundation.abide'       : 'vendor/foundation/js/foundation/foundation.abide',
     'foundation.accordion'   : 'vendor/foundation/js/foundation/foundation.accordion',
     'foundation.alert'       : 'vendor/foundation/js/foundation/foundation.alert',
@@ -48,14 +50,17 @@ requirejs.config({
   },
 
   shim: {
+    'fastclick': {
+      deps: ['jquery']
+    },
     'placeholder': {
+      deps: ['jquery']
+    },
+    'jquery.cookie': {
       deps: ['jquery']
     },
     'foundation': {
       deps: ['jquery', 'jquery.cookie', 'modernizr', 'placeholder', 'fastclick']
-    },
-    'jquery.cookie': {
-      deps: ['jquery']
     },
     'foundation.abide': {
       deps: ['foundation']
@@ -118,7 +123,7 @@ requirejs.config({
     'foundation.tooltip'
   ],
 
-  callback: function (ko) {
+  callback: function (ko, $) {
 
     ko.bindingHandlers.fadeVisible = {
       init: function (element, valueAccessor) {
@@ -129,7 +134,11 @@ requirejs.config({
       update: function (element, valueAccessor) {
         // Whenever the value subsequently changes, slowly fade the element in or out
         var value = valueAccessor();
-        ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+        if (ko.unwrap(value)) {
+          $(element).fadeIn();
+        } else {
+          $(element).fadeOut();
+        }
       }
     };
 

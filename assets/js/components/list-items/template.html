@@ -11,10 +11,10 @@
 			<div class="row">
 				<div class="columns small-12">
 					<div class="row collapse postfix-radius">
-						<div class="columns small-9 medium-10 large-11">
-							<input type="text" placeholder="New Item" data-bind="textInput: newItemName" required />
+						<div class="columns small-10 medium-11">
+							<input id="new-item" type="text" placeholder="New Item" data-bind="textInput: newItemName" required />
 						</div>
-						<div class="columns small-3 medium-2 large-1">
+						<div class="columns small-2 medium-1">
 							<button type="submit" class="button postfix success"><i class="fa fa-plus"></i></button>
 						</div>
 					</div>
@@ -75,13 +75,13 @@
 							<div class="small-12 columns">
 								<div class="row collapse prefix postfix">
 									<div class="small-3 medium-2 large-1 columns">
-										<button class="button secondary prefix" data-bind="click: $parent.decrementSelectedItemQuantity, enabled: quantity > 1"><i class="fa fa-minus"></i></button>
+										<button type="button" class="button secondary prefix" data-bind="click: $parent.decrementSelectedItemQuantity, enabled: quantity > 1"><i class="fa fa-minus"></i></button>
 									</div>
 									<div class="small-6 medium-8 large-10 columns">
 										<input type="text" placeholder="qty" data-bind="textInput: quantity" pattern="^[1-9][0-9]*$" title="Quantity must be greater than zero" required />
 									</div>
 									<div class="small-3 medium-2 large-1 columns">
-										<button class="button secondary postfix" data-bind="click: $parent.incrementSelectedItemQuantity"><i class="fa fa-plus"></i></button>
+										<button type="button" class="button secondary postfix" data-bind="click: $parent.incrementSelectedItemQuantity"><i class="fa fa-plus"></i></button>
 									</div>
 								</div>
 							</div>
