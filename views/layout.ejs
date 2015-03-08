@@ -19,7 +19,7 @@
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body class="clearfix">
     <% if (session.authenticated === true) { %>
       <div class="icon-bar three-up tier-top">
         <a href="/mylists" class="item">
@@ -38,6 +38,8 @@
     <% } %>
 
     <%- body %>
+
+    <footer></footer>
 
     <% if (sails.config.environment === 'development' && typeof script === 'string') { %>
       <script src="//localhost:9090/livereload.js"></script>
