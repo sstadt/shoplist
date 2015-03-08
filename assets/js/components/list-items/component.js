@@ -194,7 +194,7 @@ define([
     ko.components.register('page-alert', AlertBox);
     ko.components.register('form-alert', AlertBox);
     ko.components.register('modal-alert', AlertBox);
-    ko.components.register('overlay-loader', OverlayLoader);
+    //ko.components.register('overlay-loader', OverlayLoader);
 
   } /* End of View Model */
 
