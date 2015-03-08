@@ -14,27 +14,29 @@ Demo site: http://shoplist.scottstadt.com
  - Account registration and login
  - Mobile First!
 
-# In Development
-
 ### 0.1.1
 
- - [x] Return focus to the text field after adding an item
- - [x] Sort the list after adding an item
- - [x] Fix spacing on item names
- - [x] Minify and gzip requirejs
- - [x] Restrict Deletion to list owners
- - [x] Fix front end validation for user and session
- - [x] Fix bug in enter key submission on list view
+ - List items are now sorted after adding a new item
+ - Front end assets are now compiled and minified to a single file
+ - Improved validation for new user and login pages
+ - Miscellaneous bug fixes
+
+# In Development
 
 ### 0.1.2
 
+ - [x] Return focus to the text field after adding an item
  - [ ] Fix the bug with overlays not fading out when their observable is updated
  - [ ] Update/remove grunt copy task so that only the compiled assets are placed in .tmp in production
  - [ ] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
  - [ ] Restrict list sharing to list owners
+
+### 0.1.3
+
  - [ ] Fully docblock back end and front end
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Add a resend link to the login 'not verified' error message
+ - [ ] Add a favicon
 
 ### 0.2
 
