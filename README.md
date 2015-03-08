@@ -28,6 +28,7 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.2
 
+ - [ ] Update/remove grunt copy task so that only the compiled assets are placed in .tmp in production
  - [ ] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
  - [ ] Restrict list sharing to list owners
  - [ ] Fully docblock back end and front end
