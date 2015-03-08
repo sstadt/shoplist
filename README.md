@@ -23,7 +23,7 @@ Demo site: http://shoplist.scottstadt.com
  - [x] Fix spacing on item names
  - [x] Minify and gzip requirejs
  - [x] Restrict Deletion to list owners
- - [ ] Fix front end validation for user and session
+ - [x] Fix front end validation for user and session
  - [x] Fix bug in enter key submission on list view
 
 ### 0.1.2
@@ -52,8 +52,8 @@ Demo site: http://shoplist.scottstadt.com
 ### 0.3
 
  - [ ] Barcode scanning
- - [ ] Barcode item database caching
- - [ ] Auto-fill list item names from barcode cache
+ - [ ] item database caching
+ - [ ] Auto-fill list item names cache
  - [ ] Custom 403, 404, and 500 pages
 
 
