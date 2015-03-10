@@ -1,3 +1,8 @@
 module.exports = function (grunt) {
-	grunt.registerTask('default', ['compileAssets', 'linkAssets',  'watch']);
+  grunt.registerTask('default', [
+    'clean:dev',
+    'compileAssets',
+    'sails-linker:devStyles',
+    'watch'
+  ]);
 };

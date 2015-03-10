@@ -1,8 +1,9 @@
 module.exports = function (grunt) {
-	grunt.registerTask('build', [
-		'compileAssets',
-		'linkAssetsBuild',
-		'clean:build',
-		'copy:build'
-	]);
+  grunt.registerTask('build', [
+    'clean:dev',
+    'compileAssets',
+    'sails-linker:devStyles',
+    'clean:build',
+    'copy:build'
+  ]);
 };

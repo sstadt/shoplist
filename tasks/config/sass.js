@@ -8,23 +8,26 @@
  * dependencies, mixins, variables, resets, etc. before other stylesheets)
  *
  * For usage docs see:
- * 		https://github.com/gruntjs/grunt-contrib-sass
+ *    https://github.com/gruntjs/grunt-contrib-sass
  */
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-	grunt.config.set('sass', {
-		dev: {
-			files: [
-				{
-					expand: true,
-					cwd: 'assets/styles/',
-					src: ['style.scss'],
-					dest: '.tmp/public/styles/',
-					ext: '.css'
-				}
-			]
-		}
-	});
+  grunt.config.set('sass', {
+    options: {
+      sourceMap: true
+    },
+    dev: {
+      files: [
+        {
+          expand: true,
+          cwd: 'assets/styles/',
+          src: ['style.scss'],
+          dest: '.tmp/public/styles/',
+          ext: '.css'
+        }
+      ]
+    }
+  });
 
-	grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-sass');
 };

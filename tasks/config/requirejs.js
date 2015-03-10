@@ -10,7 +10,7 @@ module.exports = function (grunt) {
       options: {
         appDir: "assets/js",
         baseUrl: "./",
-        dir: "assets/js-build",
+        dir: ".tmp/public/js-build",
         mainConfigFile: 'assets/js/lib/config.js',
         findNestedDependencies: true,
         removeCombined: true,

@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="/images/mobileicon.png" />
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css?v=1425960320800">
     <!--STYLES END-->
   </head>
 
@@ -41,13 +41,12 @@
 
     <footer></footer>
 
-    <% if (sails.config.environment === 'development' && typeof script === 'string') { %>
+    <% if (sails.config.environment === 'development') { %>
       <script src="//localhost:9090/livereload.js"></script>
-      <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= script %>.js"></script>
     <% } %>
 
-    <% if (sails.config.environment === 'production' && typeof script === 'string') { %>
-      <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js-build/app/<%= script %>.js"></script>
+    <% if (typeof script === 'string') { %>
+      <script type="text/javascript" src="<%= sails.config.globals.requirejs[sails.config.environment] %>" data-main="/js/<%= script %>.js"></script>
     <% } %>
   </body>
 </html>
