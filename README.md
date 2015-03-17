@@ -34,6 +34,7 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.3
 
+ - [ ] See is grunt-requirejs will allow using the full requirejs, and move global initialization back into config file if so
  - [ ] Add ajax loaders to buttons that make socket calls
  - [ ] Fully docblock back end and front end
  - [ ] Validate item quantity as > 0 on the back end
