@@ -26,11 +26,11 @@ module.exports = function (grunt) {
     },
     assets: {
       files: ['assets/js/**/*', 'assets/images/**/*', 'tasks/pipeline.js'],
-      tasks: ['syncAssets', 'linkAssets']
+      tasks: ['copy:dev']
     },
     sass: {
       files: ['assets/styles/**/*'],
-      tasks: ['sass:dev', 'syncAssets', 'linkAssets']
+      tasks: ['sass:dev']
     }
   });
 

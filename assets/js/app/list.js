@@ -4,6 +4,7 @@ require([
   'knockout',
   'components/list-items/component',
   'components/list-users/component',
+  'lib/global',
 ], function (ko, ListItems, ListUsers) {
   'use strict';
 

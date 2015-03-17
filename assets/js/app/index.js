@@ -3,6 +3,7 @@
 require([
   'knockout',
   'components/shopping-lists/component',
+  'lib/global',
 ], function (ko, ShoppingLists) {
   'use strict';
 

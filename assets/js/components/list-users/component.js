@@ -5,7 +5,8 @@ define([
   'knockout',
   'SharedUser',
   'text!./template.html',
-  'components/overlay-loader/component'
+  'components/overlay-loader/component',
+  'sails'
 ], function (ko, SharedUser, html, AlertBox) {
 
   function ListUsersViewModel(params) {

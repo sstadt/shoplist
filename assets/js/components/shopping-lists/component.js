@@ -7,7 +7,8 @@ define([
   'ShoppingList',
   'text!./template.html',
   'components/alert-box/component',
-  'components/overlay-loader/component'
+  'components/overlay-loader/component',
+  'sails'
 ], function (ko, koutil, ShoppingList, html, AlertBox, OverlayLoader) {
   'use strict';
 
@@ -160,7 +161,7 @@ define([
     ko.components.register('page-alert', AlertBox);
     ko.components.register('form-alert', AlertBox);
     ko.components.register('modal-alert', AlertBox);
-    //ko.components.register('overlay-loader', OverlayLoader);
+    ko.components.register('overlay-loader', OverlayLoader);
 
   } /* End of View Model */
 
