@@ -90,20 +90,22 @@ module.exports = {
     });
   },
 
-  destroy: function (req, res) {
-    Item.destroy(req.param('id'), function (err, item) {
+  destroyChecked: function (req, res) {
+    var listId = req.param('list');
+
+    Item.destroy({
+      list: listId,
+      checked: true
+    }, function (err) {
       if (err) {
-        res.json(err);
+        res.serverError(err);
       }
 
-      List.message(item[0].list, {
-        verb: 'destroyItem',
-        item: item[0]
+      List.message(listId, {
+        verb: 'clearChecked'
       });
-
-      res.send(200);
     });
-  }
+  },
 
 };
 

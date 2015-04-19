@@ -27,6 +27,10 @@ define([
     return (p.name() > c.name()) ? 1 : -1;
   }
 
+  function isItemChecked(item) {
+    return item.checked();
+  }
+
   function ListItemsViewModel(params) {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
@@ -91,6 +95,7 @@ define([
 
     self.toggleChecked = function (listItem) {
       io.socket.post('/item/toggle', {
+        list: self.listId,
         id: listItem.id,
         checked: listItem.checked()
       }, function (response) {
@@ -102,15 +107,16 @@ define([
       });
     };
 
-    self.removeItem = function (listItem) {
-      io.socket.post('/item/destroy', { id: listItem.id }, function (response) {
-        if (response.errror) {
-          self.pageerror(response.summary);
-        } else {
-          self.pageError(null);
-          self.items.destroy(listItem);
-        }
-      });
+    self.clearCheckedItems = function () {
+      if (confirm('Are you sure you want to remove all checked items?')) {
+        io.socket.post('/destroyCheckedItems', { list: self.listId }, function (response) {
+          if (response.errror) {
+            self.pageerror(response.summary);
+          } else {
+            self.pageError(null);
+          }
+        });
+      }
     };
 
     self.editItem = function (listItem) {
@@ -120,6 +126,7 @@ define([
 
     self.saveItem = function () {
       var updatedListItem = {
+        list: self.listId,
         id: self.selectedItem().id,
         name: self.selectedItem().name(),
         quantity: self.selectedItem().quantity()
@@ -150,8 +157,10 @@ define([
         self.items()[itemIndex].checked(item.checked);
         self.items.sort(sortChecked);
       },
-      destroyItem: function (itemIndex) {
-        self.items.destroy(self.items()[itemIndex]);
+      clearChecked: function () {
+        _.forEach(_.filter(self.items(), isItemChecked), function (item) {
+          self.items.destroy(item);
+        });
       }
     };
 
@@ -159,12 +168,15 @@ define([
      * Listen for list updates to items
      */
     io.socket.on('list', function (response) {
-      var itemIndex = koutil.getItemIndexById(response.data.item.id, self.items()),
-        verb = (response.verb === 'messaged') ? response.data.verb : response.verb;
+      var verb = (response.verb === 'messaged') ? response.data.verb : response.verb,
+        itemIndex;
 
       if (verb === 'addItem' && self.socketActions.hasOwnProperty(verb)) {
         self.socketActions.addItem(response.data.item);
+      } else if (verb === 'clearChecked' && self.socketActions.hasOwnProperty(verb)) {
+        self.socketActions.clearChecked();
       } else if (self.socketActions.hasOwnProperty(verb)) {
+        itemIndex = koutil.getItemIndexById(response.data.item.id, self.items());
         self.socketActions[verb](itemIndex, response.data.item);
       }
     });

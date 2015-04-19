@@ -29,7 +29,7 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Return focus to the text field after adding an item on mobile
  - [x] Fix the bug with overlays not fading out when their observable is updated
  - [x] Update/remove grunt tasks so that only the compiled assets are placed in .tmp in production
- - [ ] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
+ - [x] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
  - [ ] Restrict list sharing to list owners
 
 ### 0.1.3
