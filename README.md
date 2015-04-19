@@ -32,6 +32,11 @@ Demo site: http://shoplist.scottstadt.com
  - [x] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
  - [ ] Restrict list sharing to list owners
 
+### 0.1.2.1
+
+ - [ ] Fix the error dialogs
+ - [ ] Fix the socket issue with editing an existing list where the index of the edited list does not match the index of the list that was edited
+
 ### 0.1.3
 
  - [ ] See is grunt-requirejs will allow using the full requirejs, and move global initialization back into config file if so

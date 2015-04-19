@@ -42,6 +42,9 @@ module.exports.policies = {
   },
 
   ListController: {
+    'share': ['sessionAuth', 'listOwner'],
+    'unshare': ['sessionAuth', 'listOwner'],
+    'update': ['sessionAuth', 'listOwner'],
     'destroy': ['sessionAuth', 'listOwner']
   },
 

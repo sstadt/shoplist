@@ -56,7 +56,7 @@ module.exports = {
       name: req.param('name')
     };
 
-    List.update(req.param('id'), updatedList, function (err, list) {
+    List.update(req.param('list'), updatedList, function (err, list) {
       if (err) {
         res.serverError(err);
       }
@@ -94,7 +94,7 @@ module.exports = {
   },
 
   destroy: function (req, res) {
-    var id = req.param('id');
+    var id = req.param('list');
 
     List.destroy(id, function (err) {
       if (err) {

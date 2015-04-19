@@ -47,7 +47,7 @@ define([
       };
 
       io.socket.post('/list/create', newList, function (response) {
-        if (response.error) {
+        if (response.err) {
           self.formError(response.summary);
         } else {
           self.formError(null);
@@ -74,12 +74,12 @@ define([
      */
     self.saveList = function () {
       var updatedList = {
-        id: self.editListId(),
+        list: self.editListId(),
         name: self.editListName()
       };
 
       io.socket.post('/list/update', updatedList, function (response) {
-        if (response.error) {
+        if (response.err) {
           self.modalError(response.summary);
         } else {
           var listIndex = koutil.getItemIndex(response, self.lists());
@@ -103,8 +103,8 @@ define([
      */
     self.deleteList = function (list) {
       if (confirm("Are you sure you want to delete this list? This cannot be undone.")) {
-        io.socket.post('/list/destroy', { id: list.id }, function (response) {
-          if (response.error) {
+        io.socket.post('/list/destroy', { list: list.id }, function (response) {
+          if (response.err) {
             self.pageError(response.summary);
           } else {
             self.pageError(null);

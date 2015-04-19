@@ -110,7 +110,7 @@ define([
     self.clearCheckedItems = function () {
       if (confirm('Are you sure you want to remove all checked items?')) {
         io.socket.post('/destroyCheckedItems', { list: self.listId }, function (response) {
-          if (response.errror) {
+          if (response.err) {
             self.pageerror(response.summary);
           } else {
             self.pageError(null);
@@ -135,7 +135,7 @@ define([
       io.socket.post('/item/update', updatedListItem, function (response) {
         $('#editItemModal').foundation('reveal', 'close');
 
-        if (response.error) {
+        if (response.err) {
           self.modalError(response.summary);
         } else {
           self.modalError(null);
@@ -187,7 +187,7 @@ define([
     io.socket.get('/item/index', { list: self.listId }, function (response) {
       self.loading(false);
 
-      if (response.errror) {
+      if (response.err) {
         self.pageError(response.summary);
       } else {
         self.pageError(null);

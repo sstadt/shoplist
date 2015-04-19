@@ -12,15 +12,15 @@
 
 module.exports = function (req, res, next) {
 
-  List.findOne(req.param('id'), function (err, list) {
+  List.findOne(req.param('list'), function (err, list) {
     if (err) {
       res.serverError(err);
     }
 
     if (list.owner !== req.session.User.id) {
       res.json({
-        error: true,
-        summary: 'You may not delete lists that have been created by other users.'
+        err: true,
+        summary: 'You may not modify lists that have been created by other users.'
       });
     } else {
       next();

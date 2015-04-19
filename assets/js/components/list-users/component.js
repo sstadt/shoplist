@@ -52,6 +52,7 @@ define([
         user: user.id
       }, function (response) {
         user.loading(false);
+        console.log(response);
 
         if (response.err) {
           self.error(response.summary);
