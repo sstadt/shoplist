@@ -94,6 +94,14 @@ module.exports.routes = {
     action: 'getShared'
   },
 
+  /*
+    Items
+   */
+  '/destroyCheckedItems': {
+    controller: 'item',
+    action: 'destroyChecked'
+  },
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
