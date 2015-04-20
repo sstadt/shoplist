@@ -1,6 +1,12 @@
 /*jslint browser: true*/
 /*globals define, io*/
 
+/**
+ * ListUsers
+ *
+ * Displays the users that a list is shared with
+ */
+
 define([
   'knockout',
   'SharedUser',

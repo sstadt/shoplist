@@ -1,6 +1,12 @@
 /*jslint browser: true*/
 /*globals define, confirm, alert, io*/
 
+/**
+ * ShoppingLists
+ *
+ * Displays a list of owned and shared shopping lists
+ */
+
 define([
   'knockout',
   'koutil',

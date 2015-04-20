@@ -1,6 +1,12 @@
 /*jslint browser: true*/
 /*globals define*/
 
+/**
+ * AlertBox
+ *
+ * Displays a foundation alert box with a message
+ */
+
 define([
   'knockout',
   'text!./template.html'
