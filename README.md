@@ -21,17 +21,15 @@ Demo site: http://shoplist.scottstadt.com
  - Improved validation for new user and login pages
  - Miscellaneous bug fixes
 
-# In Development
-
 ### 0.1.2
 
- - [x] Fix the bug in the share window button
- - [ ] Return focus to the text field after adding an item on mobile
- - [x] Fix the bug with overlays not fading out when their observable is updated
- - [x] Update/remove grunt tasks so that only the compiled assets are placed in .tmp in production
- - [x] Make a 'delete' all checked button, with confirmation dialog; remove individual item delete buttons
- - [x] Restrict list sharing to list owners
- - [x] Fix the error dialogs
+ - Fixed a bug in the share window
+ - Optimized asset compilation
+ - Replaced individual item deletion with a 'delete all checked' button
+ - Non-item list updates are now restricted to owners
+ - Fixed an issue with error dialogs
+
+# In Development
 
 ### 0.1.2.1
 
