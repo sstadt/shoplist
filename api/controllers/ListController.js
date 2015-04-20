@@ -27,6 +27,7 @@ module.exports = {
 
       res.view({
         script: 'list',
+        owner: list.owner === req.session.User.id,
         list: list
       });
     });
