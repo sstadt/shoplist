@@ -72,7 +72,6 @@ define([
           self.formError(null);
           self.pageError(null);
           self.newItemName('');
-          $('#new-item').trigger('touchstart');
         }
       });
     };
@@ -214,14 +213,6 @@ define([
     ko.components.register('form-alert', AlertBox);
     ko.components.register('modal-alert', AlertBox);
     ko.components.register('overlay-loader', OverlayLoader);
-
-    /**
-     * Workaround for mobile browsers on allowing focus when
-     * attached to a touchstart event
-     */
-    $('#new-item').on('touchstart', function () {
-      $(this).focus();
-    });
 
   } /* End of View Model */
 
