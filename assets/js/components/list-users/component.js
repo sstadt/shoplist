@@ -5,7 +5,7 @@ define([
   'knockout',
   'SharedUser',
   'text!./template.html',
-  'components/overlay-loader/component',
+  'components/alert-box/component',
   'sails'
 ], function (ko, SharedUser, html, AlertBox) {
 
@@ -19,7 +19,7 @@ define([
     self.listUsers = ko.observableArray([]);
 
     // interface data
-    self.error = ko.observable(null);
+    self.error = ko.observable('test');
     self.searching = ko.observable(false);
     self.searchResults = ko.observableArray([]);
 
@@ -52,7 +52,6 @@ define([
         user: user.id
       }, function (response) {
         user.loading(false);
-        console.log(response);
 
         if (response.err) {
           self.error(response.summary);
