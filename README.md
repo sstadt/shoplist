@@ -33,6 +33,7 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.2.1
 
+ - [ ] Only show the delete all button when there are items to delete and make it smaller/less intimidating
  - [ ] Return focus to the text add item text field on adding an item without triggering unwanted edit modals
  - [ ] Fix the socket issue with editing an existing list where the index of the edited list does not match the index of the list that was edited
 
