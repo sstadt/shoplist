@@ -88,11 +88,7 @@ define([
         if (response.err) {
           self.modalError(response.summary);
         } else {
-          var listIndex = koutil.getItemIndex(response, self.lists());
-
           self.modalError(null);
-
-          self.lists()[listIndex].name(response.name);
 
           $('#editListModal').foundation('reveal', 'close', function () {
             self.editListName('');
@@ -125,10 +121,10 @@ define([
      */
     self.socketActions = {
       updated: function (listIndex, data) {
-        self.sharedLists()[listIndex].name(data.name);
+        self.lists()[listIndex].name(data.name);
       },
       destroyed: function (listIndex) {
-        self.sharedLists.destroy(self.sharedLists()[listIndex]);
+        self.lists.destroy(self.sharedLists()[listIndex]);
       }
     };
 
@@ -136,7 +132,7 @@ define([
      * Listen for list updates
      */
     io.socket.on('list', function (response) {
-      var listIndex = koutil.getItemIndexById(response.id, self.sharedLists());
+      var listIndex = koutil.getItemIndexById(response.id, self.lists());
 
       if (self.socketActions.hasOwnProperty(response.verb)) {
         self.socketActions[response.verb](listIndex, response.data);

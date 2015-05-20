@@ -14,11 +14,16 @@
 			font-size: 1rem;
 			border-top: 1px solid $listItemBorder;
 			border-bottom: 1px solid $listItemBorder;
-			cursor: pointer;
 
 			&:active {
 				-webkit-animation: target-fade 3s 1;
 				-moz-animation: target-fade 3s 1;
+			}
+		}
+
+		&:not(.shared) {
+			.ellipsis {
+				cursor: pointer;
 			}
 		}
 
