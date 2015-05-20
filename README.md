@@ -42,28 +42,26 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Fully docblock back end and front end
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Add a resend link to the login 'not verified' error message
+ - [ ] Password recovery/reset
+ - [ ] Upgrade alert component to change alert style by parameter
 
 ### 0.2
 
  - [ ] Add a favicon
  - [ ] Create a splash page
  - [ ] Improve email templates
- - [ ] Add a sync icon to display the status of the most recent save
  - [ ] User Profile page
- - [ ] Password recovery/reset
  - [ ] Facebook login
  - [ ] Drag reorder list items
  - [ ] Categories
  - [ ] Sort by category
- - [ ] Barcode scanning
- - [ ] Barcode site cache
- - [ ] Upgrade alert component to change alert style by parameter
+ - [ ] Item cache
+ - [ ] Auto-fill list item from cache
 
 ### 0.3
 
  - [ ] Barcode scanning
- - [ ] item database caching
- - [ ] Auto-fill list item names cache
+ - [ ] barcode item relation caching
  - [ ] Custom 403, 404, and 500 pages
 
 
