@@ -12,6 +12,9 @@ define([
 ], function (html) {
   'use strict';
 
+  /**
+   * OverlayLoaderViewModel
+   */
   function OverlayLoaderViewModel(params) {
 
     this.loading = params.loading;

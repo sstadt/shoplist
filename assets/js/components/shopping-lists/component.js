@@ -18,11 +18,20 @@ define([
 ], function (ko, koutil, ShoppingList, html, AlertBox, OverlayLoader) {
   'use strict';
 
+  /**
+   * Create a new shopping list object
+   *
+   * @param  {object} list The list data to create the list with
+   * @return {List}        The created list
+   */
   function newShoppingList(list) {
     return new ShoppingList(list);
   }
 
-  function LinkListViewModel() {
+  /**
+   * ShoppingListsViewModel
+   */
+  function ShoppingListsViewModel() {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
     var self = this;
@@ -162,6 +171,7 @@ define([
       self.loading(false);
     });
 
+    // initialize child components
     ko.components.register('page-alert', AlertBox);
     ko.components.register('form-alert', AlertBox);
     ko.components.register('modal-alert', AlertBox);
@@ -170,7 +180,7 @@ define([
   } /* End of View Model */
 
   return {
-    viewModel: LinkListViewModel,
+    viewModel: ShoppingListsViewModel,
     template: html
   };
 });

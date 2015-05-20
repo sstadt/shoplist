@@ -20,29 +20,51 @@ define([
 ], function ($, _, ko, koutil, ListItem, html, AlertBox, OverlayLoader) {
   'use strict';
 
-  function sortChecked(p, c) {
-    if (p.checked() === false && c.checked() === true) {
+  /**
+   * Sort the list by checked items
+   *
+   * @param  {object}  previous The previous list to sort
+   * @param  {object}  current  The current list to sort
+   * @return {integer}          The direction to sort the current set of lists
+   */
+  function sortChecked(previous, current) {
+    if (previous.checked() === false && current.checked() === true) {
       return -1;
     }
 
-    if (p.checked() === true && c.checked() === false) {
+    if (previous.checked() === true && current.checked() === false) {
       return 1;
     }
 
     // both checked ur unchecked, filter alphabetically
-    return (p.name() > c.name()) ? 1 : -1;
+    return (previous.name() > current.name()) ? 1 : -1;
   }
 
+  /**
+   * Determine if an item is checked or not
+   *
+   * @param  {object}  item The item to check
+   * @return {Boolean}      True if checked, false if not
+   */
   function isItemChecked(item) {
     return item.checked();
   }
 
+  /**
+   * Get the number of checked items
+   *
+   * @param  {array}   items The array of items to check
+   * @return {integer}       The number of checked items in the array
+   */
   function getNumCheckedItems(items) {
     return _.filter(items, function (item) {
       return item.checked();
     }).length;
   }
 
+  /**
+   * ListItemsViewModel
+   */
   function ListItemsViewModel(params) {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
@@ -69,6 +91,9 @@ define([
       self.checkedItems(getNumCheckedItems(items) > 0);
     });
 
+    /**
+     * Add an item to the list
+     */
     self.addItem = function () {
       var newListItem = {
         list: self.listId,
@@ -87,28 +112,25 @@ define([
       });
     };
 
+    /**
+     * Increment the quantity of an item in the list
+     */
     self.incrementSelectedItemQuantity = function () {
       self.selectedItem().quantity(self.selectedItem().quantity() + 1);
     };
 
+    /**
+     * Decrement the quantity of an item in the list
+     */
     self.decrementSelectedItemQuantity = function () {
       if (self.selectedItem().quantity() > 1) {
         self.selectedItem().quantity(self.selectedItem().quantity() - 1);
       }
     };
 
-    self.incrementNewItemQuantity = function () {
-      self.newItemQuantity(parseInt(self.newItemQuantity(), 10) + 1);
-    };
-
-    self.decrementNewItemQuantity = function () {
-      var quantity = parseInt(self.newItemQuantity(), 10);
-
-      if (quantity > 1) {
-        self.newItemQuantity(quantity - 1);
-      }
-    };
-
+    /**
+     * Toggle an item's checked property
+     */
     self.toggleChecked = function (listItem) {
       io.socket.post('/item/toggle', {
         list: self.listId,
@@ -123,6 +145,9 @@ define([
       });
     };
 
+    /**
+     * Clear all checked items from the list
+     */
     self.clearCheckedItems = function () {
       if (confirm('Are you sure you want to remove all checked items?')) {
         io.socket.post('/destroyCheckedItems', { list: self.listId }, function (response) {
@@ -135,11 +160,17 @@ define([
       }
     };
 
+    /**
+     * Open the edit item modal
+     */
     self.editItem = function (listItem) {
       self.selectedItem(listItem);
       $('#editItemModal').foundation('reveal', 'open');
     };
 
+    /**
+     * Save an edited item
+     */
     self.saveItem = function () {
       var updatedListItem = {
         list: self.listId,
@@ -220,6 +251,7 @@ define([
       }
     });
 
+    // initialize child components
     ko.components.register('page-alert', AlertBox);
     ko.components.register('form-alert', AlertBox);
     ko.components.register('modal-alert', AlertBox);

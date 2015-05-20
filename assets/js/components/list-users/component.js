@@ -15,6 +15,9 @@ define([
   'sails'
 ], function (ko, SharedUser, html, AlertBox) {
 
+  /**
+   * ListUsersViewModel
+   */
   function ListUsersViewModel(params) {
     var self = this;
 
@@ -29,9 +32,11 @@ define([
     self.searching = ko.observable(false);
     self.searchResults = ko.observableArray([]);
 
+    // subscribe to searchParam to show users the list can be shared with
     self.searchParam.subscribe(function (search) {
       if (search.length > 2 && !self.searching()) {
         self.searching(true);
+
         io.socket.get('/userSearch', {
           list: self.listId,
           email: search
@@ -50,6 +55,11 @@ define([
       }
     });
 
+    /**
+     * Add a user to the shared list
+     *
+     * @param {object} user The user the list should be shared with
+     */
     self.shareList = function (user) {
       user.loading(true);
 
@@ -69,6 +79,10 @@ define([
       });
     };
 
+    /**
+     * Remove a user from the shared list
+     * @param {object} user The user the list should no longer be shared with
+     */
     self.unshareList = function (user) {
       user.loading(true);
 
@@ -86,6 +100,9 @@ define([
       });
     };
 
+    /**
+     * Populate the modal with the users the list is currently shared with
+     */
     io.socket.get('/getListUsers', {
       list: self.listId
     }, function (users) {
@@ -100,6 +117,7 @@ define([
     });
   }
 
+  // initialize child components
   ko.components.register('share-alert', AlertBox);
 
   return {
