@@ -1,7 +1,7 @@
 /**
 * Item.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: Items contained in a shopping list, where the list attribute refers to the owning list's ID
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 

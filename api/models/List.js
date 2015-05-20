@@ -1,7 +1,7 @@
 /**
 * List.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: Shopping list settings and owner data
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
