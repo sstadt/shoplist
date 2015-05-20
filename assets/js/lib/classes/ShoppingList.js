@@ -1,6 +1,14 @@
 /*jslint browser: true*/
 /*globals define*/
 
+/**
+ * ShippingList Class
+ *
+ * id       : The database ID of the list
+ * name     : The name of the list
+ * viewLink : The link to view the shopping list
+ */
+
 define(['knockout'], function (ko) {
   'use strict';
 

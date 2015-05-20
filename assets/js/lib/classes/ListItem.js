@@ -1,6 +1,15 @@
 /*jslint browser: true*/
 /*globals define*/
 
+/**
+ * ListItem Class
+ *
+ * id       : The database ID of the item
+ * name     : The name of the item
+ * quantity : The desired quantity of items
+ * checked  : Whether this item has been acquired or not
+ */
+
 define(['knockout'], function (ko) {
   'use strict';
 
