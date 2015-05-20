@@ -37,6 +37,12 @@ define([
     return item.checked();
   }
 
+  function getNumCheckedItems(items) {
+    return _.filter(items, function (item) {
+      return item.checked();
+    }).length;
+  }
+
   function ListItemsViewModel(params) {
 
     // cache this to eliminate the need to pass context to jquery and lodash functions  
@@ -57,6 +63,11 @@ define([
 
     // interface
     self.loading = ko.observable(true);
+    self.checkedItems = ko.observable(false);
+
+    self.items.subscribe(function (items) {
+      self.checkedItems(getNumCheckedItems(items) > 0);
+    });
 
     self.addItem = function () {
       var newListItem = {
