@@ -35,6 +35,7 @@ Demo site: http://shoplist.scottstadt.com
 
  - [x] Fix an error with updating shared lists when other users have updated them
  - [x] Fix the socket issue with editing an existing list where the index of the edited list does not match the index of the list that was edited
+ - [ ] Only show the delete all button when there are items to delete and make it smaller/less intimidating
 
 ### 0.1.3
 
