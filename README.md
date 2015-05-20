@@ -39,7 +39,7 @@ Demo site: http://shoplist.scottstadt.com
 ### 0.1.3
 
  - [ ] Add ajax loaders to buttons that make socket calls
- - [ ] Fully docblock back end and front end
+ - [x] Fully docblock back end and front end
  - [ ] Validate item quantity as > 0 on the back end
  - [ ] Add a resend link to the login 'not verified' error message
  - [ ] Password recovery/reset
