@@ -120,11 +120,11 @@ define([
      * List updates from other users
      */
     self.socketActions = {
-      updated: function (listIndex, data) {
-        self.lists()[listIndex].name(data.name);
+      updated: function (listIndex, lists, data) {
+        lists()[listIndex].name(data.name);
       },
-      destroyed: function (listIndex) {
-        self.lists.destroy(self.sharedLists()[listIndex]);
+      destroyed: function (listIndex, lists) {
+        lists.destroy(self.sharedLists()[listIndex]);
       }
     };
 
@@ -132,10 +132,12 @@ define([
      * Listen for list updates
      */
     io.socket.on('list', function (response) {
-      var listIndex = koutil.getItemIndexById(response.id, self.lists());
+      var myListIndex = koutil.getItemIndexById(response.id, self.lists()),
+        listIndex = (myListIndex === -1) ? koutil.getItemIndexById(response.id, self.sharedLists()) : myListIndex,
+        lists = (myListIndex === -1) ? self.sharedLists : self.lists;
 
       if (self.socketActions.hasOwnProperty(response.verb)) {
-        self.socketActions[response.verb](listIndex, response.data);
+        self.socketActions[response.verb](listIndex, lists, response.data);
       }
     });
 
