@@ -1,8 +1,8 @@
 {
-  "name": "payment-tracker",
+  "name": "shoplist",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
+  "description": "A shopping list application written in sails.js, requirejs, and knockout.js",
   "keywords": [],
   "dependencies": {
     "bcrypt": "^0.8.1",
@@ -37,8 +37,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/darkenscale/payment-tracker.git"
+    "url": "git://github.com/darkenscale/shoplist.git"
   },
-  "author": "darkenscale",
-  "license": ""
+  "author": "Scott Stadt",
+  "license": "MIT"
 }
