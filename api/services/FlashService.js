@@ -1,6 +1,19 @@
+/*jslint node: true*/
+/*globals sails*/
 
+/**
+ * Flash Service
+ *
+ * Adds flash messaged to req.session.flash for display in alert boxes on the front end
+ */
 
-
+/**
+ * Update a flash message type with a new message
+ *
+ * @param  {string} type The message type to update; error, warning, or success
+ * @param  {object} req  The Express request object
+ * @param  {string} msg  The message to add to the flash variable
+ */
 function updateMessageType(type, req, msg) {
   if (!req.session.flash) {
     req.session.flash = { msg: {} };
@@ -14,14 +27,32 @@ function updateMessageType(type, req, msg) {
 
 module.exports = {
 
-  // TODO: These should take either a string or an array for 'msg', currently only takes a string
-
+  /**
+   * Add error message
+   *
+   * @param  {object} req Express request object
+   * @param  {string} msg The message to add to the error list
+   */
   error: function (req, msg) {
     updateMessageType('error', req, msg);
   },
+
+  /**
+   * Add warning message
+   *
+   * @param  {object} req Express request object
+   * @param  {string} msg The message to add to the warning list
+   */
   warning: function (req, msg) {
     updateMessageType('warning', req, msg);
   },
+
+  /**
+   * Add success message
+   *
+   * @param  {object} req Express request object
+   * @param  {string} msg The message to add to the success list
+   */
   success: function (req, msg) {
     updateMessageType('success', req, msg);
   }
