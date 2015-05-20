@@ -29,13 +29,12 @@ Demo site: http://shoplist.scottstadt.com
  - Non-item list updates are now restricted to owners
  - Fixed an issue with error dialogs
 
-# In Development
-
 ### 0.1.2.1
 
- - [x] Fix an error with updating shared lists when other users have updated them
- - [x] Fix the socket issue with editing an existing list where the index of the edited list does not match the index of the list that was edited
- - [x] Only show the delete all button when there are items to delete and make it smaller/less intimidating
+ - Fixed an issue with list updated received via sockets
+ - The clear checked button will no longer show if there are no items to clear
+
+# In Development
 
 ### 0.1.3
 
