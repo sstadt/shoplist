@@ -65,6 +65,32 @@ module.exports = {
     });
   },
 
+  resend: function (req, res) {
+    User.findOne({ email: req.param('email') }, function (err, user) {
+      if (err) {
+        FlashService.error(req, 'Could not find a user with that email address.');
+        res.redirect('/register');
+      }
+
+      Token.destroy({ user: user.id }, function (err) {
+        if (err) {
+          FlashService.error(req, 'Error creating validation token. <a href="/resend?email=' + user.email + '">retry</a>');
+          res.redirect('/login');
+        }
+
+        RegistrationService.generateValidationEmail(user)
+          .fail(function () {
+            FlashService.error(req, 'Unable to create a registration key at this time');
+            res.redirect('/register');
+          })
+          .done(function () {
+            FlashService.success(req, 'Check the email address you registered with to verify your account.');
+            res.redirect('/login');
+          });
+      });
+    });
+  },
+
   show: function (req, res) {
     res.view({
       title: 'profile',

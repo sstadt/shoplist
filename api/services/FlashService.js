@@ -27,6 +27,10 @@ function updateMessageType(type, req, msg) {
 
 module.exports = {
 
+  addVar: function (req, key, val) {
+    req.session.flash.vars[key] = val;
+  },
+
   /**
    * Add error message
    *

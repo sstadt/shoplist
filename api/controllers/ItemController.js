@@ -104,6 +104,8 @@ module.exports = {
       List.message(listId, {
         verb: 'clearChecked'
       });
+
+      res.send(200);
     });
   },
 

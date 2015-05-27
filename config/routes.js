@@ -65,6 +65,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'verify'
   },
+  '/resend': {
+    controller: 'user',
+    action: 'resend'
+  },
   '/profile': {
     controller: 'user',
     action: 'show'

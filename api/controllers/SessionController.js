@@ -37,7 +37,7 @@ module.exports = {
 
         // user is not confirmed
         } else if (user.confirmed !== true) {
-          FlashService.warning(req, 'You must verify your account before logging in.');
+          FlashService.warning(req, 'You must verify your account before logging in. <a href="/resend?email=' + req.param('email') + '">resend</a>');
           res.redirect('/login');
 
         } else {
@@ -49,7 +49,7 @@ module.exports = {
               res.redirect('/login');
 
             // log user in
-            } else if (valid) {
+            } else if (valid === true) {
               req.session.authenticated = true;
               req.session.User = user.toJSON();
               res.redirect('/mylists');

@@ -41,7 +41,7 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Add ajax loaders to buttons that make socket calls
  - [x] Fully docblock back end and front end
  - [ ] Validate item quantity as > 0 on the back end
- - [ ] Add a resend link to the login 'not verified' error message
+ - [x] Add a resend link to the login 'not verified' error message
  - [ ] Password recovery/reset
  - [ ] Upgrade alert component to change alert style by parameter
 

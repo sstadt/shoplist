@@ -6,7 +6,7 @@
 			<div class="alert-box alert radius">
 				<ul>
 				<% _.each(flash.msg.error, function (msg) { %>
-					<li><i class="fa fa-warning"></i> <%= msg %></li>
+					<li><i class="fa fa-warning"></i> <%- msg %></li>
 				<% }) %>
 				</ul>
 			</div>
@@ -21,7 +21,7 @@
 			<div class="alert-box warning radius">
 				<ul>
 				<% _.each(flash.msg.warning, function (msg) { %>
-					<li><i class="fa fa-warning"></i> <%= msg %></li>
+					<li><i class="fa fa-warning"></i> <%- msg %></li>
 				<% }) %>
 				</ul>
 			</div>
@@ -36,7 +36,7 @@
 			<div class="alert-box success radius">
 				<ul>
 				<% _.each(flash.msg.success, function (msg) { %>
-					<li><%= msg %></li>
+					<li><%- msg %></li>
 				<% }) %>
 				</ul>
 			</div>
