@@ -25,6 +25,22 @@
 	z-index: 400;
 }
 
+.tout {
+	p:first-child {
+		i {
+			font-size: rem-calc(80);
+		}
+	}
+
+	@media #{$medium-only} {
+		padding: 0 rem-calc(40);
+	}
+
+	@media #{$large-up} {
+		padding: 0 rem-calc(60);
+	}
+}
+
 .under-construction {
 	width: 100%;
 

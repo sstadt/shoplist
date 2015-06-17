@@ -38,25 +38,34 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.3
 
- - [ ] Add ajax loaders to buttons that make socket calls
  - [x] Fully docblock back end and front end
- - [ ] Validate item quantity as > 0 on the back end
  - [x] Add a resend link to the login 'not verified' error message
+ - [ ] Create a splash page
+
+### 0.1.4
+
+ - [ ] Add ajax loaders to buttons that make socket calls
  - [ ] Password recovery/reset
  - [ ] Upgrade alert component to change alert style by parameter
 
 ### 0.2
 
+ - [ ] Create a logo
  - [ ] Add a favicon
- - [ ] Create a splash page
  - [ ] Improve email templates
  - [ ] User Profile page
+
+### 0.2.1
+
  - [ ] Facebook login
+ - [ ] Item cache
+ - [ ] Auto-fill list item from cache
+
+### 0.2.2
+
  - [ ] Drag reorder list items
  - [ ] Categories
  - [ ] Sort by category
- - [ ] Item cache
- - [ ] Auto-fill list item from cache
 
 ### 0.3
 

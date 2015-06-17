@@ -37,6 +37,7 @@ module.exports.policies = {
 
   UserController: {
     '*': ['flash', true],
+    'home': 'public',
     'create': true,
     'show': 'sessionAuth'
   },

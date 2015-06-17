@@ -10,6 +10,10 @@
 
 module.exports = {
 
+  splash: function (req, res) {
+    res.view();
+  },
+
   'new': function (req, res) {
     res.view({
       title: 'register',
