@@ -28,8 +28,6 @@ module.exports.policies = {
 
   '*': 'sessionAuth',
 
-  '/': true,
-
   SessionController: {
     '*': ['flash', true],
     'destroy': 'sessionAuth'
@@ -37,7 +35,7 @@ module.exports.policies = {
 
   UserController: {
     '*': ['flash', true],
-    'home': 'public',
+    'splash': 'public',
     'create': true,
     'show': 'sessionAuth'
   },
