@@ -11,7 +11,10 @@
 module.exports = {
 
   splash: function (req, res) {
-    res.view();
+    res.view({
+      title: 'splash',
+      script: 'public'
+    });
   },
 
   'new': function (req, res) {
