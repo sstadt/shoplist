@@ -40,7 +40,7 @@ Demo site: http://shoplist.scottstadt.com
 
  - [x] Fully docblock back end and front end
  - [x] Add a resend link to the login 'not verified' error message
- - [ ] Create a splash page
+ - [x] Create a splash page
 
 ### 0.1.4
 
