@@ -9,6 +9,10 @@
 	text-overflow: ellipsis;
 }
 
+.uppercase {
+	text-transform: uppercase;
+}
+
 .tier-lower {
 	z-index: -1;
 }
@@ -101,7 +105,42 @@ form {
 -------------------------------- */
 
 footer {
-	padding-bottom: rem-calc(50);
+	margin-top: rem-calc(20);
+	color: $topbarLinkColor;
+	background-color: $topbarBgColor;
+
+	p {
+		line-height: rem-calc(20);
+		margin: rem-calc(10) 0;
+	}
+
+	.inline-list {
+		margin-bottom: 0;
+
+		> li {
+			line-height: rem-calc(16);
+			margin: rem-calc(12) 0;
+			margin-left: rem-calc(10);
+			font-size: rem-calc(12);
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			&:not(:last-child) {
+				padding-right: rem-calc(10);
+				border-right: 1px solid $topbarLinkColor;
+			}
+		}
+	}
+
+	a {
+		@include link-state($topbarLinkColor, $topbarLinkColorHover, $topbarLinkColorActive);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
 
 ul {

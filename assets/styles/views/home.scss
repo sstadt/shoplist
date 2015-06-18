@@ -1,4 +1,29 @@
 
+.banner {
+    position: relative;
+    margin-bottom: rem-calc(40);
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.banner-text {
+    h1 {
+        margin-bottom: rem-calc(40);
+
+        @media #{$medium-up} {
+            margin-top: rem-calc(80);
+        }
+
+        @media #{$large-up} {
+            margin-top: rem-calc(140);
+        }
+    }
+}
+
 .cta-get-started {
-  margin: rem-calc(40) auto;
+    margin-top: rem-calc(40);
+    margin-bottom: rem-calc(40);
 }

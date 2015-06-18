@@ -8,6 +8,7 @@ define([
   'foundation.alert',
   'foundation.abide',
   'foundation.reveal',
+  'foundation.topbar',
   'foundation.tooltip'
 ], function (ko, $) {
 

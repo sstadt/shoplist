@@ -21,7 +21,7 @@
 
   <body class="clearfix">
     <% if (session.authenticated === true) { %>
-      <div class="icon-bar three-up tier-top">
+      <div class="icon-bar two-up tier-top">
         <a href="/mylists" class="item">
           <i class="fa fa-book"></i>
           <label>Lists</label>
@@ -42,14 +42,15 @@
         <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
             <li class="name">
-              <h1><a href="/">ShopList</a></h1>
+              <h1><a href="/">Simple ShopList</a></h1>
             </li>
             <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
           </ul>
 
           <section class="top-bar-section">
             <ul class="right">
-              <li class="active"><a href="/login">Login</a></li>
+              <li><a href="https://github.com/sstadt/shoplist" class="uppercase">GitHub</a></li>
+              <li><a href="/login">Login</a></li>
             </ul>
           </section>
         </nav>
@@ -58,7 +59,17 @@
 
     <%- body %>
 
-    <footer></footer>
+    <footer>
+      <div class="row">
+        <div class="small-12 columns">
+          <ul class="inline-list right clearfix">
+            <li><a href="http://www.scottstadt.com" class="uppercase">My Work</a></li>
+            <li><a href="https://github.com/sstadt/shoplist" class="uppercase">GitHub</a></li>
+          </ul>
+          <p class="show-for-medium-up left">Powered by <a href="http://sailsjs.org/#/">Sails.js</a> and <a href="http://knockoutjs.com/">Knockout.js</a>.</p>
+        </div>
+      </div>
+    </footer>
 
     <% if (sails.config.environment === 'development') { %>
       <script src="//localhost:9090/livereload.js"></script>

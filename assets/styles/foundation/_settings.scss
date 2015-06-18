@@ -1369,7 +1369,7 @@ $icon-bar-active-color: $iconBarActiveColor;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: $oil;
+$topbar-bg-color: $topbarBgColor;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1390,10 +1390,10 @@ $icon-bar-active-color: $iconBarActiveColor;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
-// $topbar-link-color-hover: $white;
-// $topbar-link-color-active: $white;
-// $topbar-link-color-active-hover: $white;
+$topbar-link-color: $topbarLinkColor;
+$topbar-link-color-hover: $topbarLinkColorHover;
+$topbar-link-color-active: $topbarLinkColorActive;
+$topbar-link-color-active-hover: $topbarLinkColorActiveHover;
 // $topbar-link-weight: $font-weight-normal;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%

@@ -15,6 +15,18 @@
 /* Mixins
 -------------------------------- */
 
+@mixin link-state($default, $hover, $active) {
+	color: $default;
+
+	&:hover {
+		color: $hover;
+	}
+
+	&:active {
+		color: $active;
+	}
+}
+
 @mixin border-radius($radius) {
 	-webkit-border-radius: $radius;
 	-moz-border-radius: $radius;

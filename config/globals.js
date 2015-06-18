@@ -11,7 +11,7 @@
 module.exports.globals = {
 
   site: {
-    title: 'Simple Shopping List Application'
+    title: 'Simple ShopList'
   },
 
   requirejs: {
