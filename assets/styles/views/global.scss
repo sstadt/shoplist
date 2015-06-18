@@ -104,7 +104,26 @@ form {
 /* Global Elements
 -------------------------------- */
 
+html {
+	height: 100%;
+}
+
+body {
+	position: relative;
+	height: 100%;
+
+	.wrapper {
+		min-height: 100%;
+		margin-bottom: rem-calc(-60);
+		padding-bottom: rem-calc(60);
+	}
+}
+
 footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: rem-calc(40);
 	margin-top: rem-calc(20);
 	color: $topbarLinkColor;
 	background-color: $topbarBgColor;
