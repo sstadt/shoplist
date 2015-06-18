@@ -34,13 +34,11 @@ Demo site: http://shoplist.scottstadt.com
  - Fixed an issue with list updated received via sockets
  - The clear checked button will no longer show if there are no items to clear
 
-# In Development
-
 ### 0.1.3
 
- - [x] Fully docblock back end and front end
- - [x] Add a resend link to the login 'not verified' error message
- - [x] Create a splash page
+ - Added a splash page
+
+# In Development
 
 ### 0.1.4
 
