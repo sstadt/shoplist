@@ -42,10 +42,10 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.4
 
- - [ ] Use a parallax effect on the home pag eto show the features and reveal the getting started button
+ - [ ] Fix the 'clear all items' button to update when all checked items are unchecked
+ - [ ] Use a parallax effect on the home page to show the features and reveal the getting started button
  - [ ] Add ajax loaders to buttons that make socket calls
  - [ ] Password recovery/reset
- - [ ] Upgrade alert component to change alert style by parameter
 
 ### 0.2
 
