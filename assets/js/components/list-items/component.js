@@ -155,6 +155,7 @@ define([
             self.pageerror(response.summary);
           } else {
             self.pageError(null);
+            self.checkedItems(false);
           }
         });
       }

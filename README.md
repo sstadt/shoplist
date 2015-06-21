@@ -42,7 +42,7 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.4
 
- - [ ] Fix the 'clear all items' button to update when all checked items are unchecked
+ - [x] Fix the 'clear all items' button to update when items are cleared
  - [ ] Use a parallax effect on the home page to show the features and reveal the getting started button
  - [ ] Add ajax loaders to buttons that make socket calls
  - [ ] Password recovery/reset
