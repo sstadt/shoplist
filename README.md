@@ -37,6 +37,7 @@ Demo site: http://shoplist.scottstadt.com
 ### 0.1.3
 
  - Added a splash page
+ - Miscellaneous bug fixes
 
 # In Development
 
