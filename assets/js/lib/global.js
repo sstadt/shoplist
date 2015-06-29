@@ -15,8 +15,27 @@ define([
   // greetings!
   var greeting = 'If you\'re seeing this, you\'re taking a look at my code!\n' +
                  'You can see the entire codebase for this application, as well as my other repos on github: https://github.com/sstadt';
-
   console.log(greeting);
+
+  function toggleLoadingIcon(button, isLoading) {
+    button.find('.fa-spin').toggle(isLoading).siblings('.fa').toggle(!isLoading);
+  }
+
+  ko.bindingHandlers.statusButton = {
+    init: function (element, valueAccessor) {
+      var loading = ko.unwrap(valueAccessor()),
+        el = $(element);
+
+      el.prepend('<i class="fa fa-spin fa-spinner"></i> ');
+      toggleLoadingIcon(el, loading);
+    },
+    update: function (element, valueAccessor) {
+      var loading = ko.unwrap(valueAccessor()),
+        el = $(element);
+
+      toggleLoadingIcon(el, loading);
+    }
+  };
 
   ko.bindingHandlers.fadeVisible = {
     init: function (element, valueAccessor) {

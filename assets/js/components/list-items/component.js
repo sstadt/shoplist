@@ -85,6 +85,7 @@ define([
 
     // interface
     self.loading = ko.observable(true);
+    self.updating = ko.observable(false);
     self.checkedItems = ko.observable(false);
 
     self.items.subscribe(function (items) {
@@ -101,7 +102,11 @@ define([
         quantity: 1
       };
 
+      self.updating(true);
+
       io.socket.post('/item/create', newListItem, function (response) {
+        self.updating(false);
+
         if (response.err) {
           self.formError(response.summary);
         } else {
