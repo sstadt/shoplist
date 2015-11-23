@@ -44,7 +44,8 @@ Demo site: http://shoplist.scottstadt.com
 ### 0.1.4
 
  - [x] Fix the 'clear all items' button to update when items are cleared
- - [ ] Use a parallax effect on the home page to show the features and reveal the getting started button
+ - [x] Use a parallax effect on the home page to show the features and reveal the getting started button
+ - [ ] Make a static version of the parallax landing page for mobile
  - [ ] Add ajax loaders to buttons that make socket calls
  - [ ] Password recovery/reset
 

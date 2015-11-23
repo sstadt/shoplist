@@ -29,19 +29,28 @@
 	z-index: 400;
 }
 
-.tout {
-	p:first-child {
-		i {
-			font-size: rem-calc(80);
+.touts {
+	margin: rem-calc(60) 0 rem-calc(20);
+
+	.tout {
+		a {
+			@include link-state($toutColor, $toutColor, $toutColor);
 		}
-	}
 
-	@media #{$medium-only} {
-		padding: 0 rem-calc(40);
-	}
+		p:first-child {
 
-	@media #{$large-up} {
-		padding: 0 rem-calc(60);
+			i {
+				font-size: rem-calc(80);
+			}
+		}
+
+		@media #{$medium-only} {
+			padding: 0 rem-calc(40);
+		}
+
+		@media #{$large-up} {
+			padding: 0 rem-calc(60);
+		}
 	}
 }
 

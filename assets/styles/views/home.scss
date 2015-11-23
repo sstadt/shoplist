@@ -1,4 +1,53 @@
 
+// parallax landing page
+.imageHolder {
+    h1 {
+        font-size: rem-calc(60);
+        margin-bottom: rem-calc(60);
+    }
+
+    h1, p {
+        color: $parallaxFontColor;
+        text-shadow: 2px 2px 4px $parallaxFontShadow;
+    }
+
+    @media #{$small-only} {
+        display: none !important;
+    }
+
+    @media #{$medium-only} {
+        display: none !important;
+    }
+}
+
+.imageHolder, .parallax-content {
+    position: relative;
+    max-width: 100%;
+
+    .row, .columns {
+        height: 100%;
+    }
+
+    p {
+        font-size: rem-calc(25);
+    }
+
+    :last-child {
+        margin-bottom: 0;
+    }
+
+    .devices-content {
+        height: rem-calc(362);
+    }
+
+    .vertical-center {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+// mobile langing page
 .banner {
     position: relative;
     margin-bottom: rem-calc(40);

@@ -14,6 +14,7 @@ requirejs.config({
     'jquery'                 : 'vendor/jquery/dist/jquery',
     'lodash'                 : 'vendor/lodash/dist/lodash',
     'knockout'               : 'vendor/knockout/dist/knockout',
+    'parallax'               : 'vendor/Parallax-ImageScroll/jquery.imageScroll',
 
     // foundation deps
     'fastclick'              : 'vendor/foundation/js/vendor/fastclick',
@@ -57,6 +58,9 @@ requirejs.config({
       deps: ['jquery']
     },
     'jquery.cookie': {
+      deps: ['jquery']
+    },
+    'parallax': {
       deps: ['jquery']
     },
     'foundation': {

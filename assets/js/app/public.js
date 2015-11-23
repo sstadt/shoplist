@@ -1,7 +1,13 @@
 /*jslint browser: true*/
 
 require([
-  'lib/global',
-], function () {
+  'jquery',
+  'parallax',
+  'lib/global'
+], function ($) {
   'use strict';
+
+  $('.parallax').imageScroll({
+    coverRatio: 0.9
+  });
 });

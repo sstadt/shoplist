@@ -101,6 +101,11 @@ $iconBarIconColor              : $white;
 $iconBarActiveColor            : darken($rebirthNavy, 10%);
 /* Foundation End */
 
+$toutColor              : $bodyFontColor;
+
+$parallaxFontColor      : $white;
+$parallaxFontShadow     : $bodyFontColor;
+
 $lblPrimaryHover        : darken($primaryColor, 10%);
 $lblSecondaryHover      : darken($secondaryColor, 10%);
 $lblAlertHover          : darken($alertColor, 10%);
