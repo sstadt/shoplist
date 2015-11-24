@@ -33,23 +33,22 @@
 	margin: rem-calc(60) 0 rem-calc(20);
 
 	.tout {
+		padding: 0 rem-calc(60);
+
 		a {
 			@include link-state($toutColor, $toutColor, $toutColor);
 		}
 
 		p:first-child {
-
 			i {
 				font-size: rem-calc(80);
 			}
 		}
 
-		@media #{$medium-only} {
-			padding: 0 rem-calc(40);
-		}
-
-		@media #{$large-up} {
-			padding: 0 rem-calc(60);
+		@media #{$small-only} {
+			&:not(:last-child) {
+				margin-bottom: rem-calc(30);
+			}
 		}
 	}
 }

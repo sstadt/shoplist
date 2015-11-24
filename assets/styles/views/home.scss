@@ -1,14 +1,8 @@
 
-// parallax landing page
 .imageHolder {
     h1 {
         font-size: rem-calc(60);
         margin-bottom: rem-calc(60);
-    }
-
-    h1, p {
-        color: $parallaxFontColor;
-        text-shadow: 2px 2px 4px $parallaxFontShadow;
     }
 
     @media #{$small-only} {
@@ -17,6 +11,13 @@
 
     @media #{$medium-only} {
         display: none !important;
+    }
+}
+
+.parallax, .imageHolder {
+    h1, p {
+        color: $parallaxFontColor;
+        text-shadow: 2px 2px 4px $parallaxFontShadow;
     }
 }
 
@@ -47,27 +48,34 @@
     }
 }
 
-// mobile langing page
-.banner {
-    position: relative;
-    margin-bottom: rem-calc(40);
+.touch { /* modernizr added class */
+    .parallax.intro {
+        position: relative;
 
-    img {
-        display: block;
-        margin: 0 auto;
-    }
-}
+        .row {
+            position: absolute;
+            top: 0;
 
-.banner-text {
-    h1 {
-        margin-bottom: rem-calc(40);
+            @media #{$small-only} {
+                margin-top: rem-calc(20);
 
-        @media #{$medium-up} {
-            margin-top: rem-calc(80);
-        }
+                .button {
+                    margin-top: rem-calc(20);
+                    @extend .small;
+                }
+            }
 
-        @media #{$large-up} {
-            margin-top: rem-calc(140);
+            @media #{$medium-only} {
+                margin-top: rem-calc(140);
+
+                h1 {
+                    font-weight: rem-calc(50);
+                }
+
+                .button {
+                    margin-top: rem-calc(30);
+                }
+            }
         }
     }
 }
