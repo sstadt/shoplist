@@ -87,6 +87,7 @@ define([
     self.loading = ko.observable(true);
     self.updating = ko.observable(false);
     self.checkedItems = ko.observable(false);
+    self.clearingItems = ko.observable(false);
 
     self.items.subscribe(function (items) {
       self.checkedItems(getNumCheckedItems(items) > 0);
@@ -159,7 +160,11 @@ define([
      */
     self.clearCheckedItems = function () {
       if (confirm('Are you sure you want to remove all checked items?')) {
+        self.clearingItems(true);
+
         io.socket.post('/destroyCheckedItems', { list: self.listId }, function (response) {
+          self.clearingItems(false);
+
           if (response.err) {
             self.pageerror(response.summary);
           } else {
@@ -189,7 +194,11 @@ define([
         quantity: self.selectedItem().quantity()
       };
 
+      self.selectedItem().loading(true);
+
       io.socket.post('/item/update', updatedListItem, function (response) {
+        self.selectedItem().loading(false);
+
         $('#editItemModal').foundation('reveal', 'close');
 
         if (response.err) {

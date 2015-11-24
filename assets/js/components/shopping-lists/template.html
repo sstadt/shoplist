@@ -16,7 +16,10 @@
 							<input type="text" placeholder="New List Name" data-bind="textInput: newListName" required>
 						</div>
 						<div class="small-2 medium-1 columns">
-							<button type="submit" class="button success postfix"><i class="fa fa-plus"></i></a>
+							<button type="submit" class="button success postfix">
+								<i data-bind="visible: !addingItem()" class="fa fa-plus"></i>
+								<i data-bind="visible: addingItem()" class="fa fa-spinner fa-spin"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -98,7 +101,9 @@
 						</div>
 						<div class="row">
 							<div class="small-12 columns">
-								<button type="submit" class="button expand">Save</button>
+								<button type="submit" class="button expand">
+									<i data-bind="visible: savingList()" class="fa fa-spinner fa-spin"></i> Save
+								</button>
 							</div>
 						</div>
 					</div>

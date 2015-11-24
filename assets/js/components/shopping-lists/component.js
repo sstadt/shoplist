@@ -52,6 +52,8 @@ define([
 
     // interface
     self.loading = ko.observable(true);
+    self.addingItem = ko.observable(false);
+    self.savingList = ko.observable(false);
 
     /**
      * Add a new list
@@ -61,7 +63,11 @@ define([
         name: self.newListName()
       };
 
+      self.addingItem(true);
+
       io.socket.post('/list/create', newList, function (response) {
+        self.addingItem(false);
+
         if (response.err) {
           self.formError(response.summary);
         } else {
@@ -93,7 +99,11 @@ define([
         name: self.editListName()
       };
 
+      self.savingList(true);
+
       io.socket.post('/list/update', updatedList, function (response) {
+        self.savingList(false);
+
         if (response.err) {
           self.modalError(response.summary);
         } else {
