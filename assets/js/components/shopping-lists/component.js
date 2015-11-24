@@ -133,7 +133,7 @@ define([
             self.pageError(response.summary);
           } else {
             self.pageError(null);
-            self.lists.destroy(list);
+            self.lists.remove(list);
           }
         });
       }
@@ -147,7 +147,7 @@ define([
         lists()[listIndex].name(data.name);
       },
       destroyed: function (listIndex, lists) {
-        lists.destroy(self.sharedLists()[listIndex]);
+        lists.remove(self.sharedLists()[listIndex]);
       }
     };
 

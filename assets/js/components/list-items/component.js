@@ -225,7 +225,7 @@ define([
       },
       clearChecked: function () {
         _.forEach(_.filter(self.items(), isItemChecked), function (item) {
-          self.items.destroy(item);
+          self.items.remove(item);
         });
       }
     };
