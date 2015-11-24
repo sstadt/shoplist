@@ -137,11 +137,15 @@ define([
      * Toggle an item's checked property
      */
     self.toggleChecked = function (listItem) {
+      listItem.loading(true);
+
       io.socket.post('/item/toggle', {
         list: self.listId,
         id: listItem.id,
         checked: listItem.checked()
       }, function (response) {
+        listItem.loading(false);
+
         if (response.err) {
           self.pageError(response.summary);
         } else {

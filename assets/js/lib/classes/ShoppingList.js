@@ -16,5 +16,6 @@ define(['knockout'], function (ko) {
     this.id = data.id;
     this.name = ko.observable(data.name);
     this.viewLink = '/list/show/' + data.id;
+    this.loading = ko.observable(false);
   };
 });

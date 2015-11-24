@@ -18,5 +18,6 @@ define(['knockout'], function (ko) {
     this.name = ko.observable(data.name);
     this.quantity = ko.observable(data.quantity);
     this.checked = ko.observable(data.checked);
+    this.loading = ko.observable(false);
   };
 });

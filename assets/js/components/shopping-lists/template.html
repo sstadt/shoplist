@@ -46,7 +46,10 @@
 				<div class="ellipsis" data-bind="text: name, click: $parent.editListTitle"></div>
 			</div>
 			<div class="small-2 medium-1 columns">
-				<button class="button tiny alert" data-bind="click: $parent.deleteList"><i class="fa fa-times"></i></button>
+				<button class="button tiny alert" data-bind="click: $parent.deleteList">
+					<i data-bind="visible: !loading()" class="fa fa-times"></i>
+					<i data-bind="visible: loading()" class="fa fa-spinner fa-spin"></i>
+				</button>
 			</div>
 		</div>
 	</div>

@@ -114,7 +114,11 @@ define([
      */
     self.deleteList = function (list) {
       if (confirm("Are you sure you want to delete this list? This cannot be undone.")) {
+        list.loading(true);
+
         io.socket.post('/list/destroy', { list: list.id }, function (response) {
+          list.loading(false);
+
           if (response.err) {
             self.pageError(response.summary);
           } else {

@@ -34,8 +34,14 @@
 	<div class="columns small-12" data-bind="foreach: items">
 		<div class="row list-item">
 			<div class="small-2 medium-1 columns">
-				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()"><i class="fa fa-check"></i></button>
-				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()"><i class="fa fa-check"></i></button>
+				<button class="button tiny secondary" data-bind="click: $parent.toggleChecked, visible: !checked()">
+					<i data-bind="visible: !loading()" class="fa fa-check"></i>
+					<i data-bind="visible: loading()" class="fa fa-spinner fa-spin"></i>
+				</button>
+				<button class="button tiny success" data-bind="click: $parent.toggleChecked, visible: checked()">
+					<i data-bind="visible: !loading()" class="fa fa-check"></i>
+					<i data-bind="visible: loading()" class="fa fa-spinner fa-spin"></i>
+				</button>
 			</div>
 			<div class="small-10 medium-11 columns item-name terminate">
 				<div class="ellipsis" data-bind="click: $parent.editItem"><span data-bind="visible: quantity() > 1"><!-- ko text: quantity --><!-- /ko -->x </span><!-- ko text: name --><!-- /ko --></div>
