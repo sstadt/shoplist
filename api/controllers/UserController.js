@@ -138,7 +138,7 @@ module.exports = {
   },
 
   resetPassword: function (req, res) {
-
+    
   },
 
   show: function (req, res) {

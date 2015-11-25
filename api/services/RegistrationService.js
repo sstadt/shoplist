@@ -67,9 +67,41 @@ module.exports = {
       timestamp = new Date().getTime(),
       tokenStr = sha1(timestamp);
 
-    setTimeout(function () {
-      deferred.resolve();
-    }, 0);
+    Token.create({
+      token: tokenStr,
+      user: user.id
+    }, function (err, token) {
+      if (err) {
+        deferred.reject(err);
+      }
+
+      var pageData = {
+        user: user,
+        link: 'http://shoplist.scottstadt.com/reset?token=' + token.token
+      };
+
+      sails.hooks.views.render('email/resetpassword', pageData, function (err, html) {
+        if (err) {
+          deferred.reject(err);
+        }
+
+        var to = user.email,
+          from = sails.config.email.noreply.address,
+          password = sails.config.email.noreply.password,
+          subject = 'Password Reset Request from shoplist.scottstadt.com',
+          message = html;
+
+        MailService.send(to, from, password, subject, message, function (err) {
+          if (err) {
+            deferred.reject(err);
+          }
+
+          deferred.resolve();
+        });
+
+      });
+
+    });
 
     return deferred.promise;
   }
