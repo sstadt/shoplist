@@ -98,6 +98,49 @@ module.exports = {
     });
   },
 
+  recoverPassword: function (req, res) {
+    res.view({
+      title: 'recover password',
+      script: 'public',
+      email: req.param('email') || '',
+      success: req.param('success')
+    });
+  },
+
+  sendResetEmail: function (req, res) {
+    var email = req.param('email'),
+      defaultView = { title: 'recover password', script: 'public', email: email || '' };
+
+    User.findOne({ email: email }, function (err, user) {
+      if (err || user === undefined) {
+        FlashService.error(req, 'Could not find a user with that email address.');
+        FlashService.addVar(req, 'email', email);
+        res.redirect('/recover');
+      }
+
+      if (user === undefined) {
+        FlashService.error(req, 'Could not find a user with that email address.');
+        FlashService.addVar(req, 'email', email);
+        res.redirect('/recover');
+      } else {
+        RegistrationService.generateResetEmail(user)
+          .fail(function () {
+            FlashService.error(req, 'Unable to reset your password at this time');
+            FlashService.addVar(req, 'email', email);
+            res.redirect('/recover');
+          })
+          .done(function () {
+            FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
+            res.redirect('recover');
+          });
+      }
+    });
+  },
+
+  resetPassword: function (req, res) {
+
+  },
+
   show: function (req, res) {
     res.view({
       title: 'profile',

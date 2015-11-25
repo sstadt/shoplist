@@ -1,7 +1,7 @@
 /**
 * Token.js
 *
-* @description :: User REgistration tokens
+* @description :: User registration and reset tokens tokens
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 

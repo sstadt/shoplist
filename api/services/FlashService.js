@@ -28,6 +28,9 @@ function updateMessageType(type, req, msg) {
 module.exports = {
 
   addVar: function (req, key, val) {
+    if (!req.session.flash) {
+      req.session.flash = { vars: {} };
+    }
     req.session.flash.vars[key] = val;
   },
 

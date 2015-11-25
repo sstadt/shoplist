@@ -60,6 +60,22 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+
+  generateResetEmail: function (user) {
+    var deferred = Q.defer(),
+      timestamp = new Date().getTime(),
+      tokenStr = sha1(timestamp);
+
+    setTimeout(function () {
+      deferred.resolve();
+    }, 0);
+
+    return deferred.promise;
   }
 
 };
+
+
+
+

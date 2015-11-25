@@ -74,6 +74,18 @@ module.exports.routes = {
     controller: 'user',
     action: 'resend'
   },
+  '/recover': {
+    controller: 'user',
+    action: 'recoverPassword'
+  },
+  '/sendreset': {
+    controller: 'user',
+    action: 'sendResetEmail'
+  },
+  '/reset': {
+    controller: 'user',
+    action: 'resetPassword'
+  },
   '/profile': {
     controller: 'user',
     action: 'show'
