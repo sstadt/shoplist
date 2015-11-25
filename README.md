@@ -54,18 +54,15 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Add a favicon
  - [ ] Improve email templates
  - [ ] User Profile page
+ - [ ] Categories
+ - [ ] Sort by category
 
 ### 0.2.1
 
  - [ ] Facebook login
  - [ ] Item cache
  - [ ] Auto-fill list item from cache
-
-### 0.2.2
-
  - [ ] Drag reorder list items
- - [ ] Categories
- - [ ] Sort by category
 
 ### 0.3
 
