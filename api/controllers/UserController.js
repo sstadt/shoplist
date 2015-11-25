@@ -138,7 +138,10 @@ module.exports = {
   },
 
   resetPassword: function (req, res) {
-    
+    res.view({
+      title: 'reset password',
+      script: 'public'
+    });
   },
 
   show: function (req, res) {
