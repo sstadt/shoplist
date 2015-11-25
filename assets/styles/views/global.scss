@@ -30,7 +30,8 @@
 }
 
 .touts {
-	margin: rem-calc(60) 0 rem-calc(20);
+	margin-top: rem-calc(60);
+	margin-bottom: rem-calc(40) !important;
 
 	.tout {
 		padding: 0 rem-calc(60);
