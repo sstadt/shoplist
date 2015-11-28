@@ -8,7 +8,10 @@
  */
 
 var sha1 = require('sha1'),
-  Q = require('q');
+  Q = require('q'),
+  protocol = 'http://',
+  domain = sails.config.globals.baseurl[sails.config.environment],
+  domainPath = protocol + sails.config.globals.baseurl[sails.config.environment];
 
 module.exports = {
 
@@ -33,7 +36,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: 'http://' + sails.config.globals.baseurl[sails.config.environment] + '/verify?token=' + token.token
+        link: domainPath + '/verify?token=' + token.token
       };
 
       sails.hooks.views.render('email/registration', pageData, function (err, html) {
@@ -44,10 +47,9 @@ module.exports = {
         var to = user.email,
           from = sails.config.email.noreply.address,
           password = sails.config.email.noreply.password,
-          subject = 'Registration Request from ' + sails.config.globals.baseurl[sails.config.environment],
-          message = html;
+          subject = 'Registration Request from ' + domain;
 
-        MailService.send(to, from, password, subject, message, function (err) {
+        MailService.send(to, from, password, subject, html, function (err) {
           if (err) {
             deferred.reject(err);
           }
@@ -83,7 +85,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: 'http://' + sails.config.globals.baseurl[sails.config.environment] + '/reset?token=' + token.token
+        link: domainPath + '/reset?token=' + token.token
       };
 
       sails.hooks.views.render('email/resetpassword', pageData, function (err, html) {
@@ -94,10 +96,9 @@ module.exports = {
         var to = user.email,
           from = sails.config.email.noreply.address,
           password = sails.config.email.noreply.password,
-          subject = 'Password Reset Request from ' + sails.config.globals.baseurl[sails.config.environment],
-          message = html;
+          subject = 'Password Reset Request from ' + domain;
 
-        MailService.send(to, from, password, subject, message, function (err) {
+        MailService.send(to, from, password, subject, html, function (err) {
           if (err) {
             deferred.reject(err);
           }

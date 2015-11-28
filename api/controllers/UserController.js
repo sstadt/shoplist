@@ -139,12 +139,14 @@ module.exports = {
 
   resetPassword: function (req, res) {
     // TODO:
+    // if an invalid token, set flash error and redirect to reset page
     // if a valid token and matching passwords were sent, update the user's password
     // then, log the user in
     // and, redirect them to their lists
     
     // else, show the reset paage
     res.view({
+      token: '',
       title: 'reset password',
       script: 'public'
     });
