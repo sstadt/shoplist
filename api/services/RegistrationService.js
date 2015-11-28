@@ -113,15 +113,16 @@ module.exports = {
     return deferred.promise;
   },
 
-  // resolve with user
-  // reject with error string
+  /**
+   * Validate a token as a password reset token
+   * @param  {string} token The token to validate
+   * @return {promise}      Passes a single argument; error string on fail, user object on pass
+   */
   validateResetToken: function (token) {
     var deferred = Q.defer();
 
     Token.findOne({ token: token }, function (err, token) {
       if (err || !token) {
-        console.log('>>>>> Token.findOne >>>>');
-        console.log(err);
         deferred.reject('There was an error validating your reset token.');
       } else {
         User.findOne({
@@ -129,15 +130,10 @@ module.exports = {
           confirmed: false
         }, function (err, user) {
           if (err || !user) {
-            console.log('>>>>> User.findOne fail >>>>');
-            console.log(user);
             deferred.reject('There was an error validating your reset token.');
           } else {
-            console.log('>>>>> User.findOne exist >>>>');
-            console.log(user);
             deferred.resolve(user);
           }
-            
         });
       }
     });
