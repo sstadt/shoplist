@@ -111,6 +111,38 @@ module.exports = {
     });
 
     return deferred.promise;
+  },
+
+  // resolve with user
+  // reject with error string
+  validateResetToken: function (token) {
+    var deferred = Q.defer();
+
+    Token.findOne({ token: token }, function (err, token) {
+      if (err || !token) {
+        console.log('>>>>> Token.findOne >>>>');
+        console.log(err);
+        deferred.reject('There was an error validating your reset token.');
+      } else {
+        User.findOne({
+          id: token.user,
+          confirmed: false
+        }, function (err, user) {
+          if (err || !user) {
+            console.log('>>>>> User.findOne fail >>>>');
+            console.log(user);
+            deferred.reject('There was an error validating your reset token.');
+          } else {
+            console.log('>>>>> User.findOne exist >>>>');
+            console.log(user);
+            deferred.resolve(user);
+          }
+            
+        });
+      }
+    });
+
+    return deferred.promise;
   }
 
 };

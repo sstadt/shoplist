@@ -131,25 +131,42 @@ module.exports = {
           })
           .done(function () {
             FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
-            res.redirect('recover');
+            res.redirect('/recover');
           });
       }
     });
   },
 
   resetPassword: function (req, res) {
-    // TODO:
-    // if an invalid token, set flash error and redirect to reset page
-    // if a valid token and matching passwords were sent, update the user's password
-    // then, log the user in
-    // and, redirect them to their lists
-    
-    // else, show the reset paage
-    res.view({
-      token: '',
-      title: 'reset password',
-      script: 'public'
-    });
+    var token = req.param('token') || '';
+
+    RegistrationService.validateResetToken(token)
+      .fail(function (err) {
+        console.log('>>>>> resetPassword action fail >>>>');
+        console.log(err);
+        FlashService.error(req, err);
+        FlashService.addVar(req, 'email', '');
+        res.redirect('/recover');
+      })
+      .done(function (user) {
+        // TODO: This method is being called on fail, fix it !!!
+        console.log('>>>>> resetPassword action success >>>>');
+        console.log(user);
+        // if (password was passed in) {
+        //   FlashService.success(req, 'Password Successfully Reset');
+        //   // TODO:
+        //   // -> update the user's password
+        //   // -> log the user in
+        //   // -> redirect them to their lists
+        //   res.redirect('/login');
+        // } else {
+        res.view({
+          token: token,
+          user: user,
+          title: 'reset password',
+          script: 'public'
+        });
+      });
   },
 
   show: function (req, res) {
