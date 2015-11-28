@@ -31,6 +31,9 @@ module.exports = {
     if (!req.session.flash) {
       req.session.flash = { vars: {} };
     }
+    if (!req.session.flash.vars) {
+      req.session.flash.vars = {};
+    }
     req.session.flash.vars[key] = val;
   },
 

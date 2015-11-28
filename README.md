@@ -70,4 +70,31 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] barcode item relation caching
  - [ ] Custom 403, 404, and 500 pages
 
+# Project Setup
+
+```
+npm install -g sails
+cd /path/to/project/root
+npm install && bower install
+```
+
+Create the file `config/local.js` and paste the following into it, replacing the values in quotes with your testing data.
+
+```javascript
+module.exports = {
+
+  email: {
+    noreply: {
+      address: 'gmail address to use for requests',
+      password: 'Gmail API password'
+    }
+  },
+
+  hash: 'replace with some hash value',
+
+};
+```
+
+Make sure you have mongod running on the default port and start the app with the command `sails lift`
+
 

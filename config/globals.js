@@ -10,6 +10,11 @@
  */
 module.exports.globals = {
 
+  baseurl: {
+    development: 'localhost:1337',
+    production: 'shoplist.scottstadt.com'
+  },
+
   site: {
     title: 'Simple ShopList'
   },

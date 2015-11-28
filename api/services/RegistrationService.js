@@ -33,7 +33,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: 'http://shoplist.scottstadt.com/verify?token=' + token.token
+        link: 'http://' + sails.config.globals.baseurl[sails.config.environment] + '/verify?token=' + token.token
       };
 
       sails.hooks.views.render('email/registration', pageData, function (err, html) {
@@ -44,7 +44,7 @@ module.exports = {
         var to = user.email,
           from = sails.config.email.noreply.address,
           password = sails.config.email.noreply.password,
-          subject = 'Registration Request from shoplist.scottstadt.com',
+          subject = 'Registration Request from ' + sails.config.globals.baseurl[sails.config.environment],
           message = html;
 
         MailService.send(to, from, password, subject, message, function (err) {
@@ -62,6 +62,12 @@ module.exports = {
     return deferred.promise;
   },
 
+  /**
+   * Generate a password reset email
+   * 
+   * @param  {object} user The user to generate a reset email for
+   * @return {promise}
+   */
   generateResetEmail: function (user) {
     var deferred = Q.defer(),
       timestamp = new Date().getTime(),
@@ -77,7 +83,7 @@ module.exports = {
 
       var pageData = {
         user: user,
-        link: 'http://shoplist.scottstadt.com/reset?token=' + token.token
+        link: 'http://' + sails.config.globals.baseurl[sails.config.environment] + '/reset?token=' + token.token
       };
 
       sails.hooks.views.render('email/resetpassword', pageData, function (err, html) {
@@ -88,7 +94,7 @@ module.exports = {
         var to = user.email,
           from = sails.config.email.noreply.address,
           password = sails.config.email.noreply.password,
-          subject = 'Password Reset Request from shoplist.scottstadt.com',
+          subject = 'Password Reset Request from ' + sails.config.globals.baseurl[sails.config.environment],
           message = html;
 
         MailService.send(to, from, password, subject, message, function (err) {
