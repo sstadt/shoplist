@@ -51,7 +51,7 @@ Demo site: http://shoplist.scottstadt.com
 
  - [ ] Tokens are not being cleared in production
 
-### 0.1.4.1
+### 0.1.4.2
 
  - [ ] Move password validation to PasswordService
  - [ ] DocBlock all the password reset functions
