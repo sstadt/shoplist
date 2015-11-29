@@ -50,16 +50,16 @@ module.exports = {
       });
     }
 
-    bcrypt.hash(values.password, 10, function passwordEncryption(err, encryptedPassword) {
-      if (err) {
-        return next(err);
-      }
-
-      delete values.password;
-      delete values.confirmation;
-      values.encryptedPassword = encryptedPassword;
-      next();
-    });
+    PasswordService.hashPassword(values.password)
+      .fail(function (err) {
+        next(err);
+      })
+      .done(function (encryptedPassword) {
+        delete values.password;
+        delete values.confirmation;
+        values.encryptedPassword = encryptedPassword;
+        next();
+      });
   }
 };
 
