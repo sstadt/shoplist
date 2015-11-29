@@ -39,14 +39,17 @@ Demo site: http://shoplist.scottstadt.com
  - Added a splash page
  - Miscellaneous bug fixes
 
-# In Development
-
 ### 0.1.4
 
- - [x] Fix the 'clear all items' button to update when items are cleared
- - [x] Use a parallax effect on the home page to show the features and reveal the getting started button
- - [x] Add ajax loaders to buttons that make socket calls
- - [x] Password recovery/reset
+ - Redesigned home page
+ - Improved UI feedback during async requests
+ - Implemented password recovery
+
+# In Development
+
+### 0.1.4.1
+
+ - [ ] Tokens are not being cleared in production
 
 ### 0.1.4.1
 
