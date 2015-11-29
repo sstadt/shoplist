@@ -1,6 +1,5 @@
 
-// TODO: Move hashing and validation here
-// use this in registration as well
+// TODO: Move validation here
 
 var Q = require('q'),
   bcrypt = require('bcrypt'),
@@ -16,7 +15,7 @@ var Q = require('q'),
 
 module.exports = {
 
-  error: function () {
+  getLastError: function () {
     var error = lastError;
 
     lastError = [];
@@ -49,6 +48,28 @@ module.exports = {
     }
 
     return matches && secure && longEnough && shortEnough; 
+  },
+
+  resetPassword: function (password, user) {
+    var deferred = Q.defer();
+
+    this.hashPassword(password)
+      .fail(function (err) {
+        deferred.reject(err);
+        return;
+      })
+      .done(function (encryptedPassword) {
+        User.update(user.id, { encryptedPassword: encryptedPassword }, function (err) {
+          if (err) {
+            deferred.reject(err);
+          } else {
+            Token.destroy({ user: user.id });
+            deferred.resolve();
+          }
+        });
+      });
+
+    return deferred.promise;
   },
 
   hashPassword: function (password) {

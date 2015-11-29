@@ -131,7 +131,7 @@ module.exports = {
           })
           .done(function () {
             FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
-            res.redirect('/recover');
+            res.redirect('/login');
           });
       }
     });
@@ -140,43 +140,56 @@ module.exports = {
   resetPassword: function (req, res) {
     var token = req.param('token') || '',
       password = req.param('password'),
-      confirmation = req.param('confirmation');
+      confirmation = req.param('confirmation'),
+      view = {
+        token: token,
+        user: { email: '' },
+        title: 'reset password',
+        script: 'public'
+      };
 
     RegistrationService.validateResetToken(token)
       .fail(function (err) {
         FlashService.error(req, err);
         res.redirect('/recover');
+        return;
       })
       .done(function (user) {
         var errors;
-        // TODO: This method is being called on fail, fix it !!!
-        console.log('>>>>> resetPassword action success >>>>');
-        console.log(user);
+
+        view.user = user;
         
+        // a password was submitted for reset
         if (password || confirmation) {
+
+          // password is secure according to configured rules
           if (PasswordService.isSecure(password, confirmation)) {
-            console.log('>>>>> Password is secure >>>>');
+            PasswordService.resetPassword(password, user)
+              .fail(function (err) {
+                FlashService.error(req, 'There was an error resetting your password');
+                FlashService.cycleFlash(req, res);
+                res.view(view);
+              })
+              .done(function () {
+                FlashService.success(req, 'Your password was successfully reset!');
+                res.redirect('/login');
+              });
 
-            // PasswordService.updatePassword().fail().done();
-            // -> update the user's password
-            // -> redirect them to their lists
-
+          // password is not secure
           } else {
-            console.log('>>>>> Password is not secure >>>>');
-            errors = PasswordService.error();
+            errors = PasswordService.getLastError();
             for (var i = 0, j = errors.length; i < j; i++) {
               FlashService.error(req, errors[i]);
             }
             FlashService.cycleFlash(req, res);
-          }
-        }
 
-        res.view({
-          token: token,
-          user: user,
-          title: 'reset password',
-          script: 'public'
-        });
+            res.view(view);  
+          }
+
+        // a password was not submitted for reset
+        } else {
+          res.view(view);          
+        }
 
       });
   },

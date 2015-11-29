@@ -4,7 +4,8 @@
 /**
  * Flash Service
  *
- * Adds flash messaged to req.session.flash for display in alert boxes on the front end
+ * Controls flash messaging on templates that include the
+ * flash message template.
  */
 
 function CleanFlash() {

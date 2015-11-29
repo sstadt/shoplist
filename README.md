@@ -46,7 +46,13 @@ Demo site: http://shoplist.scottstadt.com
  - [x] Fix the 'clear all items' button to update when items are cleared
  - [x] Use a parallax effect on the home page to show the features and reveal the getting started button
  - [x] Add ajax loaders to buttons that make socket calls
- - [ ] Password recovery/reset
+ - [x] Password recovery/reset
+
+### 0.1.4.1
+
+ - [ ] Move password validation to PasswordService
+ - [ ] DocBlock all the password reset functions
+ - [ ] Move password settings to config/passwords.js and wire into PasswordService
 
 ### 0.2
 

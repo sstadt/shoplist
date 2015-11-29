@@ -4,7 +4,14 @@
 /**
  * Registration Service
  *
- * Contains functions related to user registration
+ * Contains functions related to user functionality that
+ * impacts accont usability and relays email messaging.
+ *
+ * Model Dependencies
+ *   Token
+ *
+ * Service Dependencies
+ *   MailService
  */
 
 var sha1 = require('sha1'),
