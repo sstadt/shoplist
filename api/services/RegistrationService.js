@@ -127,7 +127,7 @@ module.exports = {
       } else {
         User.findOne({
           id: token.user,
-          confirmed: false
+          confirmed: true
         }, function (err, user) {
           if (err || !user) {
             deferred.reject('There was an error validating your reset token.');

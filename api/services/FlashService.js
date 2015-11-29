@@ -7,6 +7,17 @@
  * Adds flash messaged to req.session.flash for display in alert boxes on the front end
  */
 
+function CleanFlash() {
+  this.vars = {
+    email: ''
+  };
+  this.msg = {
+    error: [],
+    warning: [],
+    success: []
+  };
+}
+
 /**
  * Update a flash message type with a new message
  *
@@ -26,6 +37,21 @@ function updateMessageType(type, req, msg) {
 }
 
 module.exports = {
+
+  cycleFlash: function (req, res, next) {
+    if (!req.session.flash) {
+      res.locals.flash = new CleanFlash();
+      if (typeof next === 'function') return next();
+      return;
+    }
+
+    res.locals.flash = _.clone(req.session.flash);
+
+    // clear flash
+    req.session.flash = new CleanFlash();
+
+    if (typeof next === 'function') next();
+  },
 
   addVar: function (req, key, val) {
     if (!req.session.flash) {
