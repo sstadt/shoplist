@@ -49,13 +49,10 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.4.1
 
- - [ ] Tokens are not being cleared in production
-
-### 0.1.4.2
-
  - [ ] Move password validation to PasswordService
- - [ ] DocBlock all the password reset functions
- - [ ] Move password settings to config/passwords.js and wire into PasswordService
+ - [x] DocBlock all the password reset functions
+ - [x] Move password settings to config/passwords.js and wire into PasswordService
+ - [ ] Add password validation for user creation
 
 ### 0.2
 

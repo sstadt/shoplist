@@ -3,11 +3,18 @@
 
 /**
  * Flash Service
+ * -------------
  *
  * Controls flash messaging on templates that include the
  * flash message template.
  */
 
+/**
+ * CleanFlash Class
+ *
+ * Used on flash cycling to initialize a clean set of flash
+ * variable.
+ */
 function CleanFlash() {
   this.vars = {
     email: ''
@@ -39,6 +46,16 @@ function updateMessageType(type, req, msg) {
 
 module.exports = {
 
+  /**
+   * Cycle the flash variable. Useful for when you want to
+   * set flash variables without navigating to another
+   * endpoint.
+   * 
+   * @param  {object}   req  The current express request object
+   * @param  {object}   res  The current express response object
+   * @param  {Function} next The current express callback function
+   * @return {void}
+   */
   cycleFlash: function (req, res, next) {
     if (!req.session.flash) {
       res.locals.flash = new CleanFlash();
@@ -54,6 +71,13 @@ module.exports = {
     if (typeof next === 'function') next();
   },
 
+  /**
+   * Add a custom value to flash
+   * 
+   * @param {object} req The current express request object
+   * @param {string} key The key of the value to store
+   * @param {mixed}  val The value to store
+   */
   addVar: function (req, key, val) {
     if (!req.session.flash) {
       req.session.flash = { vars: {} };
@@ -65,7 +89,7 @@ module.exports = {
   },
 
   /**
-   * Add error message
+   * Add error message to flash
    *
    * @param  {object} req Express request object
    * @param  {string} msg The message to add to the error list
@@ -75,7 +99,7 @@ module.exports = {
   },
 
   /**
-   * Add warning message
+   * Add warning message to flash
    *
    * @param  {object} req Express request object
    * @param  {string} msg The message to add to the warning list
@@ -85,7 +109,7 @@ module.exports = {
   },
 
   /**
-   * Add success message
+   * Add success message to flash
    *
    * @param  {object} req Express request object
    * @param  {string} msg The message to add to the success list
