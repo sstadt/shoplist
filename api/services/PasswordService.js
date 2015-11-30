@@ -63,8 +63,9 @@ module.exports = {
           if (err) {
             deferred.reject(err);
           } else {
-            Token.destroy({ user: user.id });
-            deferred.resolve();
+            Token.destroy({ user: user.id }, function () {
+              deferred.resolve();
+            });
           }
         });
       });
