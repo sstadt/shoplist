@@ -87,7 +87,7 @@ module.exports = {
       user: user.id
     }, function (err, token) {
       if (err) {
-        deferred.reject(err);
+        return deferred.reject(err);
       }
 
       var pageData = {
@@ -97,7 +97,7 @@ module.exports = {
 
       sails.hooks.views.render('email/resetpassword', pageData, function (err, html) {
         if (err) {
-          deferred.reject(err);
+          return deferred.reject(err);
         }
 
         var to = user.email,
@@ -107,7 +107,7 @@ module.exports = {
 
         MailService.send(to, from, password, subject, html, function (err) {
           if (err) {
-            deferred.reject(err);
+            return deferred.reject(err);
           }
 
           deferred.resolve();

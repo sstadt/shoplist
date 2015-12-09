@@ -8,6 +8,10 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var userErrors = sails.config.notifications.User.error,
+  userSuccesses = sails.config.notifications.User.success,
+  tokenErrors = sails.config.notifications.Token.error;
+
 module.exports = {
 
   splash: function (req, res) {
@@ -27,18 +31,18 @@ module.exports = {
   verify: function (req, res) {
     Token.findOne({ token: req.param('token') }, function (err, token) {
       if (err) {
-        FlashService.error(req, 'Error retrieving registration token');
+        FlashService.error(req, tokenErrors.notFound('registration'));
         res.redirect('/login');
       }
 
       User.update(token.user, { confirmed: true }, function (err) {
         if (err) {
-          FlashService.error(req, 'Could not activate your account at this time');
+          FlashService.error(req, userErrors.cannotVerify);
           res.redirect('/login');
         }
 
         Token.destroy(token.id, function () {
-          FlashService.success(req, 'Account verified, you may now log in!');
+          FlashService.success(req, userSuccesses.verified);
           res.redirect('/login');
         });
       });
@@ -55,17 +59,17 @@ module.exports = {
     if (PasswordService.isSecure(userObj.password, userObj.confirmation)) {
       User.create(userObj, function userCreated(err, user) {
         if (err) {
-          var errorMsg = (err._e.code === 11000) ? 'There is already an account associated with that email address.' : err._e.err;
+          var errorMsg = (err._e.code === 11000) ? userErrors.duplicateEmail : err._e.err;
 
           FlashService.warning(req, errorMsg);
           res.redirect('/register');
         } else {
           RegistrationService.generateValidationEmail(user)
             .then(function resolve() {
-              FlashService.success(req, 'Check the email address you registered with to verify your account.');
+              FlashService.success(req, userSuccesses.verificationSent);
               res.redirect('/login');
             }, function reject() {
-              FlashService.error(req, 'Unable to create a registration key at this time');
+              FlashService.error(req, userErrors.cannotRegister);
               res.redirect('/register');
             });
         }
@@ -82,22 +86,22 @@ module.exports = {
   resend: function (req, res) {
     User.findOne({ email: req.param('email') }, function (err, user) {
       if (err) {
-        FlashService.error(req, 'Could not find a user with that email address.');
+        FlashService.error(req, userErrors.notFound);
         res.redirect('/register');
       }
 
       Token.destroy({ user: user.id }, function (err) {
         if (err) {
-          FlashService.error(req, 'Error creating validation token. <a href="/resend?email=' + user.email + '">retry</a>');
+          FlashService.error(req, tokenErrors.cannotResendValidation(user.email));
           res.redirect('/login');
         }
 
         RegistrationService.generateValidationEmail(user)
           .then(function resolve() {
-            FlashService.success(req, 'Check the email address you registered with to verify your account.');
+            FlashService.success(req, userSuccesses.verificationSent);
             res.redirect('/login');
           }, function reject() {
-            FlashService.error(req, 'Unable to create a registration key at this time');
+            FlashService.error(req, userErrors.cannotRegister);
             res.redirect('/register');
           });
       });
@@ -119,22 +123,22 @@ module.exports = {
 
     User.findOne({ email: email }, function (err, user) {
       if (err || user === undefined) {
-        FlashService.error(req, 'Could not find a user with that email address.');
+        FlashService.error(req, userErrors.notFound);
         FlashService.addVar(req, 'email', email);
         res.redirect('/recover');
       }
 
       if (user === undefined) {
-        FlashService.error(req, 'Could not find a user with that email address.');
+        FlashService.error(req, userErrors.notFound);
         FlashService.addVar(req, 'email', email);
         res.redirect('/recover');
       } else {
         RegistrationService.generateResetEmail(user)
           .then(function resolve() {
-            FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
+            FlashService.success(req, userSuccesses.passwordResetSent);
             res.redirect('/login');
-          }, function reject() {
-            FlashService.error(req, 'Unable to reset your password at this time');
+          }, function reject(err) {
+            FlashService.error(req, userErrors.cannotResetPassword);
             FlashService.addVar(req, 'email', email);
             res.redirect('/recover');
           });
@@ -166,10 +170,10 @@ module.exports = {
           if (PasswordService.isSecure(password, confirmation)) {
             PasswordService.resetPassword(password, user)
               .then(function resolve() {
-                FlashService.success(req, 'Your password was successfully reset!');
+                FlashService.success(req, userSuccesses.passwordReset);
                 res.redirect('/login');
               }, function reject(err) {
-                FlashService.error(req, 'There was an error resetting your password');
+                FlashService.error(req, userErrors.cannotResetPassword);
                 FlashService.cycleFlash(req, res);
                 res.view(view);
               });

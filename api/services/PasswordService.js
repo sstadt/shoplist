@@ -124,7 +124,7 @@ module.exports = {
         });
       }, function reject(err) {
         deferred.reject(err);
-      })
+      });
 
     return deferred.promise;
   },
