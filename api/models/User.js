@@ -46,7 +46,7 @@ module.exports = {
   beforeCreate: function (values, next) {
     if (!values.password || values.password !== values.confirmation) {
       return next({
-        err: ["Passwords don't match"]
+        err: [ sails.config.notifications.PasswordService.security.error.misMatch ]
       });
     }
 

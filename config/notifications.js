@@ -71,6 +71,12 @@ module.exports.notifications = {
         invalidPassword: 'Invalid username and password combination.'
       }
     }
+  },
+
+  RegistrationService: {
+    error: {
+      
+    }
   }
 
 };

@@ -18,7 +18,8 @@ var sha1 = require('sha1'),
   Q = require('q'),
   protocol = 'http://',
   domain = sails.config.globals.baseurl[sails.config.environment],
-  domainPath = protocol + sails.config.globals.baseurl[sails.config.environment];
+  domainPath = protocol + sails.config.globals.baseurl[sails.config.environment],
+  tokenErrors = sails.config.notifications.Token.error;
 
 module.exports = {
 
@@ -130,14 +131,14 @@ module.exports = {
 
     Token.findOne({ token: token }, function (err, token) {
       if (err || !token) {
-        deferred.reject('There was an error validating your reset token.');
+        deferred.reject(tokenErrors.notFound('password reset'));
       } else {
         User.findOne({
           id: token.user,
           confirmed: true
         }, function (err, user) {
           if (err || !user) {
-            deferred.reject('There was an error validating your reset token.');
+            deferred.reject(tokenErrors.notFound('password reset'));
           } else {
             deferred.resolve(user);
           }
