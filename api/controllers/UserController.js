@@ -52,24 +52,32 @@ module.exports = {
       confirmation: req.param('confirmation')
     };
 
-    User.create(userObj, function userCreated(err, user) {
-      if (err) {
-        var errorMsg = (err._e.code === 11000) ? 'There is already an account associated with that email address.' : err._e.err;
+    if (PasswordService.isSecure(userObj.password, userObj.confirmation)) {
+      User.create(userObj, function userCreated(err, user) {
+        if (err) {
+          var errorMsg = (err._e.code === 11000) ? 'There is already an account associated with that email address.' : err._e.err;
 
-        FlashService.warning(req, errorMsg);
-        res.redirect('/register');
-      } else {
-        RegistrationService.generateValidationEmail(user)
-          .fail(function () {
-            FlashService.error(req, 'Unable to create a registration key at this time');
-            res.redirect('/register');
-          })
-          .done(function () {
-            FlashService.success(req, 'Check the email address you registered with to verify your account.');
-            res.redirect('/login');
-          });
-      }
-    });
+          FlashService.warning(req, errorMsg);
+          res.redirect('/register');
+        } else {
+          RegistrationService.generateValidationEmail(user)
+            .fail(function () {
+              FlashService.error(req, 'Unable to create a registration key at this time');
+              res.redirect('/register');
+            })
+            .done(function () {
+              FlashService.success(req, 'Check the email address you registered with to verify your account.');
+              res.redirect('/login');
+            });
+        }
+      }); 
+    } else {
+      _.each(PasswordService.getLastError(), function (error) {
+        FlashService.error(req, error);
+      });
+      FlashService.addVar(req, 'email', userObj.email);
+      res.redirect('/register');
+    }
   },
 
   resend: function (req, res) {

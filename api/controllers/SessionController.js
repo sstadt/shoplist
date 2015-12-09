@@ -26,6 +26,18 @@ module.exports = {
       res.redirect('/login');
     } else {
 
+      // TODO: move validation to PasswordService so the commented code below works
+      // PasswordService.validatePassword(req.param('email'), req.param('password'))
+      //   .fail(function (err) {
+      //     FlashService.error(err);
+      //     res.redirect('/login');
+      //   })
+      //   .done(function (user) {
+      //     req.session.authenticated = true;
+      //     req.session.User = user.toJSON();
+      //     res.redirect('/mylists');
+      //   });
+
       User.findOne({ email: req.param('email') }, function (err, user) {
         if (err) {
           res.serverError('Error retrieving user');

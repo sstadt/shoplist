@@ -146,7 +146,15 @@ module.exports = {
     });
 
     return deferred.promise;
-  }
+  },
+
+  /**
+   * Validate a user's password
+   * @param  {string} email    The email address for the given user
+   * @param  {string} password The provided password to authenticate against the user's account
+   * @return {bool}            True is valid, false if not
+   */
+  validatePassword: function (email, password) {}
 
 };
 

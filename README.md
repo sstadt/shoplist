@@ -52,7 +52,11 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Move password validation to PasswordService
  - [x] DocBlock all the password reset functions
  - [x] Move password settings to config/passwords.js and wire into PasswordService
- - [ ] Add password validation for user creation
+ - [x] Add password validation for user creation
+
+### 0.1.4.2
+
+ - [ ] Move all back end error messaging to a config file
 
 ### 0.2
 
