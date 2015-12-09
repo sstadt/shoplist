@@ -59,10 +59,9 @@ Demo site: http://shoplist.scottstadt.com
 
  - [ ] Create a logo
  - [ ] Add a favicon
- - [ ] Improve email templates
+ - [ ] Add a logged-out navbar
+ - [ ] Center login/registration forms and put full screen background images on them
  - [ ] User Profile page
- - [ ] Categories
- - [ ] Sort by category
 
 #### User Profile Page
 
@@ -80,16 +79,25 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.2.1
 
+ - [ ] Categories
+ - [ ] Sort by category
+ - [ ] Drag re-order
+
+### 0.2.2
+
  - [ ] Facebook login
  - [ ] Item cache
  - [ ] Auto-fill list item from cache
- - [ ] Drag reorder list items
+
+### 0.2.3
+
+ - [ ] Improve email templates
+ - [ ] Custom 403, 404, and 500 pages
 
 ### 0.3
 
  - [ ] Barcode scanning
  - [ ] barcode item relation caching
- - [ ] Custom 403, 404, and 500 pages
 
 # Project Setup
 

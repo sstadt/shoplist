@@ -10,6 +10,8 @@ var Q = require('q'),
     number: sails.config.passwords.number,
     special: sails.config.passwords.special
   },
+  userErrors = sails.config.notifications.User.error,
+  passwordServiceErrors = sails.config.notifications.PasswordService,
   lastError = [];
 
 /**
@@ -27,24 +29,29 @@ function getPasswordComplexityErrors(password) {
     errors = [];
 
   if (settings.lowercase && !lowercasePattern.test(password)) {
-    errors.push('Password must contain at least one lowercase letter');
+    errors.push(passwordServiceErrors.complexity.error.noLowercase);
   }
 
   if (settings.uppercase && !uppercasePattern.test(password)) {
-    errors.push('Password must contain at least one uppercase letter')
+    errors.push(passwordServiceErrors.complexity.error.noUppercase);
   }
 
   if (settings.number && !numberPattern.test(password)) {
-    errors.push('Password must contain at least one number');
+    errors.push(passwordServiceErrors.complexity.error.noNumber);
   }
 
   if (settings.special && !specialPattern.test(password)) {
-    errors.push('Password must contain at least one special character');
+    errors.push(passwordServiceErrors.complexity.error.noSpecial);
   }
 
   return errors;
 }
 
+/**
+ * ===================
+ *        API
+ * ===================
+ */
 module.exports = {
 
   /**
@@ -80,15 +87,15 @@ module.exports = {
     lastError = (complexityErrors.length > 0) ? complexityErrors : [];
 
     if (!longEnough) {
-      lastError.push('Password must contain at least ' + settings.minLength + ' characters');
+      lastError.push(passwordServiceErrors.security.error.notMinLength(settings.minLength));
     }
 
     if (!shortEnough) {
-      lastError.push('Password may not contain more than ' + settings.maxLength + ' characters');
+      lastError.push(passwordServiceErrors.security.error.notMaxLength(settings.maxLength));
     }
 
     if (!matches) {
-      lastError.push('Passwords do not match');
+      lastError.push(passwordServiceErrors.security.error.misMatch);
     }
 
     return matches && complexityErrors.length === 0 && longEnough && shortEnough; 
@@ -105,11 +112,7 @@ module.exports = {
     var deferred = Q.defer();
 
     this.hashPassword(password)
-      .fail(function (err) {
-        deferred.reject(err);
-        return;
-      })
-      .done(function (encryptedPassword) {
+      .then(function resolve(encryptedPassword) {
         User.update(user.id, { encryptedPassword: encryptedPassword }, function (err) {
           if (err) {
             deferred.reject(err);
@@ -119,7 +122,9 @@ module.exports = {
             });
           }
         });
-      });
+      }, function reject(err) {
+        deferred.reject(err);
+      })
 
     return deferred.promise;
   },
@@ -150,6 +155,7 @@ module.exports = {
 
   /**
    * Validate a user's password
+   * 
    * @param  {string}   email    The email address for the given user
    * @param  {string}   password The provided password to authenticate against the user's account
    * @return {deferred}          Promise object resolves with error message on fail, user object on success
@@ -158,32 +164,20 @@ module.exports = {
     var deferred = Q.defer();
 
     User.findOne({ email: email }, function (err, user) {
-      // database error
       if (err) {
-        deferred.reject('Error retrieving user');
-
-      // no user is found
+        deferred.reject(userErrors.notFound);
       } else if (!user) {
-        deferred.reject('The email address ' + req.param('email') + ' was not found.');
-
-      // user is not confirmed
+        deferred.reject(userErrors.notFound);
       } else if (user.confirmed !== true) {
-        deferred.reject('You must verify your account before logging in. <a href="/resend?email=' + req.param('email') + '">resend</a>');
-
-      // validate password...
+        deferred.reject(userErrors.notVerified(email));
       } else {
         bcrypt.compare(password, user.encryptedPassword, function (err, valid) {
-          // database error
           if (err) {
-            deferred.reject('There was an error logging you in');
-
-          // valid password
+            deferred.reject(passwordServiceErrors.validation.error.serverError);
           } else if (valid === true) {
             deferred.resolve(user);
-
-          // invalid password
           } else {
-            deferred.reject('Invalid username and password combination.');
+            deferred.reject(passwordServiceErrors.validation.error.invalidPassword);
           }
         });
       }

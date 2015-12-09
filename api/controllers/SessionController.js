@@ -8,7 +8,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt'),
+  sessionErrors = sails.config.notifications.SessionController.error;
 
 module.exports = {
 
@@ -20,9 +21,10 @@ module.exports = {
   },
 
   create: function (req, res) {
+    // TODO: cache email/password
 
     if (!req.param('email') || !req.param('password')) {
-      FlashService.error(req, 'You must enter both a username and password.');
+      FlashService.error(req, sessionErrors.missingPassword);
       res.redirect('/login');
     } else {
       PasswordService.validatePassword(req.param('email'), req.param('password'))
@@ -41,7 +43,7 @@ module.exports = {
   destroy: function (req, res) {
     User.findOne(req.session.User.id, function foundUser(err) {
       if (err) {
-        res.serverError('Could not find user');
+        res.serverError(sessionErrors.logoutError);
       } else {
         req.session.destroy();
         res.redirect('/login');
