@@ -45,11 +45,11 @@ Demo site: http://shoplist.scottstadt.com
  - Improved UI feedback during async requests
  - Implemented password recovery
 
-# In Development
-
 ### 0.1.4.1
 
  - miscellaneous fixes and optimization to user, registration, and login workflows
+
+# In Development
 
 ### 0.2
 
