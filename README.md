@@ -49,14 +49,11 @@ Demo site: http://shoplist.scottstadt.com
 
 ### 0.1.4.1
 
- - [ ] Move password validation to PasswordService
+ - [x] Move password validation to PasswordService
  - [x] DocBlock all the password reset functions
  - [x] Move password settings to config/passwords.js and wire into PasswordService
  - [x] Add password validation for user creation
-
-### 0.1.4.2
-
- - [ ] Move all back end error messaging to a config file
+ - [ ] Move all back-end error messaging to a config file
 
 ### 0.2
 
@@ -66,6 +63,20 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] User Profile page
  - [ ] Categories
  - [ ] Sort by category
+
+#### User Profile Page
+
+##### config options
+
+ - avatar
+ - name
+ - email ?
+ - password
+ - ask before logging me out
+
+### 0.2.0.1
+
+ - [ ] add avatars and larger listings when sharing a list
 
 ### 0.2.1
 

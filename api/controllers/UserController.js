@@ -61,13 +61,12 @@ module.exports = {
           res.redirect('/register');
         } else {
           RegistrationService.generateValidationEmail(user)
-            .fail(function () {
-              FlashService.error(req, 'Unable to create a registration key at this time');
-              res.redirect('/register');
-            })
-            .done(function () {
+            .then(function resolve() {
               FlashService.success(req, 'Check the email address you registered with to verify your account.');
               res.redirect('/login');
+            }, function reject() {
+              FlashService.error(req, 'Unable to create a registration key at this time');
+              res.redirect('/register');
             });
         }
       }); 
@@ -94,13 +93,12 @@ module.exports = {
         }
 
         RegistrationService.generateValidationEmail(user)
-          .fail(function () {
-            FlashService.error(req, 'Unable to create a registration key at this time');
-            res.redirect('/register');
-          })
-          .done(function () {
+          .then(function resolve() {
             FlashService.success(req, 'Check the email address you registered with to verify your account.');
             res.redirect('/login');
+          }, function reject() {
+            FlashService.error(req, 'Unable to create a registration key at this time');
+            res.redirect('/register');
           });
       });
     });
@@ -132,14 +130,13 @@ module.exports = {
         res.redirect('/recover');
       } else {
         RegistrationService.generateResetEmail(user)
-          .fail(function () {
+          .then(function resolve() {
+            FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
+            res.redirect('/login');
+          }, function reject() {
             FlashService.error(req, 'Unable to reset your password at this time');
             FlashService.addVar(req, 'email', email);
             res.redirect('/recover');
-          })
-          .done(function () {
-            FlashService.success(req, 'Success! Check your email for instruction to reset your password.');
-            res.redirect('/login');
           });
       }
     });
@@ -157,12 +154,7 @@ module.exports = {
       };
 
     RegistrationService.validateResetToken(token)
-      .fail(function (err) {
-        FlashService.error(req, err);
-        res.redirect('/recover');
-        return;
-      })
-      .done(function (user) {
+      .then(function resolve(user) {
         var errors;
 
         view.user = user;
@@ -173,14 +165,13 @@ module.exports = {
           // password is secure according to configured rules
           if (PasswordService.isSecure(password, confirmation)) {
             PasswordService.resetPassword(password, user)
-              .fail(function (err) {
+              .then(function resolve() {
+                FlashService.success(req, 'Your password was successfully reset!');
+                res.redirect('/login');
+              }, function reject(err) {
                 FlashService.error(req, 'There was an error resetting your password');
                 FlashService.cycleFlash(req, res);
                 res.view(view);
-              })
-              .done(function () {
-                FlashService.success(req, 'Your password was successfully reset!');
-                res.redirect('/login');
               });
 
           // password is not secure
@@ -199,6 +190,10 @@ module.exports = {
           res.view(view);          
         }
 
+      }, function reject(err) {
+        FlashService.error(req, err);
+        res.redirect('/recover');
+        return;
       });
   },
 

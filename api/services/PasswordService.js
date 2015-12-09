@@ -150,11 +150,47 @@ module.exports = {
 
   /**
    * Validate a user's password
-   * @param  {string} email    The email address for the given user
-   * @param  {string} password The provided password to authenticate against the user's account
-   * @return {bool}            True is valid, false if not
+   * @param  {string}   email    The email address for the given user
+   * @param  {string}   password The provided password to authenticate against the user's account
+   * @return {deferred}          Promise object resolves with error message on fail, user object on success
    */
-  validatePassword: function (email, password) {}
+  validatePassword: function (email, password) {
+    var deferred = Q.defer();
+
+    User.findOne({ email: email }, function (err, user) {
+      // database error
+      if (err) {
+        deferred.reject('Error retrieving user');
+
+      // no user is found
+      } else if (!user) {
+        deferred.reject('The email address ' + req.param('email') + ' was not found.');
+
+      // user is not confirmed
+      } else if (user.confirmed !== true) {
+        deferred.reject('You must verify your account before logging in. <a href="/resend?email=' + req.param('email') + '">resend</a>');
+
+      // validate password...
+      } else {
+        bcrypt.compare(password, user.encryptedPassword, function (err, valid) {
+          // database error
+          if (err) {
+            deferred.reject('There was an error logging you in');
+
+          // valid password
+          } else if (valid === true) {
+            deferred.resolve(user);
+
+          // invalid password
+          } else {
+            deferred.reject('Invalid username and password combination.');
+          }
+        });
+      }
+    });
+
+    return deferred.promise;
+  }
 
 };
 
