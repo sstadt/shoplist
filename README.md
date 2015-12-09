@@ -58,6 +58,7 @@ Demo site: http://shoplist.scottstadt.com
  - [ ] Add a logged-out navbar
  - [ ] Center login/registration forms and put full screen background images on them
  - [ ] User Profile page
+ - [ ] add avatars and larger listings when sharing a list
 
 #### User Profile Page
 
@@ -68,10 +69,6 @@ Demo site: http://shoplist.scottstadt.com
  - email ?
  - password
  - ask before logging me out
-
-### 0.2.0.1
-
- - [ ] add avatars and larger listings when sharing a list
 
 ### 0.2.1
 
