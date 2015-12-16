@@ -72,6 +72,7 @@ Demo site: http://shoplist.scottstadt.com
 ### 0.2.0.1
 
  - [ ] add avatars and larger listings when sharing a list
+ - [ ] List names are not updating in the index view after saving them - probably not pdating on the list view either
 
 ### 0.2.1
 
