@@ -67,7 +67,7 @@ define([
    */
   function ListItemsViewModel(params) {
 
-    // cache this to eliminate the need to pass context to jquery and lodash functions  
+    // cache this to eliminate the need to pass context to jquery and lodash functions
     var self = this;
 
     // item data
@@ -103,19 +103,23 @@ define([
         quantity: 1
       };
 
-      self.updating(true);
+      if (newListItem.name.length > 0) {
+        self.updating(true);
 
-      io.socket.post('/item/create', newListItem, function (response) {
-        self.updating(false);
+        io.socket.post('/item/create', newListItem, function (response) {
+          self.updating(false);
 
-        if (response.err) {
-          self.formError(response.summary);
-        } else {
-          self.formError(null);
-          self.pageError(null);
-          self.newItemName('');
-        }
-      });
+          if (response.err) {
+            self.formError(response.summary);
+          } else {
+            self.formError(null);
+            self.pageError(null);
+            self.newItemName('');
+          }
+        });
+      } else {
+        self.formError('You cannot add an item with no name');
+      }
     };
 
     /**
@@ -283,4 +287,3 @@ define([
     template: html
   };
 });
-
