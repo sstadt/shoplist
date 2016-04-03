@@ -55,6 +55,14 @@ Demo site: http://shoplist.scottstadt.com
 
 # In Development
 
+### 0.1.4.1b
+
+ - [ ] upgrade node modules
+ - [ ] Add back end validation for adding list items
+ - [ ] fix cache busting assets for mobile clients
+ - [ ] make sure shopping lists page gets validated
+ - [ ] make sure edit modals get validated
+
 ### 0.2
 
  - [ ] Create a logo
