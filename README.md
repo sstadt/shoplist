@@ -49,6 +49,10 @@ Demo site: http://shoplist.scottstadt.com
 
  - miscellaneous fixes and optimization to user, registration, and login workflows
 
+### 0.1.4.1a
+
+ - fixed a crash bug on the shopping list page
+
 # In Development
 
 ### 0.2
@@ -121,5 +125,3 @@ module.exports = {
 ```
 
 Make sure you have mongod running on the default port and start the app with the command `sails lift`
-
-
