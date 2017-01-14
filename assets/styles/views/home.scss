@@ -61,7 +61,11 @@
 
                 .button {
                     margin-top: rem-calc(20);
-                    @extend .small;
+                    padding-top: 0.875rem;
+                    padding-right: 1.75rem;
+                    padding-bottom: 0.9375rem;
+                    padding-left: 1.75rem;
+                    font-size: 0.8125rem;
                 }
             }
 
